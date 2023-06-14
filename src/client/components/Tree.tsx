@@ -8,7 +8,7 @@ interface TreeProps {
 const Tree: React.FC<TreeProps> = ({ root }) => {
   console.log('root', root);
   const renderComponent = (component: Component) => {
-
+    if (component.children.length) {};
   };
 
   return <div>{renderComponent(root)}</div>;
