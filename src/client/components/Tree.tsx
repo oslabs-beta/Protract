@@ -48,7 +48,7 @@ export default function Tree() {
 
   return (
     <div className="w-full h-full p-3 bg-red-100">
-
+      {{ dummy }}
     </div>
   );
 }
