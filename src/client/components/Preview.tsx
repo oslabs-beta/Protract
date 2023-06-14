@@ -1,6 +1,6 @@
 import CodePreview from './CodePreview'
 import Tree from './Tree'
-import Display from './Display'
+//import Display from './Display'
 import { useState, useEffect } from 'react'
 
 

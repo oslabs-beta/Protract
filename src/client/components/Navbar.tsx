@@ -3,7 +3,7 @@ import github from '../assets/github-light.png'
 
 export default function Navbar() {
   return (
-    <nav className='border-solid border-2 bg-red-400'>
+    <nav className='border-solid border-2 bg-gray-600'>
       <div className = 'flex'>
         <img className = 'h-12' src= {logo} alt=""/>
         <img className = 'h-12' src = {github} alt="" />
