@@ -7,11 +7,11 @@ export interface Component {
   };
 }
 
-const dummy: Component = {
-    root: {
+export const currentProject: Component = {
+    app: {
       children: [
         {
-          app: {
+          main: {
             children: [
               {
                 header: {
@@ -20,7 +20,7 @@ const dummy: Component = {
                  },
               },
               {
-                main: {
+                mainDiv: {
                   children: [
                     {
                       component1: {
@@ -39,11 +39,11 @@ const dummy: Component = {
                 }
               }
             ],
-          code: '<header/>\n<main/>\n<footer/>'
+          code: '<header/>\n<mainDiv/>\n<footer/>'
           }
         }
       ],
-      code: '<app/>'
+      code: '<app>\n<main/>\n</app>'
     }
 };
 

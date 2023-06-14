@@ -21,7 +21,7 @@ export default function Preview() {
 
   const handleTreeClick = () => {
     console.log('switch to tree display!');
-    setDisplay(<Tree root={currentProject}/>);
+    setDisplay(<Tree currentProject={currentProject}/>);
   }
 
 
