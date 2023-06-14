@@ -24,6 +24,8 @@ export default function ComponentBank() {
   });
 
   return (
-    <div className="border-solid border-2 border-sky-400 my-5">{elList}</div>
+    <div className="scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-200 border-solid border-2 border-sky-400 my-5 h-3/4 overflow-y-scroll">
+      {elList}
+    </div>
   );
 }
