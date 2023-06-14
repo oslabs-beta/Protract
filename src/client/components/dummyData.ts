@@ -29,7 +29,7 @@ export const currentProject: Component = {
                       }
                     }
                   ],
-                  code: '<component1/>\nmain-code;'
+                  code: '<component1/>\nmainDiv-code;'
                 }
               },
               {
