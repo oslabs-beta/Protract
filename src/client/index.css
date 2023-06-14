@@ -5,3 +5,24 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+@layer components{
+    .previewBtn{
+        flex-basis: 50%;
+        /* border-width: 2px; */
+        border-style: solid;
+        border-color: gray;
+        padding-top: 10px;
+        padding-bottom:10px;
+        border-bottom-width:3px;
+        color: gray;
+    }
+    /* .previewBtn:hover{
+        color: #dc2626;
+        border-color: #dc2626;
+    } */
+    .previewBtn:focus{
+        color: #dc2626;
+        border-color: #dc2626;
+    }
+}
