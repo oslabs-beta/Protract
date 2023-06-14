@@ -20,7 +20,7 @@ export default function ComponentBank() {
   const elList: React.ReactElement[] = [];
 
   els.forEach((el, index) => {
-    elList.push(<BankEl key={`key${index}`} id={`id${index}`} value={el} />);
+    elList.push(<BankEl key={`key${index}`} id={el} />);
   });
 
   return (
