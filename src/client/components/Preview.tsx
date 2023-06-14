@@ -17,10 +17,12 @@ export default function Preview() {
 
   const handlePreviewClick = () => {
     console.log('switch to preview display!');
+    setDisplay(<CodePreview/>);
   }
 
   const handleTreeClick = () => {
     console.log('switch to tree display!');
+    setDisplay(<Tree/>);
   }
 
 
@@ -31,9 +33,7 @@ export default function Preview() {
         <button className="basis-1/2 border-2 border-solid border-black" onClick = { handleTreeClick }>Component Tree</button>
       </div>
 
-      {/* <CodePreview/>
-      <Tree/> */}
-      <Display/>
+      { display }
     </div>
   );
 }
