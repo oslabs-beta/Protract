@@ -1,4 +1,4 @@
-import { UniqueIdentifier, useDraggable, useDroppable } from "@dnd-kit/core";
+import { UniqueIdentifier, useDraggable } from "@dnd-kit/core";
 
 export default function BankEl(props: { key: UniqueIdentifier, id: UniqueIdentifier }) {
   const { id } = props;
