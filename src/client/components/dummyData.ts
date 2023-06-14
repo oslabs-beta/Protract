@@ -4,6 +4,7 @@ export interface Component {
   children: {
     [key: string]: Component;
   }[];
+  isComponent?: boolean;
   code: string;
 }
 
@@ -17,6 +18,7 @@ export const currentProject: Component =
             {
               headerComponent: {
                 children: [],
+                isComponent: true,
                 code: 'header-code;'
               }
             },
@@ -26,6 +28,7 @@ export const currentProject: Component =
                   {
                     component1: {
                       children: [],
+                      isComponent: true,
                       code: 'component1-code'
                     }
                   }
@@ -36,6 +39,7 @@ export const currentProject: Component =
             {
               footerComponent: {
                 children: [],
+                isComponent: true,
                 code: 'footer-code;'
               }
             }
@@ -44,5 +48,6 @@ export const currentProject: Component =
         }
       }
     ],
+    isComponent: true,
     code: '<app/>'
   };

@@ -7,6 +7,14 @@ interface TreeProps {
 
 const Tree: React.FC<TreeProps> = ({ root }) => {
   console.log('root', root);
+
+  // destructure properties out of the current root node
+  const { children, code, isComponent } = root;
+  console.log('children', children[0]);
+  console.log('code', code);
+  console.log('isComponent', isComponent);
+
+
   const renderComponent = (component: Component) => {
     if (component.children.length) {};
   };
