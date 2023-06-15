@@ -24,7 +24,7 @@ export default function Playground() {
     console.log(e);
     if (e.over === null) return;
     if (e.over.id === 'canvas') {
-      setItems((items) => [...items, { value: e.active.id, id: items.length }]);
+      setItems((items) => [...items, { value: e.active.id, id: `${e.active.id}-${items.length}` }]);
     }
     setActiveId('');
   }
