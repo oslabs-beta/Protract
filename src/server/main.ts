@@ -27,7 +27,7 @@ const connectToMongoDB = async () => {
   }
 };
 
-// connectToMongoDB();
+connectToMongoDB();
 
 //Parse incoming request
 
