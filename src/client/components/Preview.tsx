@@ -3,9 +3,11 @@ import Tree from './Tree'
 import { currentProject } from './dummyData';
 import { useState, useEffect } from 'react'
 
-export default function Preview() {
+export default function Preview(props: { tags: Object[] }) {
 
-  const [display, setDisplay] = useState(<CodePreview/>);
+  const {tags} = props;
+
+  const [display, setDisplay] = useState(<CodePreview tags = {tags}/>);
   const [tab, setTab] = useState('code')
   // useEffect((() => {
   //   if (state.display === 'preview') {
@@ -16,9 +18,19 @@ export default function Preview() {
 
   const handlePreviewClick = () => {
     console.log('switch to preview display!');
+    console.log('destructured tags in preview', tags);
     setTab('code');
-    setDisplay(<CodePreview/>);
+    setDisplay(< CodePreview tags = {tags}/>);
   }
+
+  useEffect(() => {
+    if(tab === 'code'){
+      setDisplay(<CodePreview tags = {tags}/>)
+    }else if(tab === 'tree'){
+      setDisplay(<Tree currentProject={currentProject}/>);
+    }
+    
+  }, [tags])
 
   const handleTreeClick = () => {
     console.log('switch to tree display!');

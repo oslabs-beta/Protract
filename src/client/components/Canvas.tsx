@@ -18,6 +18,10 @@ export default function Canvas(props: {items: Object[], handleCanvasUpdate: (arr
     setList(list.concat(items[items.length-1]))
   }, [items])
 
+  useEffect(() => {
+    handleCanvasUpdate(list)
+  }, [list])
+
   function handleDragEnd(e: DragEndEvent) {
     const {active, over} = e;
     if (over === null) {
@@ -27,9 +31,7 @@ export default function Canvas(props: {items: Object[], handleCanvasUpdate: (arr
       setList((list) => {
         const oldIndex = list.findIndex((item) => active.id === item.id)
         const newIndex = list.findIndex((item) => over.id === item.id)
-        const updatedArr = arrayMove(list, oldIndex, newIndex);
-        handleCanvasUpdate(updatedArr)
-        return updatedArr
+        return arrayMove(list, oldIndex, newIndex);
       });
   }
 }
