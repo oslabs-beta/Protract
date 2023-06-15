@@ -1,6 +1,6 @@
 import Editor from '@monaco-editor/react';
 import { useState, useEffect, useContext } from 'react'
-//import { ComponentContext } from 
+import { ComponentContext } from './ComponentContext'
 
 export default function CodePreview() {
     const previewVal = `import { Component } from '@angular/core';
@@ -21,40 +21,61 @@ export class HeroDetailComponent {
     //     },
     // }
     // const [fileName,setFileName] = useState("script.py");
-    // const file = files[fileName];
+    // const currFile = files[fileName];
+
+    //Pull the value from parent Context
+    const {currComponent, setCurrComponent} = useContext(ComponentContext);
 
 
-    // const [state, setState] = useState({preview:'//code preview here', color:'red'})
-    // const preview = state.preview;
-    // const color = state.color;
-    // console.log(state);
-    const [preview, setPreview] = useState('//typical code here');
+    // const [preview, setPreview] = useState(currComponent[0]/*'//typical code here'*/);
     const [currTheme, setTheme] = useState('vs-dark');
     const [windowWidth, setWindowWidth] = useState(`${window.innerWidth}`);
 
-    //const darkTheme = useContext(ThemeContext);
-
+    const emptyText = '//drag items onto canvas to see code';
+    
+    //Effect will only run when initial rendered
     useEffect(() =>{
         console.log('onMount');
     }, [])
 
+    //Function called whenever resizing occurs
     function resizeEvent(){
         setWindowWidth(`${window.innerWidth}`)
     };
 
+    //event listener example
     useEffect(() =>{
         addEventListener('resize', resizeEvent)
         return () => {
             console.log('cleanup occured');
+            //console.log(msg);
             window.removeEventListener('resize',resizeEvent)
         }
-    })
+    },[])
 
-    function changePreview() {
-        setPreview(prevPreview => 
-            prevPreview + `${currTheme}_ `
-        )
+    //logs everytime parent item updates
+    useEffect(() =>{
+        console.log('currComponent is:',currComponent);
+    },[currComponent])
+
+    //hitting the button mutates the global component array
+    function changePreview (){
+        setCurrComponent(prevComponent =>{
+            // console.log('before',prevComponent);
+            prevComponent.shift();
+            // console.log('after',prevComponent)
+            const newComp = [...prevComponent]
+            if(newComp.length === 0){
+                newComp.push(emptyText)
+            }
+            return newComp;
+        });
+        // setPreview(prevPreview => 
+        //     prevPreview + `${currTheme}_ `
+        // )
     }
+    
+    //hitting button changes the theme
     function changeTheme(){
         let newTheme;
         currTheme === 'light' ? newTheme = 'vs-dark' : newTheme = 'light'; 
@@ -63,12 +84,13 @@ export class HeroDetailComponent {
 
     return (
         <div className="flex-grow border-2 border-solid border-yellow-400">
-            <button className="border-4 border-indigo-600" onClick={changePreview}>addText</button>
-            <button className="border-4 border-amber-500" onClick={changeTheme}>theme</button>
-            <Editor height="50vh"
+            {/* <button className="border-4 border-indigo-600" onClick={changePreview}>addText</button> */}
+            {/* <button className="border-4 border-amber-500" onClick={changeTheme}>theme</button> */}
+            <Editor height="100%"
                 defaultLanguage="javascript"
-                value={preview}
-                // value = {windowWidth}
+                defaultValue={emptyText}
+                // value={currComponent[0]}
+                value = {windowWidth}
                 // path={file.name}
                 // defaultLanguage={file.language}
                 // value={file.value}

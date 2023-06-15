@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import LeftColumn from './LeftColumn';
 import Canvas from './Canvas';
 import Preview from './Preview';
 import { DndContext, DragEndEvent, DragMoveEvent, DragOverlay, DragStartEvent, UniqueIdentifier } from '@dnd-kit/core';
 import BankEl from './BankEl';
+import { ComponentContext } from './ComponentContext';
 
-// export const ComponentContext = React.createContext(defaultValue: string)
+
 
 export default function Playground() {
 
