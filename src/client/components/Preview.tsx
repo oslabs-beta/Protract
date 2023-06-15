@@ -28,8 +28,8 @@ export default function Preview() {
   return (
     <div className="basis-1/4 border-2 border-solid border-violet-700 flex flex-col">
       <div className ="flex flex-row">
-        <button className="basis-1/2 border-2 border-solid border-black" onClick = { handlePreviewClick } >Code Preview</button>
-        <button className="basis-1/2 border-2 border-solid border-black" onClick = { handleTreeClick }>Component Tree</button>
+        <button className="previewBtn" onClick = { handlePreviewClick } >Code Preview</button>
+        <button className="previewBtn" onClick = { handleTreeClick }>Component Tree</button>
       </div>
 
       { display }
