@@ -1,8 +1,7 @@
 import CodePreview from './CodePreview'
 import Tree from './Tree'
-//import Display from './Display'
+import { currentProject } from './dummyData';
 import { useState, useEffect } from 'react'
-
 
 export default function Preview() {
 
@@ -22,7 +21,7 @@ export default function Preview() {
 
   const handleTreeClick = () => {
     console.log('switch to tree display!');
-    setDisplay(<Tree/>);
+    setDisplay(<Tree currentProject={currentProject}/>);
   }
 
 
