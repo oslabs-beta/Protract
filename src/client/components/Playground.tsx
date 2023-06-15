@@ -46,21 +46,21 @@ export default function Playground() {
 
   return (
     <div className="flex flex-row border-solid border-4 border-green-600 h-1/2">
-      <DndContext  
-      onDragStart={handleDragStart} 
-      onDragEnd={handleDragEnd}>
-        < PlaygroundContext.Provider value={contextValue}>
-        {/* <ComponentContext.Provider value={currComponent}> */}
-      <LeftColumn />
-        <DragOverlay wrapperElement='ul'>
-          {activeId  ? (
-            <BankEl key={activeId} id={activeId}/>
-          ): null}
-        </DragOverlay>
-        <Canvas items={items} handleCanvasUpdate={handleCanvasUpdate} />
-        </PlaygroundContext.Provider>
-      </DndContext>
-      <Preview tags={currOrder}/>
+      <PlaygroundContext.Provider value={contextValue}>
+        <DndContext  
+        onDragStart={handleDragStart} 
+        onDragEnd={handleDragEnd}>
+          {/* <ComponentContext.Provider value={currComponent}> */}
+        <LeftColumn />
+          <DragOverlay wrapperElement='ul'>
+            {activeId  ? (
+              <BankEl key={activeId} id={activeId}/>
+            ): null}
+          </DragOverlay>
+          <Canvas items={items} handleCanvasUpdate={handleCanvasUpdate} />
+        </DndContext>
+        <Preview tags={currOrder}/>
+      </PlaygroundContext.Provider>
       {/* </ComponentContext.Provider> */}
     </div>
   );
