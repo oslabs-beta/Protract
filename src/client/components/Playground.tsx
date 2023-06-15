@@ -4,11 +4,17 @@ import Canvas from './Canvas';
 import Preview from './Preview';
 import { DndContext, DragEndEvent, DragMoveEvent, DragOverlay, DragStartEvent, UniqueIdentifier } from '@dnd-kit/core';
 import BankEl from './BankEl';
-import { ComponentContext } from './ComponentContext';
 
-
+export const PlaygroundContext = createContext<{
+  items: Object[],
+  setItems: React.Dispatch<React.SetStateAction<Object[]>>,
+}>({
+  items: [],
+  setItems: () => {},
+})
 
 export default function Playground() {
+
 
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [items, setItems] = useState<Object[]>([])
@@ -31,6 +37,11 @@ export default function Playground() {
     console.log('currOrder in playground: ', currOrder);
   }
 
+  const contextValue = {
+    items,
+    setItems
+  }
+  
   // const [currComponent, setCurrComponent] = useState([`<div>`,`<span>`])
 
   return (
@@ -38,6 +49,7 @@ export default function Playground() {
       <DndContext  
       onDragStart={handleDragStart} 
       onDragEnd={handleDragEnd}>
+        < PlaygroundContext.Provider value={contextValue}>
         {/* <ComponentContext.Provider value={currComponent}> */}
       <LeftColumn />
         <DragOverlay wrapperElement='ul'>
@@ -46,6 +58,7 @@ export default function Playground() {
           ): null}
         </DragOverlay>
         <Canvas items={items} handleCanvasUpdate={handleCanvasUpdate} />
+        </PlaygroundContext.Provider>
       </DndContext>
       <Preview tags={currOrder}/>
       {/* </ComponentContext.Provider> */}
