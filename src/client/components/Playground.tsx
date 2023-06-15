@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import LeftColumn from './LeftColumn';
 import Canvas from './Canvas';
 import Preview from './Preview';
@@ -21,13 +21,14 @@ export default function Playground() {
   function handleDragEnd(e: DragEndEvent) {
     if (e.over === null) return;
     if (e.over.id === 'canvas') {
-      setItems((items) => [...items, { value: e.active.id, id: `${e.active.id}-${items.length}` }]);
+      setItems((items) => [...items, { value: e.active.id, id: `${e.active.id}-${items.length}`, code: `<${e.active.id}></${e.active.id}>\n` }]);
     }
     setActiveId('');
   }
 
   function handleCanvasUpdate(arr: Object[])  {
     setCurrOrder(arr)
+    console.log('currOrder in playground: ', currOrder);
   }
 
   // const [currComponent, setCurrComponent] = useState([`<div>`,`<span>`])
@@ -46,7 +47,7 @@ export default function Playground() {
         </DragOverlay>
         <Canvas items={items} handleCanvasUpdate={handleCanvasUpdate} />
       </DndContext>
-      <Preview />
+      <Preview tags={currOrder}/>
       {/* </ComponentContext.Provider> */}
     </div>
   );
