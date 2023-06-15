@@ -24,10 +24,11 @@ const connectToMongoDB = async () => {
     console.log('Connected to MongoDB');
   } catch (error) {
     console.log('Failed to connect to MongoDB');
+    console.log(error);
   }
 };
 
-// connectToMongoDB();
+connectToMongoDB();
 
 //Parse incoming request
 
@@ -72,4 +73,3 @@ app.use((err: any, req: any, res: any, next: any) => {
 ViteExpress.listen(app, 3000, () =>
   console.log("Server is listening on port 3000...")
 );
-
