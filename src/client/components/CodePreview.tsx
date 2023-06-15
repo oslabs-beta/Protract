@@ -21,13 +21,7 @@ export class HeroDetailComponent {
     //     },
     // }
     // const [fileName,setFileName] = useState("script.py");
-    // const file = files[fileName];
-
-
-    // const [state, setState] = useState({preview:'//code preview here', color:'red'})
-    // const preview = state.preview;
-    // const color = state.color;
-    // console.log(state);
+    // const currFile = files[fileName];
 
     //Pull the value from parent Context
     const {currComponent, setCurrComponent} = useContext(ComponentContext);
@@ -64,6 +58,7 @@ export class HeroDetailComponent {
         console.log('currComponent is:',currComponent);
     },[currComponent])
 
+    //hitting the button mutates the global component array
     function changePreview (){
         setCurrComponent(prevComponent =>{
             // console.log('before',prevComponent);
@@ -80,7 +75,7 @@ export class HeroDetailComponent {
         // )
     }
     
-
+    //hitting button changes the theme
     function changeTheme(){
         let newTheme;
         currTheme === 'light' ? newTheme = 'vs-dark' : newTheme = 'light'; 
@@ -89,9 +84,9 @@ export class HeroDetailComponent {
 
     return (
         <div className="flex-grow border-2 border-solid border-yellow-400">
-            <button className="border-4 border-indigo-600" onClick={changePreview}>addText</button>
-            <button className="border-4 border-amber-500" onClick={changeTheme}>theme</button>
-            <Editor height="50vh"
+            {/* <button className="border-4 border-indigo-600" onClick={changePreview}>addText</button> */}
+            {/* <button className="border-4 border-amber-500" onClick={changeTheme}>theme</button> */}
+            <Editor height="100%"
                 defaultLanguage="javascript"
                 defaultValue={emptyText}
                 value={currComponent[0]}
