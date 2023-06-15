@@ -4,12 +4,12 @@ import { DndContext, DragEndEvent, DragStartEvent, UniqueIdentifier } from "@dnd
 import { useEffect, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
 
-export default function Canvas(props: {items: Object[]}) {
+export default function Canvas(props: {items: Object[], handleCanvasUpdate: (arr: Object[]) => void}) {
   const {setNodeRef} = useDroppable({
     id: 'canvas'
   })
 
-  const {items} = props;
+  const {items, handleCanvasUpdate} = props;
 
   const [list, setList] = useState<Object[]>(items)
 
@@ -17,9 +17,6 @@ export default function Canvas(props: {items: Object[]}) {
     if (items.length > 0)
     setList(list.concat(items[items.length-1]))
   }, [items])
-
-  function handleDragStart(e: DragStartEvent) {
-  }
 
   function handleDragEnd(e: DragEndEvent) {
     const {active, over} = e;
@@ -30,9 +27,9 @@ export default function Canvas(props: {items: Object[]}) {
       setList((list) => {
         const oldIndex = list.findIndex((item) => active.id === item.id)
         const newIndex = list.findIndex((item) => over.id === item.id)
-        console.log(items)
-        console.log(list)
-        return arrayMove(list, oldIndex, newIndex);
+        const updatedArr = arrayMove(list, oldIndex, newIndex);
+        handleCanvasUpdate(updatedArr)
+        return updatedArr
       });
   }
 }
@@ -40,10 +37,10 @@ export default function Canvas(props: {items: Object[]}) {
   return (
     <div className="basis-1/2 border-2 border-solid border-red-600 flex flex-col">
       <h2 className="text-center my-1.5 font-semibold" >Current component</h2>
-      <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+      <DndContext onDragEnd={handleDragEnd}>
       <SortableContext items={list.map(item => item.id)}
       strategy={verticalListSortingStrategy}>
-    <ul ref={setNodeRef} className="basis-1/2 border-2 border-solid border-red-600 flex-1">
+    <ul ref={setNodeRef} className="basis-1/2 border-2 border-solid border-red-600 flex-1 ">
     {list.map((item, index) => <SortableBankEl id={item.id} value={item.value}
     key={`${item}+${index}`}/> )}
     </ul>

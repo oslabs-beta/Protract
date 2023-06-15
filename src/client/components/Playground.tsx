@@ -11,17 +11,13 @@ export default function Playground() {
 
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [items, setItems] = useState<Object[]>([])
+  const [currOrder, setCurrOrder] = useState<Object[]>([])
 
   function handleDragStart(e: DragStartEvent) {
-    console.log(e)
     setActiveId(e.active.id);
   }
 
-  function handleDragMove(e: DragMoveEvent) {
-  }
-
   function handleDragEnd(e: DragEndEvent) {
-    console.log(e);
     if (e.over === null) return;
     if (e.over.id === 'canvas') {
       setItems((items) => [...items, { value: e.active.id, id: `${e.active.id}-${items.length}` }]);
@@ -29,12 +25,15 @@ export default function Playground() {
     setActiveId('');
   }
 
+  function handleCanvasUpdate(arr: Object[])  {
+    setCurrOrder(arr)
+  }
+
   // const [currComponent, setCurrComponent] = useState([`<div>`,`<span>`])
 
   return (
     <div className="flex flex-row border-solid border-4 border-green-600 h-1/2">
-      <DndContext 
-      onDragMove={handleDragMove} 
+      <DndContext  
       onDragStart={handleDragStart} 
       onDragEnd={handleDragEnd}>
         {/* <ComponentContext.Provider value={currComponent}> */}
@@ -44,7 +43,7 @@ export default function Playground() {
             <BankEl key={activeId} id={activeId}/>
           ): null}
         </DragOverlay>
-        <Canvas items={items} />
+        <Canvas items={items} handleCanvasUpdate={handleCanvasUpdate} />
       </DndContext>
       <Preview />
       {/* </ComponentContext.Provider> */}
