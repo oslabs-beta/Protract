@@ -14,7 +14,7 @@ export default function CustomComponentCreator() {
     function handleSubmit(e) {
     e.preventDefault();
     if (input.trim().length) {
-      setItems((items) => [...items, { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n` }]);
+      setItems((items) => [...items, { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n`, canEnter: true }]);
       setInput('');
     }
   }
