@@ -1,5 +1,6 @@
 import Editor from '@monaco-editor/react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+//import { ComponentContext } from 
 
 export default function CodePreview() {
     const previewVal = `import { Component } from '@angular/core';
@@ -31,6 +32,7 @@ export class HeroDetailComponent {
     const [currTheme, setTheme] = useState('vs-dark');
     const [windowWidth, setWindowWidth] = useState(`${window.innerWidth}`);
 
+    //const darkTheme = useContext(ThemeContext);
 
     useEffect(() =>{
         console.log('onMount');
@@ -48,17 +50,9 @@ export class HeroDetailComponent {
         }
     })
 
-    useEffect(() =>{
-        console.log('text render');
-    }, [preview])
-
-    useEffect(() =>{
-        console.log('theme render');
-    }, [currTheme])
-
     function changePreview() {
         setPreview(prevPreview => 
-            prevPreview + ` ${currTheme}`
+            prevPreview + `${currTheme}_ `
         )
     }
     function changeTheme(){
@@ -69,12 +63,12 @@ export class HeroDetailComponent {
 
     return (
         <div className="flex-grow border-2 border-solid border-yellow-400">
-            <button onClick={changePreview}>addText</button>
-            <button onClick={changeTheme}>theme</button>
+            <button className="border-4 border-indigo-600" onClick={changePreview}>addText</button>
+            <button className="border-4 border-amber-500" onClick={changeTheme}>theme</button>
             <Editor height="50vh"
                 defaultLanguage="javascript"
-                // value={preview}
-                value = {windowWidth}
+                value={preview}
+                // value = {windowWidth}
                 // path={file.name}
                 // defaultLanguage={file.language}
                 // value={file.value}
@@ -83,7 +77,7 @@ export class HeroDetailComponent {
                     lineNumbers: 'on',
                     minimap: { enabled: false },
                     theme: `${currTheme}`,
-                    wordWrap: 'off',
+                    wordWrap: 'on',
                     scrollbar: { vertical: 'hidden' },
                     scrollBeyondLastLine: false,
                     selectionHighlight: false,
