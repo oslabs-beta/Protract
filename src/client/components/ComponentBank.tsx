@@ -1,5 +1,6 @@
 import React from 'react';
 import BankEl from './BankEl';
+import CustomComponentCreator from './CustomComponentCreator';
 
 export default function ComponentBank() {
   const els: string[] = [
@@ -25,6 +26,7 @@ export default function ComponentBank() {
 
   return (
     <ul className="scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-200 border-solid border-2 border-sky-400 my-5 h-3/4 overflow-y-scroll">
+      <CustomComponentCreator/>
       {elList}
     </ul>
   );
