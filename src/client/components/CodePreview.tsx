@@ -89,8 +89,8 @@ export class HeroDetailComponent {
             <Editor height="100%"
                 defaultLanguage="javascript"
                 defaultValue={emptyText}
-                value={currComponent[0]}
-                // value = {windowWidth}
+                // value={currComponent[0]}
+                value = {windowWidth}
                 // path={file.name}
                 // defaultLanguage={file.language}
                 // value={file.value}
