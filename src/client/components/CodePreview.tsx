@@ -1,6 +1,6 @@
 import Editor from '@monaco-editor/react';
 import { useState, useEffect, useContext } from 'react'
-//import { ComponentContext } from 
+import { ComponentContext } from './ComponentContext'
 
 export default function CodePreview() {
     const previewVal = `import { Component } from '@angular/core';
@@ -28,33 +28,59 @@ export class HeroDetailComponent {
     // const preview = state.preview;
     // const color = state.color;
     // console.log(state);
-    const [preview, setPreview] = useState('//typical code here');
+
+    //Pull the value from parent Context
+    const {currComponent, setCurrComponent} = useContext(ComponentContext);
+
+
+    // const [preview, setPreview] = useState(currComponent[0]/*'//typical code here'*/);
     const [currTheme, setTheme] = useState('vs-dark');
     const [windowWidth, setWindowWidth] = useState(`${window.innerWidth}`);
 
-    //const darkTheme = useContext(ThemeContext);
-
+    const emptyText = '//drag items onto canvas to see code';
+    
+    //Effect will only run when initial rendered
     useEffect(() =>{
         console.log('onMount');
     }, [])
 
+    //Function called whenever resizing occurs
     function resizeEvent(){
         setWindowWidth(`${window.innerWidth}`)
     };
 
+    //event listener example
     useEffect(() =>{
         addEventListener('resize', resizeEvent)
         return () => {
             console.log('cleanup occured');
+            //console.log(msg);
             window.removeEventListener('resize',resizeEvent)
         }
-    })
+    },[])
 
-    function changePreview() {
-        setPreview(prevPreview => 
-            prevPreview + `${currTheme}_ `
-        )
+    //logs everytime parent item updates
+    useEffect(() =>{
+        console.log('currComponent is:',currComponent);
+    },[currComponent])
+
+    function changePreview (){
+        setCurrComponent(prevComponent =>{
+            // console.log('before',prevComponent);
+            prevComponent.shift();
+            // console.log('after',prevComponent)
+            const newComp = [...prevComponent]
+            if(newComp.length === 0){
+                newComp.push(emptyText)
+            }
+            return newComp;
+        });
+        // setPreview(prevPreview => 
+        //     prevPreview + `${currTheme}_ `
+        // )
     }
+    
+
     function changeTheme(){
         let newTheme;
         currTheme === 'light' ? newTheme = 'vs-dark' : newTheme = 'light'; 
@@ -67,7 +93,8 @@ export class HeroDetailComponent {
             <button className="border-4 border-amber-500" onClick={changeTheme}>theme</button>
             <Editor height="50vh"
                 defaultLanguage="javascript"
-                value={preview}
+                defaultValue={emptyText}
+                value={currComponent[0]}
                 // value = {windowWidth}
                 // path={file.name}
                 // defaultLanguage={file.language}
