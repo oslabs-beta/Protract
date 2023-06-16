@@ -5,17 +5,17 @@ import CustomComponentCreator from './CustomComponentCreator';
 export default function ComponentBank() {
   const els: string[] = [
     'div',
-    'anchor',
-    'image',
-    'unordered list',
-    'ordered list',
+    'a',
+    'img',
+    'ul',
+    'ol',
     'form',
     'button',
-    'list item',
+    'li',
     'span',
-    'header 1',
-    'header 2',
-    'header 3',
+    'h1',
+    'h2',
+    'h3',
   ];
 
   const elList: React.ReactElement[] = [];

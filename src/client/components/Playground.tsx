@@ -49,7 +49,8 @@ export default function Playground() {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8
+        distance: 20,
+        tolerance: 100
       }
     }),
     useSensor(MouseSensor),
