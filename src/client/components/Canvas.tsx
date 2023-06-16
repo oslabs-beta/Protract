@@ -37,7 +37,7 @@ export default function Canvas(props: {items: Object[], handleCanvasUpdate: (arr
 }
 
   return (
-    <div className="basis-1/2 border-2 border-solid border-red-600 flex flex-col">
+    <div className="basis-1/2 border-2 border-solid border-red-600 flex flex-col ">
       <h2 className="text-center my-1.5 font-semibold" >Current component</h2>
       <DndContext onDragEnd={handleDragEnd}>
       <SortableContext items={list.map(item => item.id)}
