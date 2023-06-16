@@ -11,6 +11,8 @@
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@monaco-editor/react": "^4.5.1",
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
