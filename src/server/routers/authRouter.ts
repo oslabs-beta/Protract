@@ -1,19 +1,32 @@
 import express from 'express';
-import authController from '../controllers/projController';
 const router = express.Router();
 
-// **** Authentication Route ****/
+// MongoDB Imports
+const models = require('../models/userModel');
+import userController from '../controllers/authControllers/userController'
+import cookieController from '../controllers/cookieControllers/cookieController'
 
-// Signup - fetch to /signup
 
-router.post('/signup', (req: any, res: any) => {
-  return res.status(200).json('sign up');
+// Signup User- fetch to /signup
+
+router.post('/signup', userController.createUser, cookieController.setSSIDCookie, (req: any, res: any) => {
+  console.log('Sign up has been successful')
+  return res.status(200).json('Sign Up succesful');
 });
 
-// Login - fetch to /login
+// Login User - fetch to /login
 
-router.post('/login', (req: any, res: any) => {
-  return res.status(200).json('log in');
+router.post('/login', userController.verifyUser, (req: any, res: any) => {
+  console.log('Login has been successful')
+  return res.status(200).json('Logged in successfully');
 });
+
+// Logout User - fetch to /logout
+
+router.post('/logout', userController.logOutUser, (req: any, res: any) => {
+  console.log('Logout is successful')
+  return res.status(200).json('Logged out successfully');
+});
+
 
 module.exports = router;

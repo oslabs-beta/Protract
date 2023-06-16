@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import Playground from './Playground';
 import Footer from './Footer';
+import TestingComp from './TestingLoginComp'
 
 export default function MainContainer() {
   return (
@@ -8,6 +9,7 @@ export default function MainContainer() {
       <Navbar />
       <Playground />
       <Footer />
+      <TestingComp />
     </div>
   );
 }
