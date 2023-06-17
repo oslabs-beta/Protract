@@ -3,21 +3,20 @@ import SortableBankEl from "./SortableBankEl"
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { Item } from "../../types";
+import { Comp, Item } from "../../types";
 
-export default function Canvas(props: {items: Item[], handleCanvasUpdate: (arr: Item[]) => void}) {
+export default function Canvas(props: {currComp: Comp, items: Item[], handleCanvasUpdate: (arr: Item[]) => void, setCurrComp}) {
   const {setNodeRef} = useDroppable({
     id: 'canvas'
   })
 
-  const { items, handleCanvasUpdate } = props;
+  const { currComp, items, handleCanvasUpdate, setCurrComp } = props;
 
-  const [list, setList] = useState<Item[]>(items)
+  const [list, setList] = useState<Item[]>(currComp.children)
 
-  useEffect(() => {
-    if (items.length > 0)
-      setList(list.concat(items[items.length - 1]))
-  }, [items])
+useEffect(() => {
+  setList(currComp.children);
+}, [currComp]);
 
   useEffect(() => {
     handleCanvasUpdate(list)
@@ -32,7 +31,11 @@ export default function Canvas(props: {items: Item[], handleCanvasUpdate: (arr: 
       setList((list) => {
         const oldIndex = list.findIndex((item) => active.id === item.id)
         const newIndex = list.findIndex((item) => over.id === item.id)
-        return arrayMove(list, oldIndex, newIndex);
+        const updated = arrayMove(list, oldIndex, newIndex);
+        setCurrComp((prev) => ({
+          ...prev, children: updated
+        }))
+        return updated
       });
     }
   }
@@ -40,7 +43,7 @@ export default function Canvas(props: {items: Item[], handleCanvasUpdate: (arr: 
   return (
     <div className="basis-1/2 border-2 border-solid border-blue-600 flex flex-col  bg-gray-200">
       <div className="border-4 border-dotted m-6 mx-10 border-gray-400 rounded-3xl flex flex-col flex-grow bg-white">
-        <h2 className="text-center my-1.5 font-semibold" >Current component</h2>
+        <h2 className="text-center my-1.5 font-semibold" >{currComp.value}</h2>
         <DndContext onDragEnd={handleDragEnd}>
           <SortableContext items={list.map(item => item.id)}
             strategy={verticalListSortingStrategy}>

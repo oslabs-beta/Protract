@@ -12,7 +12,6 @@ export default function CodePreview(props: { tags: Object[] }) {
 
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {
-        console.log('props.tags preview changes: ', preview);
         const strArr = props.tags.map((ele) => ele.code);
         setShow(strArr.join(''));
     }, [tags])
