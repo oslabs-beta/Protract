@@ -3,8 +3,9 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
+import { Item } from "../../types";
 
-export default function SortableBankEl(props: { setList: React.Dispatch<React.SetStateAction<Object[]>>, id: UniqueIdentifier, value: UniqueIdentifier}) {
+export default function SortableBankEl(props: { setList: React.Dispatch<React.SetStateAction<Item[]>>, id: UniqueIdentifier, value: UniqueIdentifier}) {
 
   const [deleteModal, setDeleteModal] = useState(false);
 

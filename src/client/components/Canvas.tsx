@@ -3,15 +3,16 @@ import SortableBankEl from "./SortableBankEl"
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
+import { Item } from "../../types";
 
-export default function Canvas(props: {items: Object[], handleCanvasUpdate: (arr: Object[]) => void}) {
+export default function Canvas(props: {items: Item[], handleCanvasUpdate: (arr: Item[]) => void}) {
   const {setNodeRef} = useDroppable({
     id: 'canvas'
   })
 
   const {items, handleCanvasUpdate} = props;
 
-  const [list, setList] = useState<Object[]>(items)
+  const [list, setList] = useState<Item[]>(items)
 
   useEffect(() => {
     if (items.length > 0)

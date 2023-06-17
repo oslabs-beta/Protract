@@ -4,10 +4,11 @@ import Canvas from './Canvas';
 import Preview from './Preview';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, UniqueIdentifier, KeyboardSensor, MouseSensor, TouchSensor, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
 import BankEl from './BankEl';
+import { Item } from '../../types';
 
 export const PlaygroundContext = createContext<{
-  items: Object[],
-  setItems: React.Dispatch<React.SetStateAction<Object[]>>,
+  items: Item[],
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>,
 }>({
   items: [],
   setItems: () => {},
@@ -19,8 +20,8 @@ export default function Playground() {
   // const [currentNode, setCurrentNode] = useState('app variable here') // currentNode always starts as app, then reassigns to the next component being worked on
 
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
-  const [items, setItems] = useState<Object[]>([])
-  const [currOrder, setCurrOrder] = useState<Object[]>([])
+  const [items, setItems] = useState<Item[]>([])
+  const [currOrder, setCurrOrder] = useState<Item[]>([])
   
   const app = {value: 'app', codeStart: '<app>', codeEnd: '</app>', children: currOrder}
 
@@ -36,7 +37,7 @@ export default function Playground() {
     setActiveId('');
   }
 
-  function handleCanvasUpdate(arr: Object[])  {
+  function handleCanvasUpdate(arr: Item[])  {
     setCurrOrder(arr)
     console.log('currOrder in playground: ', currOrder);
   }
