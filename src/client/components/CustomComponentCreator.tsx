@@ -7,14 +7,14 @@ export default function CustomComponentCreator() {
   
   const { items, setItems } = useContext(PlaygroundContext);
 
-  function handleChange(e) {
+  function handleChange(e: string) {
     setInput(e)
   }
 
-    function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
-      setItems((items) => [...items, { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n` }]);
+      setItems((items) => [...items, { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n`, canEnter: true }]);
       setInput('');
     }
   }
