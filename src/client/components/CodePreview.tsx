@@ -20,28 +20,6 @@ export default function CodePreview(props: { tags: Object[] }) {
 
     const emptyText = '//drag items onto canvas to see code';
 
-    //logs everytime parent item updates
-    // useEffect(() =>{
-    //     console.log('currComponent is:',currComponent);
-    // },[currComponent])
-
-    //hitting the button mutates the global component array
-    // function changePreview (){
-    //     setCurrComponent(prevComponent =>{
-    //         // console.log('before',prevComponent);
-    //         prevComponent.shift();
-    //         // console.log('after',prevComponent)
-    //         const newComp = [...prevComponent]
-    //         if(newComp.length === 0){
-    //             newComp.push(emptyText)
-    //         }
-    //         return newComp;
-    //     });
-    // setPreview(prevPreview => 
-    //     prevPreview + `${currTheme}_ `
-    // )
-    // }
-
     return (
         <div className="flex-grow border-2 border-solid border-slate-400">
             <Editor height="100%"
