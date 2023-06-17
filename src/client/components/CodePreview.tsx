@@ -1,16 +1,14 @@
 import Editor from '@monaco-editor/react';
 import { useState, useEffect, useContext } from 'react'
-import { ComponentContext } from './ComponentContext'
+//import { ComponentContext } from './ComponentContext'
 
 export default function CodePreview(props: { tags: Object[] }) {
-    const {tags} = props;
-   
-    // const [preview, setPreview] = useState(currComponent[0]/*'//typical code here'*/);
+    const { tags } = props;
+
     const [currTheme, setTheme] = useState('vs-dark');
-    const [windowWidth, setWindowWidth] = useState(`${window.innerWidth}`);
     const [preview, setPreview] = useState(tags);
     const [show, setShow] = useState('')
-   
+
 
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {
@@ -18,10 +16,10 @@ export default function CodePreview(props: { tags: Object[] }) {
         const strArr = props.tags.map((ele) => ele.code);
         setShow(strArr.join(''));
     }, [tags])
-    
+
 
     const emptyText = '//drag items onto canvas to see code';
-    
+
     //logs everytime parent item updates
     // useEffect(() =>{
     //     console.log('currComponent is:',currComponent);
@@ -39,9 +37,9 @@ export default function CodePreview(props: { tags: Object[] }) {
     //         }
     //         return newComp;
     //     });
-        // setPreview(prevPreview => 
-        //     prevPreview + `${currTheme}_ `
-        // )
+    // setPreview(prevPreview => 
+    //     prevPreview + `${currTheme}_ `
+    // )
     // }
 
     return (

@@ -42,7 +42,7 @@ export default function Canvas(props: {items: Object[], handleCanvasUpdate: (arr
       <DndContext onDragEnd={handleDragEnd}>
       <SortableContext items={list.map(item => item.id)}
       strategy={verticalListSortingStrategy}>
-    <ul ref={setNodeRef} className="basis-1/2 border-2 border-solid border-red-600 flex-1 ">
+    <ul ref={setNodeRef} className="basis-1/2 border-2 border-solid border-red-600 flex-1 text-center">
     {list.map((item, index) => <SortableBankEl id={item.id} value={item.value}
     key={`${item}+${index}`}/> )}
     </ul>
