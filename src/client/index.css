@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 *{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: sans-serif;
 }
 
 @layer components{
@@ -22,7 +22,7 @@
         padding-top: 10px;
         padding-bottom:10px;
         border-bottom-width:3px;
-        color: #dc2626;
-        border-color: #dc2626;
+        color: #b91c1c;
+        border-color:#b91c1c;
     }
 }

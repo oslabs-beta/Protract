@@ -43,7 +43,7 @@ export default function Preview(props: { tags: Object[] }) {
 
 
   return (
-    <div className="basis-1/4 border-2 border-solid border-violet-700 flex flex-col">
+    <div className="basis-1/4 border-2 border-solid border-violet-700 flex flex-col bg-gray-100">
       <div className ="flex flex-row">
         <button className={tab === 'code' ? 'previewBtnSelected' : 'previewBtn'} onClick = { handlePreviewClick}>Code Preview</button>
         <button className={tab === 'tree' ? 'previewBtnSelected' : 'previewBtn'} onClick = { handleTreeClick }>Component Tree</button>

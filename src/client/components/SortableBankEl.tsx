@@ -43,7 +43,7 @@ function handleCancel() {
 
   return (
     <>
-    <li ref={setNodeRef} style={style} {...attributes} {...listeners} className="border-2 border-gray-300 m-3 p-2 bg-gray-300 rounded">
+    <li ref={setNodeRef} style={style} {...attributes} {...listeners} className="border border-black my-5 p-2 bg-white mx-10 shadow-md rounded">
       {value}
       <button className="bg-gray-400 text-red-700 float-right mr-3 px-1 rounded-sm" onMouseDown={() => handleClick()} >X</button>
     </li>
