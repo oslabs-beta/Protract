@@ -2,11 +2,11 @@ import { PlaygroundContext } from "./Playground";
 import { useContext } from "react";
 
 export default function FileDirectory() {
-  const { comps, setItems } = useContext(PlaygroundContext);
+  const { comps, setItems, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
   function handleClick(comp) {
-    console.log(comp.value);
-    setItems([]);
+    setCurrComp(comp)
+    setChildren(comp.children)
   }
 
   return (
