@@ -43,7 +43,7 @@ export default function CodePreview(props: { tags: Object[] }) {
     // }
 
     return (
-        <div className="flex-grow border-2 border-solid border-yellow-400">
+        <div className="flex-grow border-2 border-solid border-slate-400">
             <Editor height="100%"
                 defaultLanguage="javascript"
                 defaultValue={emptyText}

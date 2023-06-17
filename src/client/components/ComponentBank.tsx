@@ -25,7 +25,7 @@ export default function ComponentBank() {
   });
 
   return (
-    <ul className="scrollbar-thin scrollbar-thumb-white scrollbar-track-white border-solid border-2 border-sky-400 my-5 h-3/4 overflow-y-scroll">
+    <ul className="scrollbar-thin scrollbar-thumb-white scrollbar-track-white border-solid border border-sky-400 mt-5 h-3/4 overflow-y-scroll">
       <CustomComponentCreator/>
       {elList}
     </ul>

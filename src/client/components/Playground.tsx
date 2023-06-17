@@ -45,7 +45,7 @@ export default function Playground() {
   // const [currComponent, setCurrComponent] = useState([`<div>`,`<span>`])
 
   return (
-    <div className="flex flex-row border-solid border-4 border-green-600 h-1/2">
+    <div className="flex flex-row border-solid border-2 border-green-600 h-1/2">
       <DndContext  
       onDragStart={handleDragStart} 
       onDragEnd={handleDragEnd}>

@@ -21,16 +21,16 @@ export default function CustomComponentCreator() {
 
   return (
     <div>
-      <form className="flex mx-4"
+      <form className="flex mx-4 border-2 rounded-md"
       onSubmit={(e) => handleSubmit(e)}>
         <input
-        className="flex-grow min-w-0 block text-center text-l"
+        className="flex-grow min-w-0 block text-center text-l focus:outline-none"
         placeholder='Component Name' 
         type='text'
         value={input} 
         onChange={(e) => handleChange(e.target.value)}
         />
-        <button type="submit" className="px-3 py-1 ml-2 text-white rounded-md bg-red-700 hover:bg-red-600">Add</button>
+        <button type="submit" className="px-3 py-1 text-white rounded-r-md bg-red-700 hover:bg-red-600">Add</button>
       </form>
     </div>
   )
