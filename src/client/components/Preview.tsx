@@ -1,9 +1,10 @@
 import CodePreview from './CodePreview'
 import Tree from './Tree'
 import { currentProject } from './dummyData';
-import { useState, useEffect } from 'react'
+import { Item } from './../../types';
+import {useEffect, useState} from 'react';
 
-export default function Preview(props: { tags: Object[] }) {
+export default function Preview(props: { tags: Item[] }) {
 
   const {tags} = props;
 

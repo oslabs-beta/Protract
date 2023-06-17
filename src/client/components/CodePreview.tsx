@@ -1,8 +1,9 @@
 import Editor from '@monaco-editor/react';
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
+import {Item} from './../../types'
 //import { ComponentContext } from './ComponentContext'
 
-export default function CodePreview(props: { tags: Object[] }) {
+export default function CodePreview(props: { tags: Item[] }) {
     const { tags } = props;
 
     // const [currTheme, setTheme] = useState('vs-dark');
