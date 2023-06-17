@@ -5,7 +5,7 @@ import { PlaygroundContext } from "./Playground";
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
   
-  const { items, setItems } = useContext(PlaygroundContext);
+  const { items, setItems, setComps, comps } = useContext(PlaygroundContext);
 
   function handleChange(e: string) {
     setInput(e)
@@ -14,7 +14,10 @@ export default function CustomComponentCreator() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
-      setItems((items) => [...items, { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n`, canEnter: true }]);
+      const newComp = { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
+      setItems((items) => [...items, newComp]);
+      setComps((prev) => [...prev, newComp])
+      console.log(comps);
       setInput('');
     }
   }

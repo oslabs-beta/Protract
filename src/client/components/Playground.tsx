@@ -4,14 +4,18 @@ import Canvas from './Canvas';
 import Preview from './Preview';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, UniqueIdentifier, KeyboardSensor, MouseSensor, TouchSensor, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
 import BankEl from './BankEl';
-import { Item } from '../../types';
+import { Item, Comp } from '../../types';
 
 export const PlaygroundContext = createContext<{
   items: Item[],
+  comps: Comp[],
   setItems: React.Dispatch<React.SetStateAction<Item[]>>,
+  setComps: React.Dispatch<React.SetStateAction<Comp[]>>
 }>({
   items: [],
+  comps: [],
   setItems: () => {},
+  setComps: () => {}
 })
 
 export default function Playground() {
@@ -22,8 +26,9 @@ export default function Playground() {
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [items, setItems] = useState<Item[]>([])
   const [currOrder, setCurrOrder] = useState<Item[]>([])
-  
-  const app = {value: 'app', codeStart: '<app>', codeEnd: '</app>', children: currOrder}
+
+  const app = {value: 'app', id:'app', codeStart: '<app>', codeEnd: '</app>', children: currOrder}
+  const [comps, setComps] = useState<Comp[]>([app])
 
   function handleDragStart(e: DragStartEvent) {
     setActiveId(e.active.id);
@@ -44,7 +49,9 @@ export default function Playground() {
 
   const contextValue = {
     items,
-    setItems
+    comps,
+    setItems,
+    setComps
   }
 
   const sensors = useSensors(

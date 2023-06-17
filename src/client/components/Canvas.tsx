@@ -15,8 +15,11 @@ export default function Canvas(props: {items: Item[], handleCanvasUpdate: (arr: 
   const [list, setList] = useState<Item[]>(items)
 
   useEffect(() => {
-    if (items.length > 0)
+    if (items.length > 0) {
       setList(list.concat(items[items.length - 1]))
+    } else {
+      setList([])
+    }
   }, [items])
 
   useEffect(() => {
