@@ -3,20 +3,20 @@ import github from '../assets/github-light.png'
 
 export default function Navbar() {
   return (
-    <nav className='flex justify-between items-center border-solid border-2 font-sans'>
+    <nav className='flex justify-between items-center border-solid border-2 bg-white'>
       <div>
       <img className='h-auto w-48 m-3' src={logo} alt="Homepage" />
       </div>
       <div className=' gap-10 grid-cols-20 '>
         <ul className='my-4 gap-4 flex'>
           <li>
-            <a className='font-mono p-2 mx-1 float-right hover:text-red-900' href='/'>Tutorial</a>
+            <a className='p-2 mx-1 float-right hover:text-red-900' href='/'>Tutorial</a>
           </li>
           <li >
-            <a className='font-mono p-2 mx-1 float-right hover:text-red-900' href='/'>Projects</a>
+            <a className='p-2 mx-1 float-right hover:text-red-900' href='/'>Projects</a>
           </li>
           <li >
-            <a className='font-mono p-2 mx-1 mr-8 float-right text-white rounded-md bg-red-900 hover:bg-red-700' href='/'>Sign Up / Login</a>
+            <a className='p-2 mx-1 mr-8 float-right text-white rounded-md bg-red-700 hover:bg-red-600' href='/'>Sign Up / Login</a>
           </li>
         </ul>
       </div>

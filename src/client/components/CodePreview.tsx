@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from 'react'
 export default function CodePreview(props: { tags: Object[] }) {
     const { tags } = props;
 
-    const [currTheme, setTheme] = useState('vs-dark');
+    // const [currTheme, setTheme] = useState('vs-dark');
     const [preview, setPreview] = useState(tags);
     const [show, setShow] = useState('')
 
@@ -53,7 +53,7 @@ export default function CodePreview(props: { tags: Object[] }) {
                     readOnly: true,
                     lineNumbers: 'on',
                     minimap: { enabled: false },
-                    theme: `${currTheme}`,
+                    // theme: `${currTheme}`,
                     wordWrap: 'on',
                     scrollbar: { vertical: 'hidden' },
                     scrollBeyondLastLine: false,
