@@ -18,7 +18,7 @@ export default function SortableBankEl(props: {id: UniqueIdentifier, value: Uniq
   }
 
   return (
-    <li ref={setNodeRef} style={style} {...attributes} {...listeners} className="border-2 border-gray-300 m-3 p-2 bg-gray-300 rounded">
+    <li ref={setNodeRef} style={style} {...attributes} {...listeners} className="border border-black my-5 p-2 bg-white mx-10 shadow-md rounded">
       {value}
     </li>
   )

@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className='flex justify-between items-center border-solid border-2 bg-white'>
       <div>
-      <img className='h-auto w-48 m-3' src={logo} alt="Homepage" />
+      <img className='h-auto w-48 ml-3' src={logo} alt="Homepage" />
       </div>
       <div className=' gap-10 grid-cols-20 '>
         <ul className='my-4 gap-4 flex'>
