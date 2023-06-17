@@ -1,6 +1,8 @@
+import express, { Request, Response, NextFunction, RequestHandler } from 'express';
+
 interface CookieController {
-    setCookie: (req: any, res: any, next: any) => Promise<void>;
-    setSSIDCookie: (req: any, res: any, next: any) => Promise<void>;
+    setCookie: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    setSSIDCookie: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 const cookieController: CookieController = {
 
@@ -12,12 +14,17 @@ setCookie: async (req, res, next) => {
     return next();
   },
 
+// Cookie is set after user successfully signs up or logs in
 // setSSIDCookie - store the user id in a cookie
 
+
 setSSIDCookie: async (req, res, next) => {
+    const options = {
+        httpOnly: true
+    }
     const { id } = res.locals.user
     try{
-        res.cookie('ssid', id);
+        res.cookie('SSID', id, options);
         console.log('SSID cookie successfully created')
         return next();
     } catch(err) {

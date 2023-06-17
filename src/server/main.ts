@@ -1,6 +1,6 @@
 // NPM Packages
 require('dotenv').config()
-import express from "express";
+import express, { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express';
 import ViteExpress from "vite-express";
 
 const path = require('path');
@@ -28,7 +28,7 @@ const connectToMongoDB = async () => {
   }
 };
 
-//connectToMongoDB();
+connectToMongoDB();
 
 //Parse incoming request
 
@@ -58,7 +58,7 @@ app.use('/proj', projRouter)
 
 // Global Error Handler
 
-app.use((err: any, req: any, res: any, next: any) => {
+app.use((err: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
   const defaultError = {
     log: 'Express error handler caught, unknown middleware error',
     status: 500,
