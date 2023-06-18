@@ -19,7 +19,7 @@ const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
 
   function handleClick(comp) {
     setCurrComp(comp)
-    setChildren(comp.children)
+    if (comp.children.length > 0) setChildren(comp.children);
   }
 
   /**
@@ -28,40 +28,29 @@ const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
    * @param {Type} currentComponent - the current
    * @returns {Type} - JSX of a series of divs, each representing a node / nested node
    */
-  const renderTree = (currentComponent: Comp|Item) => {
-    console.log('in renderTree (in Tree)');
-    // console.log('currentProject', currentProject);
-    console.log('currentComponent', currentComponent);
-    // destructure current component's name and its children array
+  const renderTree = (currentComponent: Comp | Item, currentDepth: number) => {
     const { value, children } = currentComponent;
-    console.log('children destructured from currentLevel', children);
-    console.log('value destructured', value);
 
     return (
-      <div>
-        {/*top margin needs to be increased*/}
-        <div className={` border-l 'mt-2' ${depth > 0 ? 'ml-6': ''}`}>
+      <div className={`ml-${currentDepth * 4} flex flex-col items-center`}>
+        <div onClick={() => handleClick(currentComponent)}>
           <strong>{value}</strong>
-          {children && children.length > 0 && (
-            <div>
-              {children.map((child, index) => (
-                <div key={index} className={`border-l`}>
-                    <Tree comps={child} depth={depth + 1} />
-                </div>
-              ))}
-            </div>
-          )}
         </div>
+        {children && children.length > 0 && (
+          <div className="flex flex-col items-center">
+            {children.map((child, index) => (
+              <div key={index} className="mt-2">
+                <Tree comps={child} depth={currentDepth + 1} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   };
 
-  return (
-  <>
-    <div>{renderTree(comps)}</div>
-  </>
+  return <>{renderTree(comps, depth)}</>;
 
-  );
 };
 
 export default Tree;
