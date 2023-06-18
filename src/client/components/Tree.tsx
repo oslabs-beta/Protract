@@ -6,20 +6,20 @@ import { Item, Comp } from '../../types';
 
 
 interface TreeProps {
-  currentProject?: Comp|Item;
+  comps: Comp|Item;
   depth?: number;
 }
 
-const Tree: React.FC<TreeProps> = ({ depth = 0 }) => {
+const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
 
-  let { comps, setItems, setCurrComp, setChildren } = useContext(PlaygroundContext);
+  const { setItems, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
   console.log('in tree');
   console.log('comps', comps);
 
   function handleClick(comp) {
-  setCurrComp(comp)
-  setChildren(comp.children)
+    setCurrComp(comp)
+    setChildren(comp.children)
   }
 
   /**
@@ -35,7 +35,7 @@ const Tree: React.FC<TreeProps> = ({ depth = 0 }) => {
     // destructure current component's name and its children array
     const { value, children } = currentComponent;
     console.log('children destructured from currentLevel', children);
-    console.log('value duestructured', value);
+    console.log('value destructured', value);
 
     return (
       <div>
@@ -46,9 +46,7 @@ const Tree: React.FC<TreeProps> = ({ depth = 0 }) => {
             <div>
               {children.map((child, index) => (
                 <div key={index} className={`border-l`}>
-                  <div>
-                    <Tree currentProject={child} depth={depth + 1} />
-                  </div>
+                    <Tree comps={child} depth={depth + 1} />
                 </div>
               ))}
             </div>

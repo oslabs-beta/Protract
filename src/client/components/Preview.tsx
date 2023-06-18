@@ -1,8 +1,10 @@
 import CodePreview from './CodePreview'
 import Tree from './Tree'
 import { currentProject } from './dummyData';
-import { Item } from './../../types';
+import { Item, Comp } from '../../types';
 import {useEffect, useState} from 'react';
+import { PlaygroundContext } from "./Playground";
+import { useContext } from "react";
 
 export default function Preview(props: { tags: Item[] }) {
 
@@ -10,6 +12,8 @@ export default function Preview(props: { tags: Item[] }) {
 
   const [display, setDisplay] = useState(<CodePreview tags = {tags}/>);
   const [tab, setTab] = useState('code')
+
+  const { comps } = useContext(PlaygroundContext);
   // useEffect((() => {
   //   if (state.display === 'preview') {
 
@@ -28,7 +32,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab === 'code'){
       setDisplay(<CodePreview tags = {tags}/>)
     }else if(tab === 'tree'){
-      setDisplay(<Tree/>);
+      setDisplay(<Tree comps={comps[0]}/>);
     }
 
   }, [tags])
@@ -36,7 +40,7 @@ export default function Preview(props: { tags: Item[] }) {
   const handleTreeClick = () => {
     console.log('switch to tree display!');
     setTab('tree');
-    setDisplay(<Tree/>);
+    setDisplay(<Tree comps={comps[0]}/>);
   }
   const toggleTab = (target: string) => {
     setTab(target);
