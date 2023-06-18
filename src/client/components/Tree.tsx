@@ -1,12 +1,26 @@
 import React from 'react';
 import { Component } from './dummyData';
+import { PlaygroundContext } from "./Playground";
+import { useContext } from "react";
+import { Item, Comp } from '../../types';
+
 
 interface TreeProps {
-  currentProject: Component;
+  currentProject?: Comp|Item;
   depth?: number;
 }
 
-const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0,}) => {
+const Tree: React.FC<TreeProps> = ({ depth = 0 }) => {
+
+  let { comps, setItems, setCurrComp, setChildren } = useContext(PlaygroundContext);
+
+  console.log('in tree');
+  console.log('comps', comps);
+
+  function handleClick(comp) {
+  setCurrComp(comp)
+  setChildren(comp.children)
+  }
 
   /**
    * This function recursively create a file directory-like tree
@@ -14,9 +28,9 @@ const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0,}) => {
    * @param {Type} currentComponent - the current
    * @returns {Type} - JSX of a series of divs, each representing a node / nested node
    */
-  const renderTree = (currentComponent: Component) => {
+  const renderTree = (currentComponent: Comp|Item) => {
     console.log('in renderTree (in Tree)');
-    console.log('currentProject', currentProject);
+    // console.log('currentProject', currentProject);
     console.log('currentComponent', currentComponent);
     // destructure current component's name and its children array
     const { value, children } = currentComponent;
@@ -46,7 +60,7 @@ const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0,}) => {
 
   return (
   <>
-    <div>{renderTree(currentProject)}</div>
+    <div>{renderTree(comps)}</div>
   </>
 
   );
