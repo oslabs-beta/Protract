@@ -42,9 +42,9 @@ app.get("/hello", (_, res) => {
   res.send("Hello Vite + React + TypeScript!");
 });
 
-// Render HTML Pages with Express
+// Render HTML Pages with Express - Vite already serves static files on dev mode
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'dist')));
 
 // Routers
 

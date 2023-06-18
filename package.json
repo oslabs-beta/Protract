@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon src/server/main.ts -w src/server",
     "start": "NODE_ENV=production ts-node src/server/main.ts",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "vite preview" 
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
