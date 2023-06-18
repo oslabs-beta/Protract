@@ -25,7 +25,8 @@ const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0,}) => {
 
     return (
       <div>
-        <div className={` border-l ${depth > 0 ? 'ml-4' : ''}`}>
+        {/*top margin needs to be increased*/}
+        <div className={` border-l 'mt-2' ${depth > 0 ? 'ml-6': ''}`}>
           <strong>{value}</strong>
           {children && children.length > 0 && (
             <div>
