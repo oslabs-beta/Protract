@@ -33,7 +33,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab !== 'tree'){
       console.log('switch to tree display!');
       setTab('tree');
-      setDisplay(<Tree currentProject={currentProject}/>);
+      setDisplay(<Tree comps={comps[0]}/>);
     }
   }
 
@@ -45,15 +45,6 @@ export default function Preview(props: { tags: Item[] }) {
     }
 
   }, [tags])
-
-  const handleTreeClick = () => {
-    console.log('switch to tree display!');
-    setTab('tree');
-    setDisplay(<Tree comps={comps[0]}/>);
-  }
-  const toggleTab = (target: string) => {
-    setTab(target);
-  }
 
 
   return (
