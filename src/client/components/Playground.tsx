@@ -33,7 +33,7 @@ export default function Playground() {
 
   const [children, setChildren] = useState<Item[]>([]);
   
-const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', children }
+const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children }
 
   // whenever children changes, update the state of the currComp to match the changes
   useEffect(() => {

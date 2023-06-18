@@ -11,6 +11,7 @@ export type Item = {
 export type Comp = {
   value: string,
   id: string,
+  canEnter?: boolean
   codeStart?: string,
   codeEnd?: string,
   code?: string,
