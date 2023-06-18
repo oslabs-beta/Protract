@@ -19,11 +19,14 @@ export default function Navbar() {
             <a className='p-2 mx-1 float-right hover:text-red-900' href='/'>Projects</a>
           </li>
           <li >
-            <a className='p-2 mx-1 float-right hover:text-red-900' onClick={() => {(document.querySelector("#loginModal") as HTMLDialogElement).showModal()}} href='javascript:void(0);'>Login</a>
+            <button className='p-2 mx-1 float-right hover:text-red-900' 
+            onClick={() => {(document.querySelector("#loginModal") as HTMLDialogElement).showModal()}}
+            >Login</button>
           </li>
           <li >
-            <button data-open-modal className='p-2 mx-1 mr-8 float-right text-white rounded-md bg-red-700 hover:bg-red-600'
-              onClick={() => (document.querySelector("#signUpModal") as HTMLDialogElement).showModal()}
+            <button 
+            className='p-2 mx-1 mr-8 float-right text-white rounded-md bg-red-700 hover:bg-red-600'
+            onClick={() => (document.querySelector("#signUpModal") as HTMLDialogElement).showModal()}
             >Sign Up</button>
           </li>
         </ul>
