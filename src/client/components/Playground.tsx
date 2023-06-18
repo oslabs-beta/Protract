@@ -41,7 +41,6 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
 
   // whenever children changes, update the state of the currComp to match the changes
   useEffect(() => {
-    console.log(currComp);
     setCurrComp((prevComp) => ({
       ...prevComp,
       children,
@@ -50,12 +49,12 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
 
 
   // changes what component we are currently looking at
-  const [currComp, setCurrComp] = useState(app);
+  const [currComp, setCurrComp] = useState<Comp>(app);
 
   // custom components made in an instance
   const [comps, setComps] = useState<Comp[]>([app])
   
-  // whenever children or currComp changes, change the children property of the comp that matches currComps id
+  // whenever children changes, change the children property of the comp that matches currComps id
   useEffect(() => {
     setComps((prevComps) =>
       prevComps.map((comp) => {
@@ -94,7 +93,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   function handleDragEnd(e: DragEndEvent) {
     if (e.over === null) return;
     if (e.over.id === 'canvas') {
-      const newItem = { value: e.active.id, id: `${e.active.id}-${items.length}`, code: `<${e.active.id}></${e.active.id}>\n` }
+      const newItem = { value: e.active.id, id: `${e.active.id}-${items.length}-in-${currComp.value}`, code: `<${e.active.id}></${e.active.id}>\n` }
       setItems((items) => [...items, newItem]);
       setChildren((prev) => [...prev, newItem]);
     }
@@ -126,7 +125,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
               <BankEl key={activeId} id={activeId}/>
             ): null}
           </DragOverlay>
-          <Canvas currComp={currComp} setCurrComp={setCurrComp} items={items} handleCanvasUpdate={handleCanvasUpdate} />
+          <Canvas currComp={currComp} setChildren={setChildren} handleCanvasUpdate={handleCanvasUpdate} />
         </DndContext>
         <Preview tags={currOrder}/>
       </PlaygroundContext.Provider>

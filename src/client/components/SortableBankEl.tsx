@@ -4,15 +4,15 @@ import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
 import { Item } from "../../types";
-// import { useContext } from "react";
-// import { PlaygroundContext } from "./Playground";
+import { useContext } from "react";
+import { PlaygroundContext } from "./Playground";
 
-export default function SortableBankEl(props: { setList: React.Dispatch<React.SetStateAction<Item[]>>, id: UniqueIdentifier, value: UniqueIdentifier}) {
+export default function SortableBankEl(props: { id: UniqueIdentifier, value: UniqueIdentifier}) {
 
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const {id, value, setList} = props;
-  // const {comps, setComps} = useContext(PlaygroundContext);
+  const {id, value} = props;
+  const { setComps, setChildren} = useContext(PlaygroundContext);
 
   const {
     attributes,
@@ -27,17 +27,16 @@ export default function SortableBankEl(props: { setList: React.Dispatch<React.Se
   }
 
   function handleClick() {
-    console.log('clicked');
     setDeleteModal(true);
     console.log(deleteModal);
   }
 
 function handleDelete() {
   setDeleteModal(false);
-  // need logic here to remove the li from file directory
-    setList((prevList) => {
-      return prevList.filter((item) => item.id !== id);
-    });
+    // remove the comp if it is a comp
+    setComps((prev) => prev.filter((comp) => comp.id !== id))
+    // remove the el from the children arr
+    setChildren((prev) => prev.filter((item) => item.id !== id))
 }
 
 function handleCancel() {
