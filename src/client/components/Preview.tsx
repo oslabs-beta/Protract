@@ -18,12 +18,21 @@ export default function Preview(props: { tags: Item[] }) {
   // )
 
   const handlePreviewClick = () => {
-    console.log('switch to preview display!');
-    console.log('destructured tags in preview', tags);
-    setTab('code');
-    setDisplay(< CodePreview tags = {tags}/>);
+    if(tab !== 'code'){
+      console.log('switch to preview display!');
+      console.log('destructured tags in preview', tags);
+      setTab('code');
+      setDisplay(< CodePreview tags = {tags}/>);
+    }
   }
-
+  const handleTreeClick = () => {
+    if(tab !== 'tree'){
+      console.log('switch to tree display!');
+      setTab('tree');
+      setDisplay(<Tree currentProject={currentProject}/>);
+    }
+  }
+  
   useEffect(() => {
     if(tab === 'code'){
       setDisplay(<CodePreview tags = {tags}/>)
@@ -33,14 +42,6 @@ export default function Preview(props: { tags: Item[] }) {
     
   }, [tags])
 
-  const handleTreeClick = () => {
-    console.log('switch to tree display!');
-    setTab('tree');
-    setDisplay(<Tree currentProject={currentProject}/>);
-  }
-  const toggleTab = (target: string) => {
-    setTab(target);
-  }
 
 
   return (

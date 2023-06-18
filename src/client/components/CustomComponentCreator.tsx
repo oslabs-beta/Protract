@@ -25,11 +25,11 @@ export default function CustomComponentCreator() {
   }
 
   return (
-    <div>
-      <form className="flex mx-4 border-2 rounded-md"
+    <div className="border-purple-500 flex w-full justify-center">
+      <form className="justify-center my-4 flex w-3/4"
       onSubmit={(e) => handleSubmit(e)}>
         <input
-        className="flex-grow min-w-0 block text-center text-l focus:outline-none"
+        className="flex-grow border border-red-700 rounded-l-md min-w-full block text-center text-l focus:outline-none"
         placeholder='Component Name' 
         type='text'
         value={input} 
