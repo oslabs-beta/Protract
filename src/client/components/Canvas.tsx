@@ -14,9 +14,9 @@ export default function Canvas(props: {currComp: Comp, handleCanvasUpdate: (arr:
 
   const [list, setList] = useState<Item[]>(currComp.children)
 
-useEffect(() => {
-  setList(currComp.children);
-}, [currComp]);
+  useEffect(() => {
+    setList(currComp.children);
+  }, [currComp]);
 
   useEffect(() => {
     handleCanvasUpdate(list)

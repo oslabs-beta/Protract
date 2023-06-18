@@ -7,19 +7,15 @@ import BankEl from './BankEl';
 import { Item, Comp } from '../../types';
 
 export const PlaygroundContext = createContext<{
-  items: Item[],
   comps: Comp[],
   children: Item[],
-  setItems: React.Dispatch<React.SetStateAction<Item[]>>,
   setComps: React.Dispatch<React.SetStateAction<Comp[]>>,
   setCurrComp: React.Dispatch<React.SetStateAction<Comp>>,
   setChildren: React.Dispatch<React.SetStateAction<Item[]>>
 }>({
-  items: [],
   comps: [],
   children: [],
   setCurrComp: () => {},
-  setItems: () => {},
   setComps: () => {},
   setChildren: () => {}
 })
@@ -30,7 +26,7 @@ export default function Playground() {
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
 
   // chronological order of items made in an instance
-  const [items, setItems] = useState<Item[]>([]);
+  // const [items, setItems] = useState<Item[]>([]);
 
   // updated order received from canvas when items are moved
   const [currOrder, setCurrOrder] = useState<Item[]>([]);
@@ -76,10 +72,8 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
 
   // used by playgroundcontext provider
   const contextValue = {
-    items,
     comps,
     children,
-    setItems,
     setComps,
     setCurrComp,
     setChildren
@@ -93,8 +87,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   function handleDragEnd(e: DragEndEvent) {
     if (e.over === null) return;
     if (e.over.id === 'canvas') {
-      const newItem = { value: e.active.id, id: `${e.active.id}-${items.length}-in-${currComp.value}`, code: `<${e.active.id}></${e.active.id}>\n` }
-      setItems((items) => [...items, newItem]);
+      const newItem = { value: e.active.id, id: `${e.active.id}-${children.length}-in-${currComp.value}`, code: `<${e.active.id}></${e.active.id}>\n` }
       setChildren((prev) => [...prev, newItem]);
     }
     setActiveId('');

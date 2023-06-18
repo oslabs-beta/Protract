@@ -3,7 +3,6 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
-import { Item } from "../../types";
 import { useContext } from "react";
 import { PlaygroundContext } from "./Playground";
 
@@ -34,6 +33,7 @@ export default function SortableBankEl(props: { id: UniqueIdentifier, value: Uni
 function handleDelete() {
   setDeleteModal(false);
     // remove the comp if it is a comp
+    //  TODO, update comps so that if the deleted comp had comps in its children, those comps are deleted as well 
     setComps((prev) => prev.filter((comp) => comp.id !== id))
     // remove the el from the children arr
     setChildren((prev) => prev.filter((item) => item.id !== id))
