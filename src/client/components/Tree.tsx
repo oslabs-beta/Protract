@@ -6,48 +6,39 @@ interface TreeProps {
   depth?: number;
 }
 
-const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0 }) => {
+const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0,}) => {
 
   /**
    * This function recursively create a file directory-like tree
    *
-   * @param {Type} currentLevel - the current
+   * @param {Type} currentComponent - the current
    * @returns {Type} - JSX of a series of divs, each representing a node / nested node
    */
-  const renderTree = (currentLevel: Component) => {
-    console.log(currentLevel);
-    // create an array of the current level's node names
-    const currentNodeNames = Object.keys(currentLevel);
+  const renderTree = (currentComponent: Component) => {
+    console.log('in renderTree (in Tree)');
+    console.log('currentProject', currentProject);
+    console.log('currentComponent', currentComponent);
+    // destructure current component's name and its children array
+    const { value, children } = currentComponent;
+    console.log('children destructured from currentLevel', children);
+    console.log('value duestructured', value);
 
     return (
       <div>
-        {/* map out this level's JSX, using the current array of node names */}
-        {currentNodeNames.map((nodeName, index) => {
-          // index the current level by the current node name
-          const node = currentLevel[nodeName];
-
-          // destructure children nodes for recursive call
-          const { children, code } = node;
-
-          // build the current level's JSX
-          return (
-            <div key={index} className={`pl-4 border-l ${depth > 0 ? 'ml-4' : ''}`}>
-              <strong>{nodeName}</strong>
-              <div>
-                <code>{code}</code>
-              </div>
-              <div>
-                {/* Recursively create a new Tree component, increasing depth each time */}
-                {children.map((child, childIndex) => (
-                  <Tree
-                  key={childIndex}
-                  currentProject={child}
-                  depth={depth + 1}/>
-                ))}
-              </div>
+        <div className={` border-l ${depth > 0 ? 'ml-4' : ''}`}>
+          <strong>{value}</strong>
+          {children && children.length > 0 && (
+            <div>
+              {children.map((child, index) => (
+                <div key={index} className={`border-l`}>
+                  <div>
+                    <Tree currentProject={child} depth={depth + 1} />
+                  </div>
+                </div>
+              ))}
             </div>
-          );
-        })}
+          )}
+        </div>
       </div>
     );
   };
