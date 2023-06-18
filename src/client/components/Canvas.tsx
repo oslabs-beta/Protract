@@ -43,7 +43,7 @@ export default function Canvas(props: {currComp: Comp, handleCanvasUpdate: (arr:
   return (
     <div className="basis-1/2 border-2 border-solid border-blue-600 flex flex-col  bg-gray-200">
       <div className="border-4 border-dotted m-6 mx-10 border-gray-400 rounded-3xl flex flex-col flex-grow bg-white">
-        <h2 className="text-center my-1.5 font-semibold" >{currComp.value}</h2>
+        <h2 className="text-center my-6 font-semibold text-2xl" >{currComp.value}</h2>
         <DndContext onDragEnd={handleDragEnd}>
           <SortableContext items={list.map(item => item.id)}
             strategy={verticalListSortingStrategy}>
