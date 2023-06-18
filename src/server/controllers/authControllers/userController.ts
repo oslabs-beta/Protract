@@ -3,21 +3,18 @@ import mongoose from 'mongoose';
 const models = require('../../models/userModel');
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
-
-interface CreateUserRequest {
-    body: {
-      username: string;
-      password: string;
-    };
-}
+import express, { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express';
 
 interface UserController {
-    createUser: (req: CreateUserRequest, res: any, next: any) => Promise<void>;
-    verifyUser: (req: CreateUserRequest, res: any, next: any) => Promise<void>;
-    logOutUser: (req: any, res: any, next: any) => Promise<void>;
+    createUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    verifyUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    logOutUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 const userController: UserController = {
+
+    // Signs up a new user
+
     createUser: async (req, res, next) => {
 
         const {username, password} = req.body
@@ -42,6 +39,9 @@ const userController: UserController = {
             });
           }
     },
+
+    // User Login, verifying credentials
+
     verifyUser: async (req, res, next) => {
         const {username, password} = req.body
 
@@ -61,23 +61,32 @@ const userController: UserController = {
                 console.log(hashedPW)
                 console.log('username is spelled correctly and is in database')
 
-                bcrypt.compare(password, hashedPW, (err: any, res: any) => {
+                bcrypt.compare(password, hashedPW, (err: any, valid: any) => {
                     if (err) {
                     return next(err);
                     }
                 
-                    if (res) {
+                    if (valid) {
                     res.locals.user = userExist
                     console.log('Password is correct');
                     return next();
-                    } else {
-                    res.locals.user = userExist
+                    } 
+                    else {
                     console.log('Password is incorrect');
-                    return next();
+                    return next({
+                        log: 'userController',
+                        status: 400,
+                        message: `Error in returning verifyUser function Controller, invalid password ${err}`,
+                      })
                     }
                 });
+            } else{
+                return next({
+                    log: 'userController',
+                    status: 400,
+                    message: `Error in returning verifyUser function Controller, invalid username`,
+                  })
             }
-            return next()
         }   catch (err) {
             return next({
               log: 'userController',

@@ -1,8 +1,9 @@
 import Editor from '@monaco-editor/react';
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
+import {Item} from './../../types'
 //import { ComponentContext } from './ComponentContext'
 
-export default function CodePreview(props: { tags: Object[] }) {
+export default function CodePreview(props: { tags: Item[] }) {
     const { tags } = props;
 
     // const [currTheme, setTheme] = useState('vs-dark');
@@ -12,7 +13,6 @@ export default function CodePreview(props: { tags: Object[] }) {
 
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {
-        console.log('props.tags preview changes: ', preview);
         const strArr = props.tags.map((ele) => ele.code);
         setShow(strArr.join(''));
     }, [tags])

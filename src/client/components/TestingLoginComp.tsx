@@ -31,7 +31,7 @@ export default function TestingComp(){
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              username: 'Starlord',
+              username: 'Rocket',
               password: '1234'
             }),
           });
@@ -55,8 +55,8 @@ export default function TestingComp(){
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            username: 'Starlord',
-            password: '12345'
+            username: 'Spiderman',
+            password: '1234'
           }),
         });
 

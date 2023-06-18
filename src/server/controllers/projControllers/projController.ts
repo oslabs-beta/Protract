@@ -1,7 +1,9 @@
+import express, { Request, Response, NextFunction, RequestHandler } from 'express';
+
 interface ProjController {
-    newProj: (req: any, res: any, next: any) => Promise<void>;
-    saveProj: (req: any, res: any, next: any) => Promise<void>;
-    loadProj: (req: any, res: any, next: any) => Promise<void>;
+    newProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    saveProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    loadProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 //  Project Controllers for New/Save/Load Projects
