@@ -32,7 +32,7 @@ export default function Playground() {
   const [currOrder, setCurrOrder] = useState<Item[]>([]);
 
   const [children, setChildren] = useState<Item[]>([]);
-  
+
 const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', children }
 
   // whenever children changes, update the state of the currComp to match the changes
@@ -49,8 +49,13 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
 
   // custom components made in an instance
   const [comps, setComps] = useState<Comp[]>([app])
-  
-  // whenever children changes, change the children property of the comp that matches currComps id
+
+  useEffect(() => {
+    console.log('in playground');
+    console.log('comps', comps);
+  }, [comps])
+
+  // whenever children or currComp changes, change the children property of the comp that matches currComps id
   useEffect(() => {
     setComps((prevComps) =>
       prevComps.map((comp) => {
@@ -108,9 +113,9 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   return (
     <div className="flex flex-row border-solid border-2 border-green-600 h-1/2">
       <PlaygroundContext.Provider value={contextValue}>
-        <DndContext  
+        <DndContext
         sensors={sensors}
-        onDragStart={handleDragStart} 
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}>
         <LeftColumn />
           <DragOverlay wrapperElement='ul'>

@@ -14,5 +14,5 @@ export type Comp = {
   codeStart?: string,
   codeEnd?: string,
   code?: string,
-  children: Array<Item>
+  children: Item[]|Comp[]
 }
