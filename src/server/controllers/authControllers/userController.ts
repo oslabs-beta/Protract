@@ -1,17 +1,37 @@
 // MongoDB Import
 import mongoose from 'mongoose';
+import Session from '../../models/sessionModel'
 const models = require('../../models/userModel');
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 import express, { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express';
 
 interface UserController {
+    isLoggedIn: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     createUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     verifyUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     logOutUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 const userController: UserController = {
+
+    // Checks if a user is logged in
+
+    isLoggedIn: async (req, res, next) => {
+        const { SSID } = req.cookies
+        try{
+            const sessionDoc = await Session.findOne({ cookieId: SSID })
+            res.locals.session = sessionDoc
+            return next();
+
+        } catch(err){
+            return next({
+            log: 'userController',
+            status: 400,
+            message: `Error in returning isLoggedIn function Controller, ${err}`,
+            });
+        }
+    },
 
     // Signs up a new user
 
@@ -95,9 +115,16 @@ const userController: UserController = {
             });
         };
     },
+
+    // Logout User
+
     logOutUser: async (req, res, next) => {
         try{
-            console.log('Logout User')
+            // Grab User's current web SSID Cookies
+            const {SSID} = req.cookies
+            // Search and Delete MongoDB Session Database for cookieId that matches the user's current web SSID cookie
+            const cookieExist = await Session.findOneAndDelete({cookieId: SSID})
+            console.log('SSID Session in MongoDB has been deleted')
             return next()
         } catch (err) {
             return next({

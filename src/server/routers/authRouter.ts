@@ -7,6 +7,15 @@ import userController from '../controllers/authControllers/userController'
 import cookieController from '../controllers/cookieControllers/cookieController'
 import sessionController from '../controllers/cookieControllers/sessionController'
 
+// Check if User is already Logged in and a Session exists - fetch to /
+
+router.get('/loggedIn', userController.isLoggedIn, (req: Request, res: Response) => {
+  if(res.locals.session === null){
+    res.status(200).json('No valid session found, User is currently not logged in')
+  } else {
+    res.status(200).json('Valid session found, User is currently logged in')
+  }
+})
 
 // Signup User- fetch to /signup
 
@@ -24,7 +33,7 @@ router.post('/login', userController.verifyUser, cookieController.setSSIDCookie,
 
 // Logout User - fetch to /logout
 
-router.post('/logout', userController.logOutUser, (req: Request, res: Response) => {
+router.patch('/logout', userController.logOutUser, (req: Request, res: Response) => {
   console.log('Logout is successful')
   return res.status(200).json('Logged out successfully');
 });

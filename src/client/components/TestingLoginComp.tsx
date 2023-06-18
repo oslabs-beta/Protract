@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export default function TestingComp(){
 
     const handleClick = async () => {
@@ -70,6 +72,39 @@ export default function TestingComp(){
         console.error(error);
       }
 };
+
+const handleLogout = async () => {
+  try {
+      const response = await fetch('/logout', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response) {
+        const data = await response.json();
+        console.log(data) 
+      } else {
+        throw new Error('Logout user has failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+};
+
+useEffect(() => {
+  const isLoggedIn = async () => {
+    try{
+      const response = await fetch('/loggedIn')
+      const data = await response.json()
+      console.log(data)
+    } catch(err) {
+      console.log('error in fetching')
+    }
+  }
+  isLoggedIn()
+}, [])
     
 
     return (
@@ -79,6 +114,7 @@ export default function TestingComp(){
             <button>Load Project</button>
             <button onClick = {() => handleSignUp()}>Sign Up</button>
             <button onClick = {() => handleLogin()}>Log in</button>
+            <button onClick = {() => handleLogout()}>Log Out</button>
         </>
 
     )
