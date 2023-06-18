@@ -1,10 +1,11 @@
 import { PlaygroundContext } from "./Playground";
 import { useContext } from "react";
+import { Comp } from "../../types";
 
 export default function FileDirectory() {
-  const { comps, setItems, setCurrComp, setChildren } = useContext(PlaygroundContext);
+  const { comps, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
-  function handleClick(comp) {
+  function handleClick(comp: Comp) {
     setCurrComp(comp)
     setChildren(comp.children)
   }
@@ -13,7 +14,7 @@ export default function FileDirectory() {
     <div className="border-solid border-2 border-blue-600 flex-grow">
       <ul>
         {comps.map((comp) => 
-        <li onClick={() => handleClick(comp)}>{comp.value}</li> )}
+        <li key={comp.value} onClick={() => handleClick(comp)}>{comp.value}</li> )}
       </ul>
     </div>
   );
