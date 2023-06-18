@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Comp, Item } from "../../types";
 
-export default function Canvas(props: {currComp: Comp, items: Item[], handleCanvasUpdate: (arr: Item[]) => void, setCurrComp}) {
+export default function Canvas(props: {currComp: Comp, handleCanvasUpdate: (arr: Item[]) => void, setChildren: React.Dispatch<React.SetStateAction<Item[]>>}) {
   const {setNodeRef} = useDroppable({
     id: 'canvas'
   })
 
-  const { currComp, items, handleCanvasUpdate, setCurrComp } = props;
+  const { currComp, setChildren, handleCanvasUpdate } = props;
 
   const [list, setList] = useState<Item[]>(currComp.children)
 
-useEffect(() => {
-  setList(currComp.children);
-}, [currComp]);
+  useEffect(() => {
+    setList(currComp.children);
+  }, [currComp]);
 
   useEffect(() => {
     handleCanvasUpdate(list)
@@ -32,9 +32,9 @@ useEffect(() => {
         const oldIndex = list.findIndex((item) => active.id === item.id)
         const newIndex = list.findIndex((item) => over.id === item.id)
         const updated = arrayMove(list, oldIndex, newIndex);
-        setCurrComp((prev) => ({
-          ...prev, children: updated
-        }))
+        // whenever order changes in an instance, update the children array
+        // useeffect hooks for updating currComp and comps will run everytime children arr is updated as well
+        setChildren(updated)
         return updated
       });
     }
@@ -43,12 +43,12 @@ useEffect(() => {
   return (
     <div className="basis-1/2 border-2 border-solid border-blue-600 flex flex-col  bg-gray-200">
       <div className="border-4 border-dotted m-6 mx-10 border-gray-400 rounded-3xl flex flex-col flex-grow bg-white">
-        <h2 className="text-center my-1.5 font-semibold" >{currComp.value}</h2>
+        <h2 className="text-center my-6 font-semibold text-2xl" >{currComp.value}</h2>
         <DndContext onDragEnd={handleDragEnd}>
           <SortableContext items={list.map(item => item.id)}
             strategy={verticalListSortingStrategy}>
             <ul ref={setNodeRef} className="basis-1/2 border border-solid border-violet-600 flex-1 text-center">
-              {list.map((item, index) => <SortableBankEl setList={setList} id={item.id} value={item.value}
+              {list.map((item, index) => <SortableBankEl id={item.id} value={item.value}
                 key={`${item}+${index}`} />)}
             </ul>
           </SortableContext>

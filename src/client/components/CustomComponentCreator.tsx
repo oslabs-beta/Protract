@@ -5,7 +5,7 @@ import { PlaygroundContext } from "./Playground";
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
   
-  const { items, setItems, setComps, comps, children, setChildren } = useContext(PlaygroundContext);
+  const { setComps, comps, children, setChildren } = useContext(PlaygroundContext);
 
   function handleChange(e: string) {
     setInput(e)
@@ -14,8 +14,7 @@ export default function CustomComponentCreator() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
-      const newComp = { value: input, id: `${input}-${items.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
-      setItems((items) => [...items, newComp]);
+      const newComp = { value: input, id: `${input}-${children.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
       setChildren((prev) => [...prev, newComp])
       setComps((prev) => [...prev, newComp])
       setInput('');
@@ -25,11 +24,11 @@ export default function CustomComponentCreator() {
   }
 
   return (
-    <div>
-      <form className="flex mx-4 border-2 rounded-md"
+    <div className="border-purple-500 flex w-full justify-center">
+      <form className="justify-center my-4 flex w-3/4"
       onSubmit={(e) => handleSubmit(e)}>
         <input
-        className="flex-grow min-w-0 block text-center text-l focus:outline-none"
+        className="flex-grow border border-red-700 rounded-l-md min-w-full block text-center text-l focus:outline-none"
         placeholder='Component Name' 
         type='text'
         value={input} 
