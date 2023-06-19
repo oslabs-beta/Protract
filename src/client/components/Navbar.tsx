@@ -6,7 +6,7 @@ import SignUpModal from './SignUpModal';
 export default function Navbar() {
 
   return (
-    <nav className='flex justify-between items-center border-solid border-2 bg-white'>
+    <nav className='flex justify-between items-center border-solid border-2 border-yellow-400 bg-white'>
       <div>
         <img className='h-auto w-48 ml-3' src={logo} alt="Homepage" />
       </div>
@@ -26,6 +26,7 @@ export default function Navbar() {
           <li >
             <button 
             className='p-2 mx-1 mr-8 float-right text-white rounded-md bg-red-700 hover:bg-red-600'
+            // className='p-2 mx-1 mr-8 float-right text-red 700 rounded-md bg-white hover:bg-slate-200'
             onClick={() => (document.querySelector("#signUpModal") as HTMLDialogElement).showModal()}
             >Sign Up</button>
           </li>
