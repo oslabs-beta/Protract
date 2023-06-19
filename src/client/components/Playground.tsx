@@ -8,12 +8,14 @@ import { Item, Comp } from '../../types';
 
 export const PlaygroundContext = createContext<{
   comps: Comp[],
+  currComp: Comp[] | Item[],
   children: Item[],
   setComps: React.Dispatch<React.SetStateAction<Comp[]>>,
   setCurrComp: React.Dispatch<React.SetStateAction<Comp>>,
   setChildren: React.Dispatch<React.SetStateAction<Item[]>>
 }>({
   comps: [],
+  currComp: [],
   children: [],
   setCurrComp: () => {},
   setComps: () => {},
@@ -33,7 +35,7 @@ export default function Playground() {
 
   const [children, setChildren] = useState<Item[]>([]);
 
-const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', children }
+const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children }
 
   // whenever children changes, update the state of the currComp to match the changes
   useEffect(() => {
@@ -78,6 +80,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   // used by playgroundcontext provider
   const contextValue = {
     comps,
+    currComp,
     children,
     setComps,
     setCurrComp,

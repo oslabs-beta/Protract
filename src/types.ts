@@ -14,5 +14,6 @@ export type Comp = {
   codeStart?: string,
   codeEnd?: string,
   code?: string,
+  canEnter?: boolean,
   children: Item[]|Comp[]
 }
