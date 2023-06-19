@@ -14,7 +14,7 @@ export default function DeleteModal(props: {value: UniqueIdentifier, handleDelet
   }
 
   return ReactDOM.createPortal (
-    <div className="fixed inset-0 h-screen w-screen flex items-center justify-center bg-black bg-opacity-30" ref={modalRef} onClick={(e) => closeModal(e)}>
+    <div className="fixed inset-0 h-screen w-screen flex items-center justify-center bg-black bg-opacity-40" ref={modalRef} onClick={(e) => closeModal(e)}>
         <div className="h-28 w-48 z-50 bg-white border-0 rounded text-center pt-4 ">Delete {value}?
         <div className="m-7 space-x-8 ">
           <button className="text-white bg-red-800 border-0 border-red-800 w-1/4 min-w-fit px-2 rounded" onClick={() => handleDelete()}>Yes</button>

@@ -38,6 +38,6 @@
     }
     .modal::backdrop{
         background: black;
-        opacity:.3;
+        opacity:.4;
     }
 }
