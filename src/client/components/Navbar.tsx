@@ -6,7 +6,7 @@ import SignUpModal from './SignUpModal';
 export default function Navbar() {
 
   return (
-    <nav className='flex justify-between items-center border-solid border-2 border-yellow-400 bg-white'>
+    <nav className='flex h-auto justify-between items-center border-solid border-b border-gray-200 bg-white'>
       <div>
         <img className='h-auto w-48 ml-3' src={logo} alt="Homepage" />
       </div>

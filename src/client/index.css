@@ -12,7 +12,7 @@
         border-style: solid;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom-width: 3px;
+        border-bottom-width: 1px;
         color: gray;
         border-color: gray;
     }
@@ -22,7 +22,7 @@
         border-style: solid;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom-width: 3px;
+        border-bottom-width: 1px;
         color: #b91c1c;
         border-color: #b91c1c;
     }

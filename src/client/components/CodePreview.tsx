@@ -21,7 +21,7 @@ export default function CodePreview(props: { tags: Item[] }) {
     const emptyText = '//drag items onto canvas to see code';
 
     return (
-        <div className="flex-grow border-2 border-solid border-slate-400">
+        <div className="flex-grow border-0 border-solid border-yellow-400">
             <Editor height="100%"
                 defaultLanguage="javascript"
                 defaultValue={emptyText}
