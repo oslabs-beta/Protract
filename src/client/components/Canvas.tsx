@@ -41,7 +41,7 @@ export default function Canvas(props: {currComp: Comp, handleCanvasUpdate: (arr:
   }
 
   return (
-    <div className="basis-1/2 border-0 border-solid border-blue-600 flex flex-col  bg-gray-200">
+    <div className="basis-1/2 border-0 border-solid border-blue-600 flex flex-col  bg-gray-200 min-w-fit">
       <div className="border-4 border-dotted m-10 mx-10 border-gray-400 rounded-3xl flex flex-col flex-grow bg-white">
         <h2 className="text-center my-6 font-semibold text-2xl" >{currComp.value}</h2>
         <DndContext onDragEnd={handleDragEnd}>

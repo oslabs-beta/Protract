@@ -16,7 +16,7 @@ export default function LoginModal() {
                 <input type="password" name="password" className="focus:outline-none px-2 pb-2 bg-white"></input>
             </fieldset>
             <div className="flex flex-grow justify-between border-0 border-blue-600 my-2">
-                <button className="text-white bg-red-800 border-0 border-red-800 w-1/4 min-w-fit px-2 rounded" type="submit">Login</button>
+                <button className="text-white bg-red-800 border-0 border-red-800 w-1/4 min-w-fit px-2 py-0 rounded" type="submit">Login</button>
                 <button className="text-red-800 bg-white border-2 border-white w-1/4 min-w-fit p-2 rounded" type="button" onClick={() => (document.querySelector("#loginModal") as HTMLDialogElement).close()}>Cancel</button>
             </div>
         </form>
