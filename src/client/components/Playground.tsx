@@ -53,8 +53,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   const [comps, setComps] = useState<Comp[]>([app])
 
   useEffect(() => {
-    console.log('in playground');
-    console.log('comps', comps);
+    console.log('comps has updated in playground', comps);
   }, [comps])
 
   // whenever children or currComp changes, change the children property of the comp that matches currComps id

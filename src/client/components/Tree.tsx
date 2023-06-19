@@ -6,34 +6,35 @@ import { Item, Comp } from '../../types';
 
 
 interface TreeProps {
-  comps: Comp|Item;
+  root: Comp|Item;
   depth?: number;
 }
 
-const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
+const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
 
-  const { currComp, setCurrComp, setChildren } = useContext(PlaygroundContext);
+  const { comps, currComp, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
-  console.log('in tree');
-  console.log('comps', comps);
-  console.log('currComp', currComp);
+  // console.log('in tree');
+  // console.log('comps', comps);
+  // console.log('current recursive root', root);
+  // console.log('currComp', currComp);
 
   function handleClick(comp) {
     setCurrComp(comp)
     // if (comp.children.length > 0) setChildren(comp.children);
     setChildren(comp.children)
-    console.log('currComp in tree handleClick')
+    console.log('component clicked in tree: ', comp);
   }
 
   /**
    * This function recursively create a file directory-like tree
    *
-   * @param {Type} currentComponent - the current
-   * @returns {Type} - JSX of a series of divs, each representing a node / nested node
+   * @param {Comp | Item} currentComponent - the current
+   * @returns {JSX.Element} - JSX of a series of divs, each representing a node / nested node
    */
   const renderTree = (currentComponent: Comp | Item, currentDepth: number) => {
     const { value, children } = currentComponent;
-    console.log('currentComponent', currentComponent);
+    // console.log('currentComponent in renderTree()', currentComponent);
 
     return (
       <div className={`ml-${currentDepth * 4} flex flex-col items-center`}>
@@ -47,7 +48,7 @@ const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
           <div className="flex flex-col items-center">
             {children.map((child, index) => (
               <div key={index} className="">
-                <Tree comps={child} depth={currentDepth + 1} />
+                <Tree root={child} depth={currentDepth + 1} />
               </div>
             ))}
           </div>
@@ -56,7 +57,7 @@ const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
     );
   };
 
-  return <>{renderTree(comps, depth)}</>;
+  return <>{renderTree(root, depth)}</>;
 
 };
 

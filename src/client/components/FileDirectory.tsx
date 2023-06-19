@@ -5,8 +5,8 @@ import { Comp } from "../../types";
 export default function FileDirectory() {
   const { comps, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
-  console.log('in fileDirectory');
-  console.log('comps', comps);
+  // console.log('in fileDirectory');
+  // console.log('comps', comps);
 
 
   function handleClick(comp) {
