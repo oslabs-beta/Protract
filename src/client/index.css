@@ -12,7 +12,7 @@
         border-style: solid;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom-width: 3px;
+        border-bottom-width: 1px;
         color: gray;
         border-color: gray;
     }
@@ -22,18 +22,22 @@
         border-style: solid;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom-width: 3px;
+        border-bottom-width: 1px;
         color: #b91c1c;
         border-color: #b91c1c;
     }
 
     .modal {
-        /*className="bg-slate-100 text-black rounded-md opacity-90"*/
-        /* --tw-bg-opacity: 1;
-        background-color: rgb(226 232 240 / var(--tw-bg-opacity)); */
         background-color: lighten(slategrey, 50%);
+        /* width:20%; */
+        max-width:fit-content;
+        min-width:fit-content;
         color: black;
-        border-radius: 6px;
+        border-radius: 12px;
         opacity: 1;
+    }
+    .modal::backdrop{
+        background: black;
+        opacity:.4;
     }
 }

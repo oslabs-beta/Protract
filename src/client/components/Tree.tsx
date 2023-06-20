@@ -1,12 +1,13 @@
 import React from 'react';
-import { Component } from './dummyData';
+// import { Component } from './dummyData';
+import { Item, Comp } from '../../types';
 
 interface TreeProps {
-  currentProject: Component;
+  comps: Comp | Item;
   depth?: number;
 }
 
-const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0 }) => {
+const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
 
   /**
    * This function recursively create a file directory-like tree
@@ -14,7 +15,7 @@ const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0 }) => {
    * @param {Type} currentLevel - the current
    * @returns {Type} - JSX of a series of divs, each representing a node / nested node
    */
-  const renderTree = (currentLevel: Component) => {
+  const renderTree = (currentLevel: Comp | Item) => {
     console.log(currentLevel);
     // create an array of the current level's node names
     const currentNodeNames = Object.keys(currentLevel);
@@ -41,7 +42,7 @@ const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0 }) => {
                 {children.map((child, childIndex) => (
                   <Tree
                   key={childIndex}
-                  currentProject={child}
+                  comps={child}
                   depth={depth + 1}/>
                 ))}
               </div>
@@ -54,7 +55,7 @@ const Tree: React.FC<TreeProps> = ({ currentProject, depth = 0 }) => {
 
   return (
   <>
-    <div>{renderTree(currentProject)}</div>
+    <div>{renderTree(comps)}</div>
   </>
 
   );
