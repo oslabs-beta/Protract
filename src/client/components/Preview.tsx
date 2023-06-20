@@ -2,9 +2,12 @@ import CodePreview from './CodePreview'
 import Tree from './Tree'
 import { currentProject } from './dummyData';
 import { Item } from './../../types';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
+import { PlaygroundContext } from "./Playground";
 
 export default function Preview(props: { tags: Item[] }) {
+  
+  const { comps } = useContext(PlaygroundContext);
 
   const {tags} = props;
 
@@ -29,7 +32,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab !== 'tree'){
       console.log('switch to tree display!');
       setTab('tree');
-      setDisplay(<Tree currentProject={currentProject}/>);
+      setDisplay(<Tree comps={comps}/>);
     }
   }
   
@@ -37,7 +40,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab === 'code'){
       setDisplay(<CodePreview tags = {tags}/>)
     }else if(tab === 'tree'){
-      setDisplay(<Tree currentProject={currentProject}/>);
+      setDisplay(<Tree comps={comps}/>);
     }
     
   }, [tags])
