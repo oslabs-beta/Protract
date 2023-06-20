@@ -8,14 +8,12 @@ import { Item, Comp } from '../../types';
 
 export const PlaygroundContext = createContext<{
   comps: Comp[],
-  currComp: Comp[] | Item[],
   children: Item[],
   setComps: React.Dispatch<React.SetStateAction<Comp[]>>,
   setCurrComp: React.Dispatch<React.SetStateAction<Comp>>,
   setChildren: React.Dispatch<React.SetStateAction<Item[]>>
 }>({
   comps: [],
-  currComp: [],
   children: [],
   setCurrComp: () => {},
   setComps: () => {},

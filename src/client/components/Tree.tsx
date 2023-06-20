@@ -12,16 +12,16 @@ interface TreeProps {
 
 const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
 
-  const { comps, currComp, setCurrComp, setChildren } = useContext(PlaygroundContext);
+  const { comps, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
   useEffect(() => {
     console.log('comps updated, tree refreshed')
   }, [comps])
 
-  console.log('in tree');
-  console.log('comps', comps);
-  console.log('current recursive root', root);
-  console.log('currComp', currComp);
+  // console.log('in tree');
+  // console.log('comps', comps);
+  // console.log('current recursive root', root);
+  // console.log('currComp', currComp);
 
   function handleClick(comp) {
     setCurrComp(comp)
