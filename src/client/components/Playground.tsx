@@ -54,11 +54,6 @@ const app: Item = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   // custom components made in an instance
   const [comps, setComps] = useState<Item[]>([app])
 
-  useEffect(() => {
-    console.log('comps has updated in playground', comps);
-  }, [comps])
-
-
   // update the root app component anytime a change is made, and changes are desired to persist
   function handleUpdateApp(comps: Item[], currComp: Item, newComp: Item): Item[] {
   return comps.map((comp) => {

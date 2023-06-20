@@ -10,7 +10,6 @@ export default function CustomComponentCreator() {
 
   function handleChange(e: string) {
     setInput(e)
-    console.log(comps)
   }
 
 
@@ -20,16 +19,10 @@ export default function CustomComponentCreator() {
       // change id's code to ensure uniqueness
       const newComp = { value: input, id: `${input}-${children.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
 
-      // console.log('current input: ', input)
-      console.log('currComp', currComp);
-
       setChildren((prev) => [...prev, newComp])
       const updatedComp = handleUpdateApp(comps, currComp, newComp)
       setComps(updatedComp)
       setInput('');
-
-      console.log('comps after newComp', comps)
-      console.log('children after newComp', children)
     }
   }
 

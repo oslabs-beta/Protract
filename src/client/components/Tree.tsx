@@ -15,7 +15,7 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
   const { comps, currComp, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
   useEffect(() => {
-    console.log('comps updated, tree refreshed')
+    // console.log('comps updated, tree refreshed')
   }, [comps])
 
   // console.log('in tree');
@@ -27,7 +27,7 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
     setCurrComp(comp)
     // if (comp.children.length > 0) setChildren(comp.children);
     setChildren(comp.children)
-    console.log('component clicked in tree: ', comp);
+    // console.log('component clicked in tree: ', comp);
   }
 
   /**
