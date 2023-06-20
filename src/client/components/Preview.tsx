@@ -33,7 +33,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab !== 'tree'){
       // console.log('switch to tree display!');
       setTab('tree');
-      setDisplay(<Tree comps={comps[0]}/>);
+      setDisplay(<Tree root={comps[0]}/>);
     }
   }
 
