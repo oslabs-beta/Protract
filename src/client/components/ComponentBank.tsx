@@ -25,7 +25,7 @@ export default function ComponentBank() {
   });
 
   return (
-    <div className="border-2 border-green-300 flex flex-col h-3/4 items-center">
+    <div className="border-b border-gray-200 flex flex-col h-3/4 items-center">
       <CustomComponentCreator />
       <ul className="flex flex-col w-3/4 items-center scrollbar-thin scrollbar-thumb-white scrollbar-track-white border-solid border-sky-400 h-full overflow-y-scroll">
         {elList}

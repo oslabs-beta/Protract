@@ -1,26 +1,13 @@
 import React from 'react';
-import { Component } from './dummyData';
-import { PlaygroundContext } from "./Playground";
-import { useContext } from "react";
+// import { Component } from './dummyData';
 import { Item, Comp } from '../../types';
 
-
 interface TreeProps {
-  comps: Comp|Item;
+  comps: Comp | Item;
   depth?: number;
 }
 
 const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
-
-  const { setItems, setCurrComp, setChildren } = useContext(PlaygroundContext);
-
-  console.log('in tree');
-  console.log('comps', comps);
-
-  function handleClick(comp) {
-    setCurrComp(comp)
-    if (comp.children.length > 0) setChildren(comp.children);
-  }
 
   /**
    * This function recursively create a file directory-like tree
@@ -28,8 +15,10 @@ const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
    * @param {Type} currentComponent - the current
    * @returns {Type} - JSX of a series of divs, each representing a node / nested node
    */
-  const renderTree = (currentComponent: Comp | Item, currentDepth: number) => {
-    const { value, children } = currentComponent;
+  const renderTree = (currentLevel: Comp | Item) => {
+    console.log(currentLevel);
+    // create an array of the current level's node names
+    const currentNodeNames = Object.keys(currentLevel);
 
     return (
       <div className={`ml-${currentDepth * 4} flex flex-col items-center`}>
@@ -42,14 +31,26 @@ const Tree: React.FC<TreeProps> = ({ comps, depth = 0 }) => {
               <div key={index} className="mt-2">
                 <Tree comps={child} depth={currentDepth + 1} />
               </div>
-            ))}
-          </div>
-        )}
+              <div>
+                {/* Recursively create a new Tree component, increasing depth each time */}
+                {children.map((child, childIndex) => (
+                  <Tree
+                  key={childIndex}
+                  comps={child}
+                  depth={depth + 1}/>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   };
 
-  return <>{renderTree(comps, depth)}</>;
+  return (
+  <>
+    <div>{renderTree(comps)}</div>
+  </>
 
 };
 
