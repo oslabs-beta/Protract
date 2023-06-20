@@ -6,25 +6,13 @@ import { Item } from "../../types";
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
 
-  const { setComps, comps, children, currComp, setChildren } = useContext(PlaygroundContext);
+  const { setComps, comps, children, currComp, setChildren, handleUpdateApp } = useContext(PlaygroundContext);
 
   function handleChange(e: string) {
     setInput(e)
     console.log(comps)
   }
 
-
-
-function updateApp(comps: Item[], currComp: Item, newComp: Item): Item[] {
-  return comps.map((comp) => {
-    if (comp.id === currComp.id && comp.children) {
-        comp.children.push(newComp);
-    } else {
-      comp.children = updateApp(comp.children, currComp, newComp);
-    }
-    return comp;
-  });
-}
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,7 +24,7 @@ function updateApp(comps: Item[], currComp: Item, newComp: Item): Item[] {
       console.log('currComp', currComp);
 
       setChildren((prev) => [...prev, newComp])
-      const updatedComp = updateApp(comps, currComp, newComp)
+      const updatedComp = handleUpdateApp(comps, currComp, newComp)
       setComps(updatedComp)
       setInput('');
 

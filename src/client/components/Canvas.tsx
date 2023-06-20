@@ -1,11 +1,15 @@
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import SortableBankEl from "./SortableBankEl"
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Item } from "../../types";
+import { PlaygroundContext } from "./Playground";
+
 
 export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr: Item[]) => void, setChildren: React.Dispatch<React.SetStateAction<Item[]>>}) {
+  const { setComps, comps } = useContext(PlaygroundContext);
+
   const {setNodeRef} = useDroppable({
     id: 'canvas'
   })
@@ -14,12 +18,26 @@ export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr:
 
   const [list, setList] = useState<Item[]>(currComp.children)
 
+  // handleUpdateApp(comps, currComp, newComp=currComp)
+  function handleAppReorder(comps: Item[], currComp: Item, list: Item[]): Item[] {
+    return comps.map((comp) => {
+      if (comp.id === currComp.id && comp.children) {
+          comp.children = list
+      } else {
+        comp.children = handleAppReorder(comp.children, currComp, list);
+      }
+      return comp;
+    });
+  }
+
   useEffect(() => {
     setList(currComp.children);
   }, [currComp]);
 
   useEffect(() => {
     handleCanvasUpdate(list)
+    const updateApp = handleAppReorder(comps, currComp, list)
+    setComps(updateApp)
   }, [list])
 
   function handleDragEnd(e: DragEndEvent) {

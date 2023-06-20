@@ -12,14 +12,16 @@ export const PlaygroundContext = createContext<{
   children: Item[],
   setComps: React.Dispatch<React.SetStateAction<Item[]>>,
   setCurrComp: React.Dispatch<React.SetStateAction<Item>>,
-  setChildren: React.Dispatch<React.SetStateAction<Item[]>>
+  setChildren: React.Dispatch<React.SetStateAction<Item[]>>,
+  handleUpdateApp(comps: Item[], currComp: Item, newComp: Item): Item[]
 }>({
   comps: [],
   currComp: { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children: [] },
   children: [],
   setCurrComp: () => {},
   setComps: () => {},
-  setChildren: () => {}
+  setChildren: () => {},
+  handleUpdateApp: () => []
 })
 
 export default function Playground() {
@@ -85,7 +87,8 @@ const app: Item = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
     children,
     setComps,
     setCurrComp,
-    setChildren
+    setChildren,
+    handleUpdateApp
   }
 
   // drag and drop logic
