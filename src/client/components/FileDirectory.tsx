@@ -11,7 +11,7 @@ export default function FileDirectory() {
   }
 
   return (
-    <div className="border-solid border-2 border-blue-600 flex-grow">
+    <div className="border-solid border-0 border-blue-600 flex-grow">
       <ul>
         {comps.map((comp) => 
         <li key={comp.value} onClick={() => handleClick(comp)}>{comp.value}</li> )}

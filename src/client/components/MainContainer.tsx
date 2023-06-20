@@ -5,11 +5,11 @@ import TestingComp from './TestingLoginComp'
 
 export default function MainContainer() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col border-0 border-red-500 h-screen">
       <Navbar />
       <Playground />
-      <Footer />
-      <TestingComp />
+      {/* <Footer /> */}
+      {/* <TestingComp /> */}
     </div>
   );
 }

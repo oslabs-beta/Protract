@@ -2,9 +2,12 @@ import CodePreview from './CodePreview'
 import Tree from './Tree'
 import { currentProject } from './dummyData';
 import { Item } from './../../types';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
+import { PlaygroundContext } from "./Playground";
 
 export default function Preview(props: { tags: Item[] }) {
+  
+  const { comps } = useContext(PlaygroundContext);
 
   const {tags} = props;
 
@@ -29,7 +32,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab !== 'tree'){
       console.log('switch to tree display!');
       setTab('tree');
-      setDisplay(<Tree currentProject={currentProject}/>);
+      setDisplay(<Tree comps={comps}/>);
     }
   }
   
@@ -37,7 +40,7 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab === 'code'){
       setDisplay(<CodePreview tags = {tags}/>)
     }else if(tab === 'tree'){
-      setDisplay(<Tree currentProject={currentProject}/>);
+      setDisplay(<Tree comps={comps}/>);
     }
     
   }, [tags])
@@ -45,8 +48,8 @@ export default function Preview(props: { tags: Item[] }) {
 
 
   return (
-    <div className="basis-1/4 border-2 border-solid border-violet-700 flex flex-col bg-gray-100">
-      <div className ="flex flex-row">
+    <div className="basis-1/4 border-l border-solid border-gray-200 flex flex-col">
+      <div className ="flex flex-row "> 
         <button className={tab === 'code' ? 'previewBtnSelected' : 'previewBtn'} onClick = { handlePreviewClick}>Code Preview</button>
         <button className={tab === 'tree' ? 'previewBtnSelected' : 'previewBtn'} onClick = { handleTreeClick }>Component Tree</button>
       </div>
