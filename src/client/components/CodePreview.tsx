@@ -6,16 +6,23 @@ export default function CodePreview(props: { tags: Item[] }) {
     const { tags } = props;
 
     // const [currTheme, setTheme] = useState('vs-dark');
-    // const [preview, setPreview] = useState(tags);
     const [show, setShow] = useState('')
 
+    const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', '  selector: \'app-home\',\n', '  standalone: true,\n','  imports: [CommonModule],\n', '  template:\n'];
+    const suffix = ['   styleUrls: [\'.NAME_HERE.component.css\']\n','})\n', 'export class AppComponent {\n','}\n'];
 
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {
-        console.log('preview tags:',tags);
-        // const strArr = ['@Component{}/n']
-        const strArr = props.tags.map((ele) => ele.code);
-        setShow(strArr.join(''));
+        // console.log('preview tags:',tags);
+        if(!tags.length){
+            setShow('//drop components onto canvas to see code preview')
+        }else{
+            const canvasCodeArr = tags.map((ele) => `       ${ele.code}`);
+            // console.log(canvasCodeArr);
+            const finArr = prefix.concat(canvasCodeArr).concat(suffix);
+            // console.log(finArr);
+            setShow(finArr.join(''));
+        }
     }, [tags])
 
 
@@ -33,9 +40,10 @@ export default function CodePreview(props: { tags: Item[] }) {
                     lineNumbers: 'on',
                     minimap: { enabled: false },
                     // theme: `${currTheme}`,
-                    wordWrap: 'on',
+                    wordWrap: 'off',
                     scrollbar: { vertical: 'hidden' },
                     scrollBeyondLastLine: false,
+                    scrollBeyondLastColumn:0,
                     selectionHighlight: false,
                     occurrencesHighlight: false,
                     lineDecorationsWidth: 10,
