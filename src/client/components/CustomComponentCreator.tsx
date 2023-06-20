@@ -15,12 +15,15 @@ export default function CustomComponentCreator() {
     e.preventDefault();
     if (input.trim().length) {
       const newComp = { value: input, id: `${input}-${children.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
+
+      console.log('current input: ', input)
+
       setChildren((prev) => [...prev, newComp])
       setComps((prev) => [...prev, newComp])
       setInput('');
-      console.log('in custom component creator: ');
-      console.log('comps', comps)
-      console.log('children', children)
+
+      console.log('comps after newComp', comps)
+      console.log('children after newComp', children)
     }
   }
 

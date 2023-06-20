@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from './dummyData';
 import { PlaygroundContext } from "./Playground";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Item, Comp } from '../../types';
 
 
@@ -14,10 +14,14 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
 
   const { comps, currComp, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
-  // console.log('in tree');
-  // console.log('comps', comps);
-  // console.log('current recursive root', root);
-  // console.log('currComp', currComp);
+  useEffect(() => {
+    console.log('comps updated, tree refreshed')
+  }, [comps])
+
+  console.log('in tree');
+  console.log('comps', comps);
+  console.log('current recursive root', root);
+  console.log('currComp', currComp);
 
   function handleClick(comp) {
     setCurrComp(comp)
