@@ -1,29 +1,28 @@
 import { useState, useContext, Children } from "react";
 import { PlaygroundContext } from "./Playground";
+import { Item } from "../../types";
 
 
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
 
-  const { setComps, comps, children, setChildren } = useContext(PlaygroundContext);
+  const { setComps, comps, children, currComp, setChildren, handleUpdateApp } = useContext(PlaygroundContext);
 
   function handleChange(e: string) {
     setInput(e)
   }
 
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
+      // change id's code to ensure uniqueness
       const newComp = { value: input, id: `${input}-${children.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
 
-      console.log('current input: ', input)
-
       setChildren((prev) => [...prev, newComp])
-      setComps((prev) => [...prev, newComp])
+      const updatedComp = handleUpdateApp(comps, currComp, newComp)
+      setComps(updatedComp)
       setInput('');
-
-      console.log('comps after newComp', comps)
-      console.log('children after newComp', children)
     }
   }
 
