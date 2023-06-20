@@ -4,7 +4,6 @@ import { PlaygroundContext } from "./Playground";
 import { useContext, useEffect } from "react";
 import { Item, Comp } from '../../types';
 
-
 interface TreeProps {
   root: Comp|Item;
   depth?: number;
@@ -54,9 +53,18 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
               <div key={index} className="">
                 <Tree root={child} depth={currentDepth + 1} />
               </div>
-            ))}
-          </div>
-        )}
+              <div>
+                {/* Recursively create a new Tree component, increasing depth each time */}
+                {children.map((child, childIndex) => (
+                  <Tree
+                  key={childIndex}
+                  comps={child}
+                  depth={depth + 1}/>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   };

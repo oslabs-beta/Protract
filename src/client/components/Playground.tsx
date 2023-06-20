@@ -113,7 +113,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   );
 
   return (
-    <div className="flex flex-row border-solid border-2 border-green-600 h-1/2">
+    <div className="h-full flex flex-row border-solid border-b border-gray-200">
       <PlaygroundContext.Provider value={contextValue}>
         <DndContext
         sensors={sensors}
