@@ -41,7 +41,6 @@ export default function Preview(props: { tags: Item[] }) {
     if(tab === 'code'){
       setDisplay(<CodePreview tags = {tags}/>)
     }else if(tab === 'tree'){
-      console.log('rendering tree from Preview');
       setDisplay(<Tree root={comps[0]}/>);
     }
 
