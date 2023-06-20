@@ -16,7 +16,7 @@ export default function LoginModal() {
     // console.log('Login Modal Pass: ',password);
 
     const handleLogin = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         //add login fetch here
         try {
             const response = await fetch('/login', {
