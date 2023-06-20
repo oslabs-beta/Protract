@@ -8,12 +8,14 @@ import { Item, Comp } from '../../types';
 
 export const PlaygroundContext = createContext<{
   comps: Comp[],
+  currComp: Comp
   children: Item[],
   setComps: React.Dispatch<React.SetStateAction<Comp[]>>,
   setCurrComp: React.Dispatch<React.SetStateAction<Comp>>,
   setChildren: React.Dispatch<React.SetStateAction<Item[]>>
 }>({
   comps: [],
+  currComp: { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children: [] },
   children: [],
   setCurrComp: () => {},
   setComps: () => {},
@@ -55,19 +57,35 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   }, [comps])
 
   // whenever children or currComp changes, change the children property of the comp that matches currComps id
-  useEffect(() => {
-    setComps((prevComps) =>
-      prevComps.map((comp) => {
-        if (comp.id === currComp.id) {
-          return {
-            ...comp,
-            children,
-          };
-        }
-        return comp;
-      })
-    );
-  }, [children]);
+  // useEffect(() => {
+  //   setComps((prevComps) =>
+  //     prevComps.map((comp) => {
+  //       if (comp.id === currComp.id) {
+  //         return {
+  //           ...comp,
+  //           children,
+  //         };
+  //       }
+  //       return comp;
+  //     })
+  //   );
+  // }, [children]);
+
+  function updateApp(comps: Comp[], currComp: Comp, newComp: Comp | Item): Comp[] {
+  return comps.map((comp) => {
+    if (comp.id === currComp.id && comp.children) {
+        comp.children.push(newComp);
+    } else {
+      comp.children = updateApp(comp.children, currComp, newComp);
+    }
+    comp.push(newComp)
+    return comp;
+  });
+}
+
+  // everytime currComp updates and it isnt app, 
+  // do setComps, find the comp in comps[0].children. change it to currComp.
+  // if you cant find the comp, go into 
 
   // function to update order of items in instance
   function handleCanvasUpdate(arr: Item[])  {
@@ -94,6 +112,8 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
     if (e.over.id === 'canvas') {
       const newItem = { value: e.active.id, id: `${e.active.id}-${children.length}-in-${currComp.value}`, code: `<${e.active.id}></${e.active.id}>\n` }
       setChildren((prev) => [...prev, newItem]);
+      const updatedComp = updateApp(comps, currComp, newItem)
+      setComps(updatedComp)
     }
     setActiveId('');
   }

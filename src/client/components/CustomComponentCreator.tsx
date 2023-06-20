@@ -1,25 +1,43 @@
 import { useState, useContext, Children } from "react";
 import { PlaygroundContext } from "./Playground";
+import { Comp, Item } from "../../types";
 
 
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
 
-  const { setComps, comps, children, setChildren } = useContext(PlaygroundContext);
+  const { setComps, comps, children, currComp, setChildren } = useContext(PlaygroundContext);
 
   function handleChange(e: string) {
     setInput(e)
+    console.log(comps)
   }
+
+
+
+function updateApp(comps: Comp[], currComp: Comp, newComp: Comp): Comp[] {
+  return comps.map((comp) => {
+    if (comp.id === currComp.id && comp.children) {
+        comp.children.push(newComp);
+    } else {
+      comp.children = updateApp(comp.children, currComp, newComp);
+    }
+    return comp;
+  });
+}
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
+      // change id's code to ensure uniqueness
       const newComp = { value: input, id: `${input}-${children.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
 
-      console.log('current input: ', input)
+      // console.log('current input: ', input)
+      console.log('currComp', currComp);
 
       setChildren((prev) => [...prev, newComp])
-      setComps((prev) => [...prev, newComp])
+      const updatedComp = updateApp(comps, currComp, newComp)
+      setComps(updatedComp)
       setInput('');
 
       console.log('comps after newComp', comps)

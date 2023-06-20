@@ -18,10 +18,10 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
     console.log('comps updated, tree refreshed')
   }, [comps])
 
-  console.log('in tree');
-  console.log('comps', comps);
-  console.log('current recursive root', root);
-  console.log('currComp', currComp);
+  // console.log('in tree');
+  // console.log('comps', comps);
+  // console.log('current recursive root', root);
+  // console.log('currComp', currComp);
 
   function handleClick(comp) {
     setCurrComp(comp)
