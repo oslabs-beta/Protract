@@ -5,7 +5,11 @@ import { Comp } from "../../types";
 export default function FileDirectory() {
   const { comps, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
-  function handleClick(comp: Comp) {
+  // console.log('in fileDirectory');
+  // console.log('comps', comps);
+
+
+  function handleClick(comp) {
     setCurrComp(comp)
     setChildren(comp.children)
   }
@@ -13,8 +17,8 @@ export default function FileDirectory() {
   return (
     <div className="border-solid border-0 border-blue-600 flex-grow">
       <ul>
-        {comps.map((comp) => 
-        <li key={comp.value} onClick={() => handleClick(comp)}>{comp.value}</li> )}
+        {comps.map((comp) =>
+        <li onClick={() => handleClick(comp)}>{comp.value}</li> )}
       </ul>
     </div>
   );
