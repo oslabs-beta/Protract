@@ -6,15 +6,15 @@ export default function SignUpModal() {
         <dialog className="modal"  id="signUpModal">
             <h1 className="text-center">Protract Sign Up</h1>
             <form className="flex flex-col border-0 border-purple-600" action="/signup" method="post">
-                <fieldset className="border border-gray-400 rounded my-1 bg-white hover:border-gray-600 focus:border-red-600">
+                <fieldset className="border border-gray-400 rounded-sm my-1 bg-white hover:border-gray-600 focus:border-red-600">
                     <legend className="text-xs ml-2 bg-transparent px-1">Username</legend>
                     <input type="text" name="username" className="focus:outline-none px-2 pb-2 bg-white" placeholder=""></input>
                 </fieldset>
-                <fieldset className="border border-gray-400 rounded my-1 bg-white hover:border-gray-600 focus:border-red-600">
+                <fieldset className="border border-gray-400 rounded-sm my-1 bg-white hover:border-gray-600 focus:border-red-600">
                     <legend className="text-xs ml-2 bg-transparent px-1">Email</legend>
                     <input type="email" name="email" className="focus:outline-none px-2 pb-2 bg-white" placeholder=""></input>
                 </fieldset>
-                <fieldset className="border border-gray-400 rounded my-1 bg-white hover:border-gray-600 focus:border-red-600">
+                <fieldset className="border border-gray-400 rounded-sm my-1 bg-white hover:border-gray-600 focus:border-red-600">
                     <legend className="text-xs ml-2 bg-transparent px-1">Password</legend>
                     <input type="password" name="password" className="focus:outline-none px-2 pb-2 bg-white"></input>
                 </fieldset>
