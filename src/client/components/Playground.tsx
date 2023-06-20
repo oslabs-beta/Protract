@@ -4,20 +4,24 @@ import Canvas from './Canvas';
 import Preview from './Preview';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, UniqueIdentifier, KeyboardSensor, MouseSensor, TouchSensor, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
 import BankEl from './BankEl';
-import { Item, Comp } from '../../types';
+import { Item } from '../../types';
 
 export const PlaygroundContext = createContext<{
-  comps: Comp[],
+  comps: Item[],
+  currComp: Item
   children: Item[],
-  setComps: React.Dispatch<React.SetStateAction<Comp[]>>,
-  setCurrComp: React.Dispatch<React.SetStateAction<Comp>>,
-  setChildren: React.Dispatch<React.SetStateAction<Item[]>>
+  setComps: React.Dispatch<React.SetStateAction<Item[]>>,
+  setCurrComp: React.Dispatch<React.SetStateAction<Item>>,
+  setChildren: React.Dispatch<React.SetStateAction<Item[]>>,
+  handleUpdateApp(comps: Item[], currComp: Item, newComp: Item): Item[]
 }>({
   comps: [],
+  currComp: { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children: [] },
   children: [],
   setCurrComp: () => {},
   setComps: () => {},
-  setChildren: () => {}
+  setChildren: () => {},
+  handleUpdateApp: () => []
 })
 
 export default function Playground() {
@@ -33,7 +37,7 @@ export default function Playground() {
 
   const [children, setChildren] = useState<Item[]>([]);
 
-const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children }
+const app: Item = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children }
 
   // whenever children changes, update the state of the currComp to match the changes
   useEffect(() => {
@@ -45,29 +49,26 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
 
 
   // changes what component we are currently looking at
-  const [currComp, setCurrComp] = useState<Comp>(app);
+  const [currComp, setCurrComp] = useState<Item>(app);
 
   // custom components made in an instance
-  const [comps, setComps] = useState<Comp[]>([app])
+  const [comps, setComps] = useState<Item[]>([app])
 
-  useEffect(() => {
-    console.log('comps has updated in playground', comps);
-  }, [comps])
+  // update the root app component anytime a change is made, and changes are desired to persist
+  function handleUpdateApp(comps: Item[], currComp: Item, newComp: Item): Item[] {
+  return comps.map((comp) => {
+    if (comp.id === currComp.id && comp.children) {
+        comp.children.push(newComp);
+    } else {
+      comp.children = handleUpdateApp(comp.children, currComp, newComp);
+    }
+    return comp;
+  });
+}
 
-  // whenever children or currComp changes, change the children property of the comp that matches currComps id
-  useEffect(() => {
-    setComps((prevComps) =>
-      prevComps.map((comp) => {
-        if (comp.id === currComp.id) {
-          return {
-            ...comp,
-            children,
-          };
-        }
-        return comp;
-      })
-    );
-  }, [children]);
+  // everytime currComp updates and it isnt app,
+  // do setComps, find the comp in comps[0].children. change it to currComp.
+  // if you cant find the comp, go into
 
   // function to update order of items in instance
   function handleCanvasUpdate(arr: Item[])  {
@@ -81,7 +82,8 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
     children,
     setComps,
     setCurrComp,
-    setChildren
+    setChildren,
+    handleUpdateApp
   }
 
   // drag and drop logic
@@ -92,8 +94,10 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   function handleDragEnd(e: DragEndEvent) {
     if (e.over === null) return;
     if (e.over.id === 'canvas') {
-      const newItem = { value: e.active.id, id: `${e.active.id}-${children.length}-in-${currComp.value}`, code: `<${e.active.id}></${e.active.id}>\n` }
+      const newItem = { value: e.active.id, id: `${e.active.id}-${children.length}-in-${currComp.value}`, code: `<${e.active.id}></${e.active.id}>\n`, children: [] }
       setChildren((prev) => [...prev, newItem]);
+      const updatedComp = handleUpdateApp(comps, currComp, newItem)
+      setComps(updatedComp)
     }
     setActiveId('');
   }

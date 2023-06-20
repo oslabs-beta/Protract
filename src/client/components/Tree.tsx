@@ -2,11 +2,11 @@ import React from 'react';
 import { Component } from './dummyData';
 import { PlaygroundContext } from "./Playground";
 import { useContext, useEffect } from "react";
-import { Item, Comp } from '../../types';
+import { Item } from '../../types';
 
 
 interface TreeProps {
-  root: Comp|Item;
+  root: Item;
   depth?: number;
 }
 
@@ -15,7 +15,7 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
   const { comps, setCurrComp, setChildren } = useContext(PlaygroundContext);
 
   useEffect(() => {
-    console.log('comps updated, tree refreshed')
+    // console.log('comps updated, tree refreshed')
   }, [comps])
 
   // console.log('in tree');
@@ -23,11 +23,11 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
   // console.log('current recursive root', root);
   // console.log('currComp', currComp);
 
-  function handleClick(comp) {
+  function handleClick(comp: Item) {
     setCurrComp(comp)
     // if (comp.children.length > 0) setChildren(comp.children);
     setChildren(comp.children)
-    console.log('component clicked in tree: ', comp);
+    // console.log('component clicked in tree: ', comp);
   }
 
   /**
@@ -36,7 +36,7 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
    * @param {Comp | Item} currentComponent - the current
    * @returns {JSX.Element} - JSX of a series of divs, each representing a node / nested node
    */
-  const renderTree = (currentComponent: Comp | Item, currentDepth: number) => {
+  const renderTree = (currentComponent: Item, currentDepth: number) => {
     const { value, children } = currentComponent;
     // console.log('currentComponent in renderTree()', currentComponent);
 
