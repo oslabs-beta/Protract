@@ -9,11 +9,15 @@ import sessionController from '../controllers/cookieControllers/sessionControlle
 
 // Check if User is already Logged in and a Session exists - fetch to /
 
-router.get('/loggedIn', userController.isLoggedIn, (req: Request, res: Response) => {
+router.get('/loggedIn', userController.isLoggedIn, async (req: Request, res: Response) => {
   if(res.locals.session === null){
     res.status(200).json('No valid session found, User is currently not logged in')
   } else {
-    res.status(200).json('Valid session found, User is currently logged in')
+    const { cookieId } = res.locals.session
+    console.log('This is the cookieId', cookieId)
+    const userDoc = await models.User.findOne({_id: cookieId})
+    console.log('User DOC: ',userDoc);
+    res.status(200).json(userDoc.username)
   }
 })
 

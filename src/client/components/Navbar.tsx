@@ -1,9 +1,26 @@
+import { useEffect, useState } from 'react';
 import logo from '../assets/logo3.png'
 import github from '../assets/github-light.png'
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal';
 
 export default function Navbar() {
+
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    const isLoggedIn = async () => {
+      try{
+        const response = await fetch('/loggedIn')
+        const data = await response.json()
+        console.log('useEffect log',data)
+        setUser(data);
+      } catch(err) {
+        console.log('error in fetching');
+      }
+    }
+    isLoggedIn()
+  },[])
 
   return (
     <nav className='flex h-auto justify-between items-center border-solid border-b border-gray-200 bg-red-800 text-white'>
@@ -12,6 +29,9 @@ export default function Navbar() {
       </div>
       <div className=' gap-10 grid-cols-20 '>
         <ul className='my-4 gap-4 flex'>
+        <li>
+            <p className='p-2 mx-1 float-right hover:text-gray-300'>{user}</p>
+          </li>
           <li>
             <a className='p-2 mx-1 float-right hover:text-gray-300' href='/'>Tutorial</a>
           </li>

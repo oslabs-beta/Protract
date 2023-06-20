@@ -23,7 +23,6 @@ const userController: UserController = {
             const sessionDoc = await Session.findOne({ cookieId: SSID })
             res.locals.session = sessionDoc
             return next();
-
         } catch(err){
             return next({
             log: 'userController',
@@ -37,17 +36,20 @@ const userController: UserController = {
 
     createUser: async (req, res, next) => {
 
-        const {username, password} = req.body
+        let {username, password, email} = req.body;
+        username = username.toLowerCase()
 
-        if(!username || !password){
+        console.log('usercontroller req body',req.body)
+
+        if(!username || !password || !email){
             return next({
                 log: 'userController createUser error',
                 status: 400,
-                message: `Username and password is required`,
+                message: `Username, password, and email is required`,
               });
         }
         try{
-            const userDoc = await models.User.create({username, password})
+            const userDoc = await models.User.create({username, password, email})
             res.locals.user = userDoc
             console.log('UserController: User has been successfully created')
             return next()
