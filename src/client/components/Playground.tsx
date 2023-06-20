@@ -8,12 +8,14 @@ import { Item, Comp } from '../../types';
 
 export const PlaygroundContext = createContext<{
   comps: Comp[],
+  currComp: Comp[] | Item[],
   children: Item[],
   setComps: React.Dispatch<React.SetStateAction<Comp[]>>,
   setCurrComp: React.Dispatch<React.SetStateAction<Comp>>,
   setChildren: React.Dispatch<React.SetStateAction<Item[]>>
 }>({
   comps: [],
+  currComp: [],
   children: [],
   setCurrComp: () => {},
   setComps: () => {},
@@ -32,7 +34,7 @@ export default function Playground() {
   const [currOrder, setCurrOrder] = useState<Item[]>([]);
 
   const [children, setChildren] = useState<Item[]>([]);
-  
+
 const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children }
 
   // whenever children changes, update the state of the currComp to match the changes
@@ -49,8 +51,12 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
 
   // custom components made in an instance
   const [comps, setComps] = useState<Comp[]>([app])
-  
-  // whenever children changes, change the children property of the comp that matches currComps id
+
+  useEffect(() => {
+    console.log('comps has updated in playground', comps);
+  }, [comps])
+
+  // whenever children or currComp changes, change the children property of the comp that matches currComps id
   useEffect(() => {
     setComps((prevComps) =>
       prevComps.map((comp) => {
@@ -73,6 +79,7 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   // used by playgroundcontext provider
   const contextValue = {
     comps,
+    currComp,
     children,
     setComps,
     setCurrComp,
@@ -108,9 +115,9 @@ const app: Comp = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   return (
     <div className="h-full flex flex-row border-solid border-b border-gray-200">
       <PlaygroundContext.Provider value={contextValue}>
-        <DndContext  
+        <DndContext
         sensors={sensors}
-        onDragStart={handleDragStart} 
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}>
         <LeftColumn />
           <DragOverlay wrapperElement='ul'>

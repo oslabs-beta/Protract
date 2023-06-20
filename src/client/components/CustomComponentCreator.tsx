@@ -4,7 +4,7 @@ import { PlaygroundContext } from "./Playground";
 
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
-  
+
   const { setComps, comps, children, setChildren } = useContext(PlaygroundContext);
 
   function handleChange(e: string) {
@@ -15,11 +15,15 @@ export default function CustomComponentCreator() {
     e.preventDefault();
     if (input.trim().length) {
       const newComp = { value: input, id: `${input}-${children.length}`, code: `<${input}></${input}>\n`, canEnter: true, children: []}
+
+      console.log('current input: ', input)
+
       setChildren((prev) => [...prev, newComp])
       setComps((prev) => [...prev, newComp])
       setInput('');
-      console.log('comps', comps)
-      console.log('children', children)
+
+      console.log('comps after newComp', comps)
+      console.log('children after newComp', children)
     }
   }
 
@@ -29,9 +33,9 @@ export default function CustomComponentCreator() {
       onSubmit={(e) => handleSubmit(e)}>
         <input
         className="flex-grow border border-red-700 rounded-l-md min-w-full block text-center text-l focus:outline-none"
-        placeholder='Component Name' 
+        placeholder='Component Name'
         type='text'
-        value={input} 
+        value={input}
         onChange={(e) => handleChange(e.target.value)}
         />
         <button type="submit" className="px-3 py-1 text-white rounded-r-md bg-red-700 hover:bg-red-600">Add</button>
