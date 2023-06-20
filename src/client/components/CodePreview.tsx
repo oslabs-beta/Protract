@@ -6,7 +6,7 @@ export default function CodePreview(props: { tags: Item[] }) {
     const { tags } = props;
 
     // const [currTheme, setTheme] = useState('vs-dark');
-    const [show, setShow] = useState('')
+    const [preview, setPreview] = useState('')
 
     const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', '  selector: \'app-home\',\n', '  standalone: true,\n','  imports: [CommonModule],\n', '  template:\n'];
     const suffix = ['   styleUrls: [\'.NAME_HERE.component.css\']\n','})\n', 'export class AppComponent {\n','}\n'];
@@ -15,13 +15,13 @@ export default function CodePreview(props: { tags: Item[] }) {
     useEffect(() => {
         // console.log('preview tags:',tags);
         if(!tags.length){
-            setShow('//drop components onto canvas to see code preview')
+            setPreview('// Drop components onto canvas to see code preview')
         }else{
             const canvasCodeArr = tags.map((ele) => `       ${ele.code}`);
             // console.log(canvasCodeArr);
             const finArr = prefix.concat(canvasCodeArr).concat(suffix);
             // console.log(finArr);
-            setShow(finArr.join(''));
+            setPreview(finArr.join(''));
         }
     }, [tags])
 
@@ -33,7 +33,7 @@ export default function CodePreview(props: { tags: Item[] }) {
             <Editor height="100%"
                 defaultLanguage="javascript"
                 defaultValue={emptyText}
-                value={show}
+                value={preview}
                 // path={file.name}
                 options={{
                     readOnly: true,
