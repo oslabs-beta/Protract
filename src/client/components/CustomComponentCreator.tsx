@@ -1,6 +1,6 @@
 import { useState, useContext, Children } from "react";
 import { PlaygroundContext } from "./Playground";
-import { Comp, Item } from "../../types";
+import { Item } from "../../types";
 
 
 export default function CustomComponentCreator() {
@@ -15,7 +15,7 @@ export default function CustomComponentCreator() {
 
 
 
-function updateApp(comps: Comp[], currComp: Comp, newComp: Comp): Comp[] {
+function updateApp(comps: Item[], currComp: Item, newComp: Item): Item[] {
   return comps.map((comp) => {
     if (comp.id === currComp.id && comp.children) {
         comp.children.push(newComp);

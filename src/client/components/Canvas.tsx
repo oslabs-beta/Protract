@@ -3,9 +3,9 @@ import SortableBankEl from "./SortableBankEl"
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { Comp, Item } from "../../types";
+import { Item } from "../../types";
 
-export default function Canvas(props: {currComp: Comp, handleCanvasUpdate: (arr: Item[]) => void, setChildren: React.Dispatch<React.SetStateAction<Item[]>>}) {
+export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr: Item[]) => void, setChildren: React.Dispatch<React.SetStateAction<Item[]>>}) {
   const {setNodeRef} = useDroppable({
     id: 'canvas'
   })

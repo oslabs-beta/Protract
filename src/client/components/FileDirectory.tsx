@@ -1,6 +1,6 @@
+import { Item } from "../../types";
 import { PlaygroundContext } from "./Playground";
 import { useContext } from "react";
-import { Comp } from "../../types";
 
 export default function FileDirectory() {
   const { comps, setCurrComp, setChildren } = useContext(PlaygroundContext);
@@ -9,7 +9,7 @@ export default function FileDirectory() {
   // console.log('comps', comps);
 
 
-  function handleClick(comp) {
+  function handleClick(comp: Item) {
     setCurrComp(comp)
     setChildren(comp.children)
   }
