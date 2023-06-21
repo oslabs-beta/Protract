@@ -39,22 +39,38 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         orientation="vertical"
         pathFunc="step"
         depthFactor={200}
-        styles={{
-          nodes: {
-            node: {
-              circle: {
-                fill: (node: any) => (node.data.children.length ? 'B91C1C' : 'FFF'),
-                stroke: '#000',
-              },
-              name: {
-                textAnchor: 'start',
-                dominantBaseline: 'central',
-                fontSize: 14,
-                fontWeight: 700,
-              },
-            },
+        nodeSvgShape={{
+          shape: 'circle',
+          shapeProps: {
+            r: 10,
+            fill: '#B91C1C',
+            stroke: '#000',
+          },
+          label: {
+            textAnchor: 'end',
+            fontSize: 14,
+            fontWeight: 700,
+            transform: 'translate(-15px, 0)',
           },
         }}
+        // styles={{
+        //   nodes: {
+        //     node: {
+        //       circle: {
+        //         fill: (node: any) => (node.data.children.length ? 'B91C1C' : 'FFF'),
+        //         stroke: '#000',
+        //       },
+        //       name: {
+        //         textAnchor: 'start',
+        //         dominantBaseline: 'central',
+        //         fontSize: 14,
+        //         fontWeight: 700,
+        //         x: -10,
+        //         y: 0,
+        //       },
+        //     },
+        //   },
+        // }}
       />
     </div>
   );

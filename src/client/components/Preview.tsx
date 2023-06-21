@@ -15,28 +15,13 @@ export default function Preview(props: { tags: Item[] }) {
   const [display, setDisplay] = useState(<CodePreview tags = {tags}/>);
   const [tab, setTab] = useState('code')
 
-  // useEffect((() => {
-  //   if (state.display === 'preview') {
-
-  //   }
-  // }, [display])
-  // )
 
   const handlePreviewClick = () => {
     if(tab !== 'code'){
-      // console.log('switch to preview display!');
-      // console.log('destructured tags in preview', tags);
       setTab('code');
       setDisplay(< CodePreview tags = {tags}/>);
     }
   }
-  // const handleTreeClick = () => {
-  //   if(tab !== 'tree'){
-  //     // console.log('switch to tree display!');
-  //     setTab('tree');
-  //     setDisplay(<Tree root={comps[0]}/>);
-  //   }
-  // }
 
   const handleTreeClick = () => {
     if(tab !== 'tree'){
@@ -45,6 +30,18 @@ export default function Preview(props: { tags: Item[] }) {
       setDisplay(<FlowTree root={comps[0]}/>);
     }
   }
+
+  useEffect(() => {
+    if(tab === 'code'){
+      setDisplay(<CodePreview tags = {tags}/>)
+    }else if(tab === 'tree'){
+      setDisplay(<FlowTree root={comps[0]}/>);
+    }
+
+  }, [tags])
+
+
+  // USE BELOW TO VIEW TREE.TSX COMPONENT INSTEAD
 
   // useEffect(() => {
   //   if(tab === 'code'){
@@ -55,14 +52,13 @@ export default function Preview(props: { tags: Item[] }) {
 
   // }, [tags])
 
-  useEffect(() => {
-    if(tab === 'code'){
-      setDisplay(<CodePreview tags = {tags}/>)
-    }else if(tab === 'tree'){
-      setDisplay(<FlowTree root={comps[0]}/>);
-    }
-
-  }, [tags])
+  // const handleTreeClick = () => {
+  //   if(tab !== 'tree'){
+  //     // console.log('switch to tree display!');
+  //     setTab('tree');
+  //     setDisplay(<Tree root={comps[0]}/>);
+  //   }
+  // }
 
 
 
