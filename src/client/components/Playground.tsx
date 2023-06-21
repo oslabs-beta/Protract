@@ -66,9 +66,9 @@ const app: Item = { value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app
   });
 }
 
-  // everytime currComp updates and it isnt app, 
+  // everytime currComp updates and it isnt app,
   // do setComps, find the comp in comps[0].children. change it to currComp.
-  // if you cant find the comp, go into 
+  // if you cant find the comp, go into
 
   // function to update order of items in instance
   function handleCanvasUpdate(arr: Item[])  {
