@@ -41,26 +41,6 @@ export default function Preview(props: { tags: Item[] }) {
   }, [tags])
 
 
-  // USE BELOW TO VIEW TREE.TSX COMPONENT INSTEAD
-
-  // useEffect(() => {
-  //   if(tab === 'code'){
-  //     setDisplay(<CodePreview tags = {tags}/>)
-  //   }else if(tab === 'tree'){
-  //     setDisplay(<Tree root={comps[0]}/>);
-  //   }
-
-  // }, [tags])
-
-  // const handleTreeClick = () => {
-  //   if(tab !== 'tree'){
-  //     // console.log('switch to tree display!');
-  //     setTab('tree');
-  //     setDisplay(<Tree root={comps[0]}/>);
-  //   }
-  // }
-
-
 
   return (
     <div className="basis-1/4 border-l border-solid border-gray-200 flex flex-col">
