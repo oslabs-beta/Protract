@@ -8,30 +8,72 @@ export default function Navbar() {
 
   const [user, setUser] = useState('');
   const [loginState, setLoginState] = useState(false);
+  const [loginDisplay, setLoginDisplay] = useState('Login');
 
 function loginChange(){
   //think about case where user is logged in but signs up for another account of logs into another account dont want it to flip every time
   // setLoginState((prevloginState) => !prevloginState);
-  setLoginState(true); 
+  const isLoggedIn = async () => {
+    try{
+      const response = await fetch('/loggedIn')
+      const data = await response.json()
+      console.log('useEffect log HERE:',data)
+      setUser(data);
+    } catch(err) {
+      console.log('error in fetching');
+    }
+  }
+  isLoggedIn()
+  console.log('loginState was previously:',loginState);
+  setLoginDisplay('Logout')
+  setLoginState(true);
 }
-
-// useEffect(() =>{
-//   setUser()
-// })
+console.log('loginState currently:',loginState);
 
   useEffect(() => {
     const isLoggedIn = async () => {
       try{
         const response = await fetch('/loggedIn')
         const data = await response.json()
-        console.log('useEffect log',data)
-        setUser(data);
+        console.log('useEffect log HERE:',data)
+        if(data.length < 10){
+          setUser(data);
+          setLoginDisplay('Logout');
+          setLoginState(true);
+        }
+        
       } catch(err) {
         console.log('error in fetching');
       }
     }
     isLoggedIn()
-  },[loginState])
+  },[])
+
+  function logModal(){
+    if(loginState === false){
+      (document.querySelector("#loginModal") as HTMLDialogElement).showModal()
+    } else {
+      async () => {
+        try {
+            const response = await fetch('/logout', {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              }
+            });
+      
+            if (response) {
+              const data = await response.json();
+              console.log('LOGOUT data info: ',data) 
+            } else {
+              throw new Error('Logout user has failed');
+            }
+          } catch (error) {
+            console.error(error);
+          }
+      };
+    }
+  }
 
   return (
     <nav className='flex h-auto justify-between items-center border-solid border-b border-gray-200 bg-red-800 text-white'>
@@ -51,8 +93,8 @@ function loginChange(){
           </li>
           <li >
             <button className='p-2 mx-1 float-right hover:text-gray-300' 
-            onClick={() => {(document.querySelector("#loginModal") as HTMLDialogElement).showModal()}}
-            >Login</button>
+            onClick={() => {logModal()}}
+            >{loginDisplay}</button>
           </li>
           <li >
             <button 
