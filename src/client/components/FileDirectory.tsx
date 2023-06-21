@@ -34,6 +34,8 @@ export default function FileDirectory(props: { comps: Item, depth: number }) {
   };
 
   return (
-    <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-white scrollbar-track-white">{renderTree(comps)}</div>
+    <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-white scrollbar-track-white">
+      {renderTree(comps)}
+      </div>
   );
 };

@@ -10,6 +10,7 @@ export default function CustomComponentCreator() {
 
   function handleChange(e: string) {
     setInput(e)
+    console.log(comps)
   }
 
 

@@ -5,10 +5,13 @@ import { useEffect, useState, useContext } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Item } from "../../types";
 import { PlaygroundContext } from "./Playground";
+import WarningModal from "./WarningModal";
+import SaveModal from "./SaveModal";
+import LoadModal from "./LoadModal";
 
 
 export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr: Item[]) => void, setChildren: React.Dispatch<React.SetStateAction<Item[]>>}) {
-  const { setComps, comps } = useContext(PlaygroundContext);
+  const { setComps, comps, setCurrComp } = useContext(PlaygroundContext);
 
   const {setNodeRef} = useDroppable({
     id: 'canvas'
@@ -17,6 +20,10 @@ export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr:
   const { currComp, setChildren, handleCanvasUpdate } = props;
 
   const [list, setList] = useState<Item[]>(currComp.children)
+
+  const [modal, setModal] = useState('');
+  const [project, setProject] = useState('');
+  const [projects, setProjects] = useState([]);
 
   // handleUpdateApp(comps, currComp, newComp=currComp)
   function handleAppReorder(comps: Item[], currComp: Item, list: Item[]): Item[] {
@@ -58,9 +65,56 @@ export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr:
     }
   }
 
+  function handleCancel() {
+    setModal('');
+  }
+
+  function handleReset() {
+    //
+    setComps([{ value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children: [] }])
+    setCurrComp({ value: 'app', id: 'app', codeStart: '<app>', codeEnd: '</app>', canEnter: true, children: [] })
+    setChildren([])
+    setModal('');
+    setProject('');
+  }
+
+  function saveProj(project: string) {
+    // send a patch req to the backend, edit the collection where the name === project
+  }
+
+  function checkIfNewProj() {
+    if (project === '') {
+      showModal('save');
+    }
+    else {
+      saveProj(project)
+    }
+  }
+
+  function showModal(string:string) {
+    setModal(string)
+  }
+
+  function handleLoad() {
+    //send a request to backend including the user's name, expecting an array of project names that are accessible by the user
+    //setProjects(data)
+    setModal('load');
+  }
+
   return (
     <div className="basis-1/2 border-0 border-solid border-blue-600 flex flex-col  bg-gray-200 min-w-fit">
-      <div className="border-4 border-dashed m-10 mx-10 border-gray-400 rounded-3xl flex flex-col flex-grow bg-white">
+      <div className="flex flex-row justify-end space-x-3 mr-7 mt-5">
+        {project !== '' && 
+        <h1 className="text-xl font-bold text-center ">Current Project: {project}</h1>
+        }
+        <div className="flex space-x-3">
+        <button onClick={() => showModal('reset')}>New</button>
+        <button onClick = {() => checkIfNewProj()}>Save</button>
+        <button onClick={() => handleLoad()}>Load</button>
+        <button onClick = {() => handleExport()}>Export</button>
+        </div>
+      </div>
+      <div className="border-4 border-dashed m-5 mx-10 border-gray-400 rounded-3xl flex flex-col flex-grow bg-white">
         <h2 className="text-center my-6 font-semibold text-2xl" >{currComp.value}</h2>
         <DndContext onDragEnd={handleDragEnd}>
           <SortableContext items={list.map(item => item.id)}
@@ -72,6 +126,12 @@ export default function Canvas(props: {currComp: Item, handleCanvasUpdate: (arr:
           </SortableContext>
         </DndContext>
       </div>
+      { modal === 'reset' &&
+      <WarningModal handleCancel={handleCancel} handleReset={handleReset}/>}
+      { modal === 'save' && 
+      <SaveModal setProject={setProject} showModal={showModal} handleCancel={handleCancel} />} 
+      { modal === 'load' &&
+      <LoadModal handleCancel={handleCancel} projects={projects} showModal={showModal}/>}
     </div>
   );
 }
