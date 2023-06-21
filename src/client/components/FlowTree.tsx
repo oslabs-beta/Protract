@@ -12,6 +12,11 @@ interface TreeProps {
 const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const { setCurrComp, setChildren } = useContext(PlaygroundContext);
 
+  function handleClick(comp: Item) {
+    setCurrComp(comp)
+    setChildren(comp.children)
+  }
+
   const treeContainerRef = useRef(null);
 
   useEffect(() => {
@@ -26,11 +31,11 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
     <div ref={treeContainerRef} style={{ width: '100%', height: '100%' }}>
       <Tree
         data={elements}
-        translate={{ x: 0, y: 0 }}
+        translate={{ x: 175, y: 40 }}
         nodeSize={{ x: 200, y: 100 }}
-        separation={{ siblings: 1.2, nonSiblings: 1.2 }}
-        collapsible={false}
-        zoomable={false}
+        separation={{ siblings: 0.6, nonSiblings: 0.6 }}
+        collapsible={true}
+        zoomable={true}
         orientation="vertical"
         pathFunc="step"
         depthFactor={200}
@@ -38,7 +43,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
           nodes: {
             node: {
               circle: {
-                fill: '#fff',
+                fill: (node: any) => (node.data.children.length ? 'B91C1C' : 'FFF'),
                 stroke: '#000',
               },
               name: {
@@ -55,19 +60,26 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
   );
 };
 
-const convertDataToElements = (project: Item) => {
+// helper function to convert app to readable format for react-d3-trees
+const convertDataToElements = (root: Item) => {
+  // helper function to traverse nodes
   const traverse = (node: Item) => {
     const { value, children, canEnter } = node;
 
+    // if current node is not a component, return out
     if (!canEnter) {
       return null;
     }
 
+    // create a new element, in the fashion of d3-tree syntax
     const element = { name: value, children: [] };
 
+    // loop through children arrays if present
     if (children && children.length > 0) {
       children.forEach((child) => {
+        // childElement will equal recursive calls to traverse each child, resulting in subsequent element arrays being populated
         const childElement = traverse(child);
+        // if childElement is not null, push to the element's children array
         if (childElement) {
           element.children.push(childElement);
         }
@@ -77,7 +89,8 @@ const convertDataToElements = (project: Item) => {
     return element;
   };
 
-  const elements = traverse(project);
+  // construct the desired d3-tree elements array using traverse()
+  const elements = traverse(root);
 
   return elements;
 };
