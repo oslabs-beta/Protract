@@ -38,11 +38,12 @@ export default function CustomComponentCreator() {
         onSubmit={(e) => handleSubmit(e)}
       >
         <input
-          className="text-l block min-w-full flex-grow rounded-l-md border border-red-700 text-center focus:outline-none"
+          className="pl-2 text-l block min-w-full flex-grow rounded-l-md border border-red-700 text-center focus:outline-none"
           placeholder="Component Name"
           type="text"
           value={input}
           onChange={(e) => handleChange(e.target.value)}
+          style={{ textAlign: 'left' }}
         />
         <button
           type="submit"
