@@ -143,7 +143,6 @@ export const currentProject: Component = {
 //   };
 
 import React from 'react';
-import { Component } from './dummyData';
 
 interface TreeProps {
   currentProject: Component;

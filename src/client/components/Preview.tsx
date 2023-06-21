@@ -1,5 +1,6 @@
 import CodePreview from './CodePreview'
 import Tree from './Tree'
+import FlowTree from './FlowTree';
 import { currentProject } from './dummyData';
 import { Item } from './../../types';
 import {useEffect, useState, useContext} from 'react';
@@ -29,19 +30,36 @@ export default function Preview(props: { tags: Item[] }) {
       setDisplay(< CodePreview tags = {tags}/>);
     }
   }
+  // const handleTreeClick = () => {
+  //   if(tab !== 'tree'){
+  //     // console.log('switch to tree display!');
+  //     setTab('tree');
+  //     setDisplay(<Tree root={comps[0]}/>);
+  //   }
+  // }
+
   const handleTreeClick = () => {
     if(tab !== 'tree'){
       // console.log('switch to tree display!');
       setTab('tree');
-      setDisplay(<Tree root={comps[0]}/>);
+      setDisplay(<FlowTree root={comps[0]}/>);
     }
   }
+
+  // useEffect(() => {
+  //   if(tab === 'code'){
+  //     setDisplay(<CodePreview tags = {tags}/>)
+  //   }else if(tab === 'tree'){
+  //     setDisplay(<Tree root={comps[0]}/>);
+  //   }
+
+  // }, [tags])
 
   useEffect(() => {
     if(tab === 'code'){
       setDisplay(<CodePreview tags = {tags}/>)
     }else if(tab === 'tree'){
-      setDisplay(<Tree root={comps[0]}/>);
+      setDisplay(<FlowTree root={comps[0]}/>);
     }
 
   }, [tags])

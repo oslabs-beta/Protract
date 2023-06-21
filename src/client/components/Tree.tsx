@@ -1,5 +1,4 @@
 import React from 'react';
-import { Component } from './dummyData';
 import { PlaygroundContext } from "./Playground";
 import { useContext, useEffect } from "react";
 import { Item } from '../../types';
@@ -31,7 +30,7 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
   }
 
   /**
-   * This function recursively create a file directory-like tree
+   * This function recursively creates a tree-like structure of the passed in object and its nested children
    *
    * @param {Comp | Item} currentComponent - the current
    * @returns {JSX.Element} - JSX of a series of divs, each representing a node / nested node
@@ -49,11 +48,9 @@ const Tree: React.FC<TreeProps> = ({ root, depth = 0 }) => {
         )}
 
         {children && children.length > 0 && (
-          <div className="flex flex-col items-center">
+          <div className="flex">
             {children.map((child, index) => (
-              <div key={index} className="">
-                <Tree root={child} depth={currentDepth + 1} />
-              </div>
+              <Tree key={index} root={child} depth={currentDepth + 1} />
             ))}
           </div>
         )}
