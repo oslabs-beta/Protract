@@ -7,6 +7,17 @@ import SignUpModal from './SignUpModal';
 export default function Navbar() {
 
   const [user, setUser] = useState('');
+  const [loginState, setLoginState] = useState(false);
+
+function loginChange(){
+  //think about case where user is logged in but signs up for another account of logs into another account dont want it to flip every time
+  // setLoginState((prevloginState) => !prevloginState);
+  setLoginState(true); 
+}
+
+// useEffect(() =>{
+//   setUser()
+// })
 
   useEffect(() => {
     const isLoggedIn = async () => {
@@ -20,7 +31,7 @@ export default function Navbar() {
       }
     }
     isLoggedIn()
-  },[])
+  },[loginState])
 
   return (
     <nav className='flex h-auto justify-between items-center border-solid border-b border-gray-200 bg-red-800 text-white'>
@@ -52,8 +63,8 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      {<SignUpModal/>}
-      {<LoginModal/>}
+      {<SignUpModal loginChange={loginChange}/>}
+      {<LoginModal loginChange={loginChange}/>}
       {/* <div className='group'> */}
       {/* <div className="float-right font-semibold border rounded-l p-2 hidden group-hover:block">Click on the <br />image to see  <br />our GitHub page.</div> */}
       {/* <span className='float-right mb-3 mr-3'><a  href='https://github.com/oslabs-beta/Protract'><img className = 'font-semibold h-12' src = {github} alt="" /></a></span> */}
