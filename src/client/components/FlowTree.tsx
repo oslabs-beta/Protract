@@ -12,11 +12,18 @@ interface TreeProps {
 const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const { setCurrComp, setChildren } = useContext(PlaygroundContext);
 
-  function handleClick(comp: Item) {
+  // nodeData is basically the Item type, except with additional d3-tree specific properties (name and __rd3t)
+  function handleClick(nodeData: any) {
+    // destructure from nodeData
+    const { id, children, code, value, canEnter } = nodeData;
+
+    // construct the Item object we're used to
+    const comp = { id, children, code, value, canEnter }
     setCurrComp(comp)
-    setChildren(comp.children)
+    setChildren(children)
   }
 
+  // Configure double click zoom capability, not currently working
   const treeContainerRef = useRef(null);
 
   useEffect(() => {
@@ -27,6 +34,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
   const elements = convertDataToElements(root);
 
+  // Styling currently does not apply. Consider styling in a css/sass file, then importing?
   return (
     <div ref={treeContainerRef} style={{ width: '100%', height: '100%' }}>
       <Tree
@@ -34,41 +42,25 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         translate={{ x: 175, y: 40 }}
         nodeSize={{ x: 200, y: 100 }}
         separation={{ siblings: 0.6, nonSiblings: 0.6 }}
-        collapsible={true}
+        collapsible={false}
         zoomable={true}
         orientation="vertical"
         pathFunc="step"
         depthFactor={200}
-        nodeSvgShape={{
-          shape: 'circle',
-          shapeProps: {
-            r: 10,
-            fill: '#B91C1C',
-            stroke: '#000',
-          },
-          label: {
-            textAnchor: 'end',
-            fontSize: 14,
-            fontWeight: 700,
-            transform: 'translate(-15px, 0)',
-          },
-        }}
-        // styles={{
-        //   nodes: {
-        //     node: {
-        //       circle: {
-        //         fill: (node: any) => (node.data.children.length ? 'B91C1C' : 'FFF'),
-        //         stroke: '#000',
-        //       },
-        //       name: {
-        //         textAnchor: 'start',
-        //         dominantBaseline: 'central',
-        //         fontSize: 14,
-        //         fontWeight: 700,
-        //         x: -10,
-        //         y: 0,
-        //       },
-        //     },
+        onNodeClick={(nodeData, e) => handleClick(nodeData.data)}
+
+        // nodeSvgShape={{
+        //   shape: 'circle',
+        //   shapeProps: {
+        //     r: 10,
+        //     fill: '#B91C1C',
+        //     stroke: '#000',
+        //   },
+        //   label: {
+        //     textAnchor: 'end',
+        //     fontSize: 14,
+        //     fontWeight: 700,
+        //     transform: 'translate(-15px, 0)',
         //   },
         // }}
       />
@@ -88,7 +80,7 @@ const convertDataToElements = (root: Item) => {
     }
 
     // create a new element, in the fashion of d3-tree syntax
-    const element = { name: value, children: [] };
+    const element = { ...node, name: value, children: [] };
 
     // loop through children arrays if present
     if (children && children.length > 0) {

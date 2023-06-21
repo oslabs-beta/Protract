@@ -16,7 +16,7 @@ export default function FileDirectory(props: { comps: Item, depth: number }) {
 
     return (
         <div className={` border-l ${depth > 0 ? 'ml-4 pl-1' : ''}`}>
-          <strong onClick={() => handleClick(currentComponent)}>{value}</strong>
+          <strong style={{ cursor: 'pointer' }} onClick={() => handleClick(currentComponent)}>{value}</strong>
           {children && children.length > 0 && (
             <div>
               {children.map((child, index) => (
