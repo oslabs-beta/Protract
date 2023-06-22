@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
 
-export default function LoginModal() {
+export default function LoginModal( props: { loginChange: () => void}) {
 
-    const [user, setUser] = useState('')
-    const [password, setPassword] = useState('')
 
-    const handleUserChange = (e) => {
-        setUser(e.target.value);
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleUserChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setUser(e.currentTarget.value);
     }
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
+    const handlePasswordChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setPassword(e.currentTarget.value);
     }
 
     // console.log('Login Modal Username: ',user);
     // console.log('Login Modal Pass: ',password);
 
-    const handleLogin = async (e) => {
+    const handleLogin = async (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
         //add login fetch here
         try {
@@ -33,6 +34,7 @@ export default function LoginModal() {
                 const data = await response.json()
                 setUser('');
                 setPassword('');
+                props.loginChange();
                 (document.querySelector("#loginModal") as HTMLDialogElement).close();
             } else{
                 const data = await response.json();
