@@ -166,12 +166,11 @@ export default function Canvas(props: {
 
   return (
     <div className="flex min-w-fit basis-1/2 flex-col border-0 border-solid  border-blue-600 bg-gray-200">
-      <div className="mr-7 mt-5 flex flex-row justify-between space-x-3">
-        {project !== '' && (
+      <div className="mr-7 ml-12 mt-5 flex flex-row justify-between space-x-3 text-gray-500">
+        
           <h1 className="text-xl font-bold">
-            Project: {project}
+          {project}
           </h1>
-        )}
         <div className="flex space-x-3 text-gray-500 justify-self-end">
           <button onClick={() => showModal('reset')}>New</button>
           <button onClick={() => checkIfNewProj()}>Save</button>
