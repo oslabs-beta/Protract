@@ -10,19 +10,81 @@ export default function Navbar(props: {
 }) {
   const { user, setUser } = props;
 
-  useEffect(() => {
+  const [loginState, setLoginState] = useState(false);
+  const [loginDisplay, setLoginDisplay] = useState('Login');
+  const [signUpDisplay, setSignUpDisplay] = useState(true);
+
+  function loginChange() {
+    //think about case where user is logged in but signs up for another account of logs into another account dont want it to flip every time
+    // setLoginState((prevloginState) => !prevloginState);
     const isLoggedIn = async () => {
       try {
         const response = await fetch('/loggedIn');
         const data = await response.json();
-        console.log('useEffect log', data);
+        console.log('useEffect log HERE:', data);
         setUser(data);
       } catch (err) {
         console.log('error in fetching');
       }
     };
     isLoggedIn();
+    console.log('loginState was previously:', loginState);
+    setLoginDisplay('Logout');
+    setSignUpDisplay(false);
+    setLoginState(true);
+  }
+  console.log('loginState currently:', loginState);
+
+  useEffect(() => {
+    const isLoggedIn = async () => {
+      try {
+        const response = await fetch('/loggedIn');
+        const data = await response.json();
+        console.log('useEffect log HERE:', data);
+        if (data.length < 10) {
+          setUser(data);
+          setLoginDisplay('Logout');
+          setSignUpDisplay(false);
+          setLoginState(true);
+        }
+      } catch (err) {
+        console.log('error in fetching');
+      }
+    };
+    isLoggedIn();
   }, []);
+
+  function logModal() {
+    if (loginState === false) {
+      (document.querySelector('#loginModal') as HTMLDialogElement).showModal();
+    } else {
+      console.log('logout button hit!');
+      const logoutFunc = async () => {
+        try {
+          console.log('logout button hit!2');
+          const response = await fetch('/logout', {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (response) {
+            const data = await response.json();
+            console.log('LOGOUT data info: ', data);
+          } else {
+            throw new Error('Logout user has failed');
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      logoutFunc();
+      setLoginDisplay('Login');
+      setSignUpDisplay(true);
+      setLoginState(false);
+    }
+  }
 
   return (
     <nav className="flex h-auto items-center justify-between border-b border-solid border-gray-200 bg-red-800 text-white">
@@ -32,47 +94,49 @@ export default function Navbar(props: {
       <div className=" grid-cols-20 gap-10 ">
         <ul className="my-4 flex gap-4">
           <li>
-            <p className="float-right mx-1 p-2 hover:text-gray-300">{user}</p>
-          </li>
-          <li>
             <a className="float-right mx-1 p-2 hover:text-gray-300" href="/">
               Tutorial
             </a>
           </li>
-          <li>
-            <a className="float-right mx-1 p-2 hover:text-gray-300" href="/">
-              Projects
-            </a>
-          </li>
+          {/* <li >
+            <a className='p-2 mx-1 float-right hover:text-gray-300' href='/'>Projects</a>
+          </li> */}
           <li>
             <button
               className="float-right mx-1 p-2 hover:text-gray-300"
               onClick={() => {
-                (
-                  document.querySelector('#loginModal') as HTMLDialogElement
-                ).showModal();
+                logModal();
               }}
             >
-              Login
+              {loginDisplay}
             </button>
           </li>
-          <li>
-            <button
-              className="float-right mx-1 mr-8 rounded-md bg-white p-2 text-red-800 hover:bg-gray-200"
-              // className='p-2 mx-1 mr-8 float-right text-red 700 rounded-md bg-white hover:bg-slate-200'
-              onClick={() =>
-                (
-                  document.querySelector('#signUpModal') as HTMLDialogElement
-                ).showModal()
-              }
-            >
-              Sign Up
-            </button>
-          </li>
+          {signUpDisplay && (
+            <li>
+              <button
+                className="float-right mx-1 mr-8 rounded-md bg-white p-2 text-red-800 hover:bg-gray-200"
+                // className='p-2 mx-1 mr-8 float-right text-red 700 rounded-md bg-white hover:bg-slate-200'
+                onClick={() =>
+                  (
+                    document.querySelector('#signUpModal') as HTMLDialogElement
+                  ).showModal()
+                }
+              >
+                Sign Up
+              </button>
+            </li>
+          )}
+          {loginState && (
+            <li>
+              <p className="float-right mx-1 mr-8 p-2 capitalize underline underline-offset-2 hover:text-gray-300">
+                Welcome, {user}!
+              </p>
+            </li>
+          )}
         </ul>
       </div>
-      {<SignUpModal />}
-      {<LoginModal />}
+      {<SignUpModal loginChange={loginChange} />}
+      {<LoginModal loginChange={loginChange} />}
       {/* <div className='group'> */}
       {/* <div className="float-right font-semibold border rounded-l p-2 hidden group-hover:block">Click on the <br />image to see  <br />our GitHub page.</div> */}
       {/* <span className='float-right mb-3 mr-3'><a  href='https://github.com/oslabs-beta/Protract'><img className = 'font-semibold h-12' src = {github} alt="" /></a></span> */}

@@ -1,28 +1,29 @@
 import { useState, useEffect } from 'react';
 
-export default function SignUpModal() {
+export default function SignUpModal( props: {loginChange: () => void} ) {
+    
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
 
-    function handleUserChange(e) {
-        setUser(e.target.value);
+    function handleUserChange(e: React.FormEvent<HTMLInputElement>) {
+        setUser(e.currentTarget.value);
     }
 
-    function handleEmailChange(e) {
-        setEmail(e.target.value);
+    function handleEmailChange(e: React.FormEvent<HTMLInputElement>) {
+        setEmail(e.currentTarget.value);
     }
 
-    function handlePasswordChange(e) {
-        setPassword(e.target.value);
+    function handlePasswordChange(e: React.FormEvent<HTMLInputElement>) {
+        setPassword(e.currentTarget.value);
     }
 
     // console.log('user input updating: ',user);
     // console.log('email input updating: ',email);
     // console.log('password updating: ',password);
 
-    async function handleSignUp(e) {
+    async function handleSignUp(e: React.FormEvent<HTMLInputElement>) {
         e.preventDefault();
         try {
             const response = await fetch('/signup', {
@@ -43,6 +44,7 @@ export default function SignUpModal() {
                 setEmail('');
                 setUser('');
                 console.log(data);
+                props.loginChange();
                 (document.querySelector("#signUpModal") as HTMLDialogElement).close()
             } else {
                 const data = await response.json();
