@@ -5,6 +5,7 @@ interface ProjController {
     saveProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     updateProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     loadProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    deleteProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 //  Project Controllers for New/Save/Load Projects
@@ -50,12 +51,29 @@ const projController: ProjController = {
           return next();
         } catch (err) {
           return next({
-            log: 'loadProject Controller',
+            log: 'loadProj Controller',
             status: 400,
-            message: `Error in returning loadProject Controller, ${err}`,
+            message: `Error in returning loadProjController, ${err}`,
           });
         }
       },
+
+      deleteProj: async (req, res, next) => {
+        const {username, title} = req.body;
+        try {
+          const userInfo = {title, users: username}
+          const deleted = await Project.findOneAndDelete(userInfo)
+          console.log(deleted)
+          res.locals.deleted = deleted
+          return next()
+        } catch (err) {
+          return next({
+            log: 'deleteProj Project Controller',
+            status: 400,
+            message: `Error in returning deleteProj Controller, ${err}`,
+          });
+        }
+      }
 };
 
 export default projController;
