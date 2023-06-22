@@ -2,25 +2,22 @@ import express, { Request, Response, NextFunction, RequestHandler } from 'expres
 import projController from '../controllers/projControllers/projController';
 const router = express.Router();
 
-// New Project - '/proj/new'
-
-router.post('/new', projController.newProj, (req: Request, res: Response) => {
-  console.log(res.locals.newProj)  
-  return res.status(200).json('new Project Added');
-});
-
 // Save Project fetch to '/proj/save'
 
-router.post('/save', projController.saveProj, (req: Request, res: Response) => {
+router.post('/', projController.saveProj, (req: Request, res: Response) => {
   console.log(res.locals.newProj)  
   return res.status(200).json('Project has been Saved');
 });
 
+// update a project '/proj'
+router.patch('/', projController.updateProj, (req: Request, res: Response) => {
+  return res.status(200).json('Project updated');
+}) 
+
 // Load Project - fetch to '/proj/load'
 
-router.post('/load', projController.loadProj, (req: Request, res: Response) => {
-  console.log(res.locals.newProj)  
-  return res.status(200).json('Project has been Loaded');
+router.get('/:id', projController.loadProj, (req: Request, res: Response) => { 
+  return res.status(200).json(res.locals.projects);
 });
 
 module.exports = router;

@@ -9,7 +9,7 @@ export default function SaveModal(props: {
 }) {
   const { setProject, showModal, handleCancel } = props;
 
-  const { comps } = useContext(PlaygroundContext);
+  const { user, comps } = useContext(PlaygroundContext);
 
   const [input, setInput] = useState('');
 
@@ -24,10 +24,27 @@ export default function SaveModal(props: {
     setInput(e);
   }
 
-  function handleSave(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
+      console.log(user);
       console.log(comps);
+      console.log(input);
+      try {
+        const data = await fetch('/proj', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: input,
+            root: comps,
+            users: user,
+          }),
+        });
+      } catch (err) {
+        console.log(err);
+      }
       setProject(input);
       showModal('');
     }

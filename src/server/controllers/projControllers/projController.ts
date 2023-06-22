@@ -1,28 +1,21 @@
 import express, { Request, Response, NextFunction, RequestHandler } from 'express';
+import Project from '../../models/projectModel'
 
 interface ProjController {
-    newProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     saveProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    updateProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     loadProj: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 //  Project Controllers for New/Save/Load Projects
 
 const projController: ProjController = {
-    newProj: async (req, res, next) => {
-      try {
-        res.locals.newProj = 'New Project has been Added';
-        return next();
-      } catch (err) {
-        return next({
-          log: 'newProject Controller',
-          status: 400,
-          message: `Error in returning newProject Controller, ${err}`,
-        });
-      }
-    },
     saveProj: async (req, res, next) => {
+      const {title, root, users} = req.body;
+      // console.log(title, root, users);
+      const arrObj = [users]
         try {
+          const projDoc = await Project.create({title, root, users: arrObj})
           res.locals.newProj = 'Project has been saved';
           return next();
         } catch (err) {
@@ -33,9 +26,27 @@ const projController: ProjController = {
           });
         }
       },
-      loadProj: async (req, res, next) => {
+
+      updateProj: async (req, res, next) => {
+        const {username, project, root} = req.body;
+        console.log('this is the username and proj', username, project)
         try {
-          res.locals.newProj = 'Project has been loaded';
+          const userInfo = {title: project, users: username}
+          const projDoc = await Project.findOneAndUpdate(userInfo, { $set: {root}} ,{new: true})
+          console.log(projDoc);
+          res.locals.newProj = 'Project has been updated';
+          return next()
+        } catch (err) {
+          console.log(err)
+        }
+      },
+
+      loadProj: async (req, res, next) => {
+        const {id} = req.params;
+        try {
+          const projects = await Project.find({users: id});
+          console.log(projects)
+          res.locals.projects = projects
           return next();
         } catch (err) {
           return next({
