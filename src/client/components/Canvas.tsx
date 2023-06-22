@@ -14,17 +14,17 @@ import SaveModal from './SaveModal';
 import LoadModal from './LoadModal';
 
 export default function Canvas(props: {
+  user: string;
   currComp: Item;
   handleCanvasUpdate: (arr: Item[]) => void;
   setChildren: React.Dispatch<React.SetStateAction<Item[]>>;
 }) {
+  const { user, currComp, setChildren, handleCanvasUpdate } = props;
   const { setComps, comps, setCurrComp } = useContext(PlaygroundContext);
 
   const { setNodeRef } = useDroppable({
     id: 'canvas',
   });
-
-  const { currComp, setChildren, handleCanvasUpdate } = props;
 
   const [list, setList] = useState<Item[]>(currComp.children);
 
@@ -105,9 +105,23 @@ export default function Canvas(props: {
     setProject('');
   }
 
-  function saveProj(project: string) {
+  async function saveProj(project: string) {
     // send a patch req to the backend, edit the collection where the name === project
-    console.log(`sending save req to backend for project ${project}`);
+    try {
+      await fetch('/proj', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: user,
+          project,
+          root: comps,
+        }),
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function checkIfNewProj() {
@@ -122,9 +136,26 @@ export default function Canvas(props: {
     setModal(string);
   }
 
-  function handleLoad() {
+  async function handleLoad() {
     //send a request to backend including the user's name, expecting an array of objects, key is project name, value is the [{app}] assoc w the name
     //setProjects(data)
+    try {
+      const response = await fetch(`/proj/${user}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response) {
+        const data = await response.json();
+        console.log(data);
+        setProjects(data);
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
     setModal('load');
   }
 
@@ -139,7 +170,7 @@ export default function Canvas(props: {
         <div className="flex space-x-3">
           <button onClick={() => showModal('reset')}>New</button>
           <button onClick={() => checkIfNewProj()}>Save</button>
-          <button onClick={() => handleLoad()}>Load</button>
+          <button onClick={() => handleLoad()}>Show Projects</button>
           <button onClick={() => handleExport()}>Export</button>
         </div>
       </div>
