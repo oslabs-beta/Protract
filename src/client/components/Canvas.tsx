@@ -170,7 +170,7 @@ export default function Canvas(props: {
         <div className="flex space-x-3">
           <button onClick={() => showModal('reset')}>New</button>
           <button onClick={() => checkIfNewProj()}>Save</button>
-          <button onClick={() => handleLoad()}>Show Projects</button>
+          <button onClick={() => handleLoad()}>Projects</button>
           <button onClick={() => handleExport()}>Export</button>
         </div>
       </div>
