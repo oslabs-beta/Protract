@@ -12,6 +12,7 @@ import { PlaygroundContext } from './Playground';
 import WarningModal from './WarningModal';
 import SaveModal from './SaveModal';
 import LoadModal from './LoadModal';
+import zipFiles from '../helperFunctions/zipFiles';
 
 export default function Canvas(props: {
   user: string;
@@ -159,18 +160,21 @@ export default function Canvas(props: {
     setModal('load');
   }
 
+  function handleExport() {
+    zipFiles(comps[0]);
+  }
+
   return (
     <div className="flex min-w-fit basis-1/2 flex-col border-0 border-solid  border-blue-600 bg-gray-200">
-      <div className="mr-7 mt-5 flex flex-row justify-end space-x-3">
-        {project !== '' && (
-          <h1 className="text-center text-xl font-bold ">
-            Current Project: {project}
+      <div className="mr-7 ml-12 mt-5 flex flex-row justify-between space-x-3 text-gray-500">
+        
+          <h1 className="text-xl font-bold">
+          {project}
           </h1>
-        )}
-        <div className="flex space-x-3">
+        <div className="flex space-x-3 text-gray-500 justify-self-end">
           <button onClick={() => showModal('reset')}>New</button>
           <button onClick={() => checkIfNewProj()}>Save</button>
-          <button onClick={() => handleLoad()}>Show Projects</button>
+          <button onClick={() => handleLoad()}>Projects</button>
           <button onClick={() => handleExport()}>Export</button>
         </div>
       </div>

@@ -16,10 +16,11 @@ export default function CustomComponentCreator() {
     e.preventDefault();
     if (input.trim().length) {
       // change id's code to ensure uniqueness
+      const angularVer = input.toLowerCase().replace(' ', '-')
       const newComp = {
         value: input,
         id: `${input}-${children.length}`,
-        code: `<${input}></${input}>\n`,
+        code: `<${angularVer}></${angularVer}>\n`,
         canEnter: true,
         children: [],
       };

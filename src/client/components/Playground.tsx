@@ -174,7 +174,7 @@ export default function Playground() {
               handleCanvasUpdate={handleCanvasUpdate}
             />
           </DndContext>
-          <Preview tags={currOrder} />
+          <Preview tags={currOrder} currComp={currComp}/>
         </PlaygroundContext.Provider>
       </div>
     </>

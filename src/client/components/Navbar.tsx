@@ -33,15 +33,18 @@ export default function Navbar(props: {
     setSignUpDisplay(false);
     setLoginState(true);
   }
-  console.log('loginState currently:', loginState);
+  // console.log('loginState currently:', loginState);
 
   useEffect(() => {
     const isLoggedIn = async () => {
       try {
-        const response = await fetch('/loggedIn');
-        const data = await response.json();
-        console.log('useEffect log HERE:', data);
-        if (data.length < 10) {
+        const response = await fetch('/loggedIn')
+        const data = await response.json()
+        console.log('useEffect log HERE:', data)
+        
+        //NEED to fix this conditional statement because it is only checking if getting the long text about 
+        //no user session being found which is a bunch of letters
+        if (data.length < 20) {
           setUser(data);
           setLoginDisplay('Logout');
           setSignUpDisplay(false);
