@@ -20,4 +20,8 @@ router.get('/:id', projController.loadProj, (req: Request, res: Response) => {
   return res.status(200).json(res.locals.projects);
 });
 
+router.delete('/', projController.deleteProj, (req: Request, res: Response) => {
+  return res.status(200).json(res.locals.deleted)
+})
+
 module.exports = router;

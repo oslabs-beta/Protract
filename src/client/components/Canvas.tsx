@@ -210,8 +210,13 @@ export default function Canvas(props: {
       )}
       {modal === 'load' && (
         <LoadModal
+          user={user}
+          project={project}
+          handleReset={handleReset}
           handleCancel={handleCancel}
           projects={projects}
+          setProject={setProject}
+          setProjects={setProjects}
           showModal={showModal}
         />
       )}

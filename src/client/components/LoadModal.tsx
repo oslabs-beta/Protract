@@ -4,12 +4,26 @@ import { useState } from 'react';
 import { PlaygroundContext } from './Playground';
 
 export default function LoadModal(props: {
-  handleCancel: () => void;
+  user: string;
+  project: string;
   projects: object[];
+  handleReset: () => void;
+  handleCancel: () => void;
   showModal: (string: string) => void;
+  setProject: React.Dispatch<React.SetStateAction<string>>;
+  setProjects: React.Dispatch<React.SetStateAction<never[]>>;
 }) {
   const [active, setActive] = useState('');
-  const { handleCancel, projects, showModal } = props;
+  const {
+    user,
+    project,
+    projects,
+    handleCancel,
+    handleReset,
+    showModal,
+    setProject,
+    setProjects,
+  } = props;
   const { setComps, setChildren, setCurrComp } = useContext(PlaygroundContext);
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -30,6 +44,32 @@ export default function LoadModal(props: {
       setCurrComp(project.root[0]);
       setChildren(project.root[0].children);
       showModal('');
+      setProject(project.title);
+    }
+  }
+
+  async function handleDelete() {
+    if (active) {
+      try {
+        await fetch('/proj', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: user,
+            title: active,
+          }),
+        });
+        setProjects((prev) =>
+          prev.filter((project) => project.title !== active)
+        );
+        if (project === active) {
+          handleReset();
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 
@@ -39,25 +79,35 @@ export default function LoadModal(props: {
       ref={modalRef}
       onClick={(e) => closeModal(e)}
     >
-      <div className="z-50 h-28 w-48 rounded border-0 bg-white pt-4 text-center ">
-        Projects
-        <div className="m-7 space-x-8 ">
-          <ul>
-            {projects.map((project, i) => (
-              <li
-                key={i}
-                onClick={() => handleActive(project.title)}
-                className={active === project.title ? 'bg-blue-500' : ''}
-              >
-                {project.title}
-              </li>
-            ))}
-          </ul>
+      <div className="z-50 flex w-52 flex-col rounded border-0 bg-white py-4 text-center">
+        <div className="flex-grow">
+          Projects
+          <div className="m-7 space-x-8 overflow-y-auto">
+            <ul>
+              {projects.map((project, i) => (
+                <li
+                  key={i}
+                  onClick={() => handleActive(project.title)}
+                  className={active === project.title ? 'bg-blue-500' : ''}
+                >
+                  {project.title}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className=" flex justify-center space-x-3">
           <button
             className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 text-white"
             onClick={() => handleLoad()}
           >
             Load
+          </button>
+          <button
+            className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 text-white"
+            onClick={() => handleDelete()}
+          >
+            Delete
           </button>
           <button
             className="w-1/4 min-w-fit rounded border-2 border-white bg-white text-red-800"
