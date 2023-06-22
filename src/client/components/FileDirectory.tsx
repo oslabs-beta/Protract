@@ -16,7 +16,6 @@ export default function FileDirectory(props: { comps: Item, depth: number }) {
 
     return (
         <div>
-          <h2 className="text-center my-1">File Directory</h2>
         <div className={` border-l ${depth > 0 ? 'ml-4 pl-1' : ''} mx-4`}>
           <strong style={{ cursor: 'pointer' }} onClick={() => handleClick(currentComponent)}>{value}</strong>
           {children && children.length > 0 && (

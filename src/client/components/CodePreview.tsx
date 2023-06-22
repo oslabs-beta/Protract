@@ -2,14 +2,15 @@ import Editor from '@monaco-editor/react';
 import { useState, useEffect } from 'react';
 import {Item} from './../../types'
 
-export default function CodePreview(props: { tags: Item[] }) {
-    const { tags } = props;
+export default function CodePreview(props: { tags: Item[], currComp:Item}) {
+    const { tags, currComp} = props;
 
     // const [currTheme, setTheme] = useState('vs-dark');
     const [preview, setPreview] = useState('')
+    const compName = (currComp.value).toLowerCase().replace(' ','-');
 
-    const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', '  selector: \'app-home\',\n', '  standalone: true,\n','  imports: [CommonModule],\n', '  template:\n'];
-    const suffix = ['   styleUrls: [\'.NAME_HERE.component.css\']\n','})\n', 'export class AppComponent {\n','}\n'];
+    const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', `  selector: \'${compName}\',\n`, '  standalone: true,\n','  imports: [CommonModule],\n', '  template:\n'];
+    const suffix = [`   styleUrls: [\'${compName}.component.css\']\n`,'})\n', 'export class AppComponent {\n','}\n'];
 
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {

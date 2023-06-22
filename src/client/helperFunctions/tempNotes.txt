@@ -14,7 +14,7 @@ comps = [
 ]
 output: zipped folder (blob)
 
-// create a src folder
+// X create a src folder
 // go into src folder
 // create app folder 
 // go into app folder

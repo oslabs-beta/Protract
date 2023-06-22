@@ -33,7 +33,7 @@ export default function Navbar(props: {
     setSignUpDisplay(false);
     setLoginState(true);
   }
-  console.log('loginState currently:', loginState);
+  // console.log('loginState currently:', loginState);
 
   useEffect(() => {
     const isLoggedIn = async () => {
