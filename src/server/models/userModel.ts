@@ -4,7 +4,13 @@ const Schema = mongoose.Schema;
 const SALT_WORK_FACTOR = 10;
 const bcrypt = require('bcryptjs');
 
-const userSchema = new Schema({
+interface userSchema {
+  username: string;
+  password: string;
+  email: string;
+}
+
+const userSchema = new Schema<userSchema>({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true}
@@ -21,7 +27,7 @@ userSchema.pre('save', async function (next){
   }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model<userSchema>('User', userSchema);
 
 module.exports = {
   User,

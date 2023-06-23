@@ -9,8 +9,8 @@ export default function CodePreview(props: { tags: Item[], currComp:Item}) {
     const [preview, setPreview] = useState('')
     const compName = (currComp.value).toLowerCase().replace(' ','-');
 
-    const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', `  selector: \'${compName}\',\n`, '  standalone: true,\n','  imports: [CommonModule],\n', '  template:\n'];
-    const suffix = [`   styleUrls: [\'${compName}.component.css\']\n`,'})\n', 'export class AppComponent {\n','}\n'];
+    const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', `  selector: \'${compName}\',\n`, '  standalone: true,\n','  imports: [CommonModule],\n', '  template: `\n'];
+    const suffix = [`   \`\n`,`   styleUrls: [\'${compName}.component.css\']\n`,'})\n', 'export class AppComponent {\n','}\n'];
 
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {

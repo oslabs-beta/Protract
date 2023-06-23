@@ -32,8 +32,8 @@ const projController: ProjController = {
         const {username, project, root} = req.body;
         console.log('this is the username and proj', username, project)
         try {
-          const userInfo = {title: project, users: username}
-          const projDoc = await Project.findOneAndUpdate(userInfo, { $set: {root}} ,{new: true})
+          const userInfo = {title: project, users: username};
+          const projDoc = await Project.findOneAndUpdate(userInfo, { $set: {root}}, {new: true});
           console.log(projDoc);
           res.locals.newProj = 'Project has been updated';
           return next()
