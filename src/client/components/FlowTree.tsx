@@ -36,25 +36,30 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
   const elements = convertDataToElements(root);
 
+//Prevents the node names from overlapping and being too long
+  const abbrev = (nodeName: string): string => {
+    if(nodeName.length > 10){ return nodeName.slice(0,7) + '...'}
+    return nodeName;
+  }
 
+//Changes the SVG associated with the node and where the text shows in relation to node
   const renderRectSvgNode = ({ nodeDatum, toggleNode }) => (
     <g>
       <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleClick(nodeDatum) } />
       <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleClick(nodeDatum)}>
-        {nodeDatum.name}
+        {abbrev(nodeDatum.name)}
       </text>
     </g>
   );
 
 
-  // Styling currently does not apply. Consider styling in a css/sass file, then importing?
   return (
     <div ref={treeContainerRef} style={{ width: '100%', height: '100%' }}>
       <Tree
         data={elements}
         translate={{ x: 175, y: 40 }}
         nodeSize={{ x: 100, y: 50 }}
-        separation={{ siblings: .9, nonSiblings: 1.0 }}
+        separation={{ siblings: .9, nonSiblings: .9 }}
         collapsible={false}
         zoomable={true}
         orientation="vertical"
@@ -67,22 +72,6 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         zoomable={false}
         zoom={.9}
         renderCustomNodeElement={renderRectSvgNode}
-      // scaleExtent={{max:.9, min:.9}}
-
-      // nodeSvgShape={{
-      //   shape: 'circle',
-      //   shapeProps: {
-      //     r: 10,
-      //     fill: '#B91C1C',
-      //     stroke: '#000',
-      //   },
-      //   label: {
-      //     textAnchor: 'end',
-      //     fontSize: 14,
-      //     fontWeight: 700,
-      //     transform: 'translate(-15px, 0)',
-      //   },
-      // }}
       />
     </div>
   );
@@ -113,7 +102,6 @@ const convertDataToElements = (root: Item) => {
         }
       });
     }
-
     return element;
   };
 
