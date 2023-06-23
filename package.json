@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon src/server/main.ts -w src/server",
     "start": "NODE_ENV=production ts-node src/server/main.ts",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "ts-coverage": "typescript-coverage-report",
     "test": "jest"
