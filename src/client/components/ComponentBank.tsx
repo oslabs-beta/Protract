@@ -10,6 +10,7 @@ export default function ComponentBank() {
     'ul',
     'ol',
     'form',
+    'input',
     'button',
     'li',
     'span',

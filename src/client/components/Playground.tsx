@@ -80,7 +80,7 @@ export default function Playground() {
   // changes what component we are currently looking at
   const [currComp, setCurrComp] = useState<Item>(app);
 
-  // custom components made in an instance
+  // comps is an array that holds app, the root object of a project
   const [comps, setComps] = useState<Item[]>([app]);
 
   // update the root app component anytime a change is made, and changes are desired to persist

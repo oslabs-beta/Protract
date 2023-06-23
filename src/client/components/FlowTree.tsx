@@ -1,13 +1,15 @@
 import React from 'react';
 import { PlaygroundContext } from './Playground';
 import { useContext, useEffect, useRef } from 'react';
-import { Tree } from 'react-d3-tree';
+import { RawNodeDatum, Tree } from 'react-d3-tree';
 import { Item } from '../../types';
 import * as d3 from 'd3';
+import { UniqueIdentifier } from '@dnd-kit/core';
 
 interface TreeProps {
   root: Item;
 }
+
 
 const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const { setCurrComp, setChildren } = useContext(PlaygroundContext);
@@ -41,7 +43,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         data={elements}
         translate={{ x: 175, y: 40 }}
         nodeSize={{ x: 200, y: 100 }}
-        separation={{ siblings: 0.6, nonSiblings: 0.6 }}
+        separation={{ siblings: 1.0, nonSiblings: 1.0 }}
         collapsible={false}
         zoomable={true}
         orientation="vertical"
@@ -80,13 +82,13 @@ const convertDataToElements = (root: Item) => {
     }
 
     // create a new element, in the fashion of d3-tree syntax
-    const element = { ...node, name: value, children: [] };
+    const element:RawNodeDatum = { ...node, name: value.toString(), children: [] };
 
     // loop through children arrays if present
     if (children && children.length > 0) {
       children.forEach((child) => {
         // childElement will equal recursive calls to traverse each child, resulting in subsequent element arrays being populated
-        const childElement = traverse(child);
+        const childElement:RawNodeDatum = traverse(child);
         // if childElement is not null, push to the element's children array
         if (childElement) {
           element.children.push(childElement);
