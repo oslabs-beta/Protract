@@ -15,7 +15,6 @@ export default function FileDirectory(props: { comps: Item, depth: number }) {
     const { value, children } = currentComponent;
 
     return (
-        <div>
         <div className={` border-l ${depth > 0 ? 'ml-4 pl-1' : ''} mx-4`}>
           <strong style={{ cursor: 'pointer' }} onClick={() => handleClick(currentComponent)}>{value}</strong>
           {children && children.length > 0 && (
@@ -31,13 +30,12 @@ export default function FileDirectory(props: { comps: Item, depth: number }) {
             </div>
           )}
         </div>
-        </div>
     );
   };
 
   return (
-    <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-white scrollbar-track-white">
+    <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-white scrollbar-track-white max-h-48">
       {renderTree(comps)}
-      </div>
+    </div>
   );
 };
