@@ -1,7 +1,5 @@
 import CodePreview from './CodePreview'
-import Tree from './Tree'
 import FlowTree from './FlowTree';
-import { currentProject } from './dummyData';
 import { Item } from './../../types';
 import {useEffect, useState, useContext} from 'react';
 import { PlaygroundContext } from "./Playground";
