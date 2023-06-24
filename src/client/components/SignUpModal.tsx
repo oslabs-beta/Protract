@@ -23,7 +23,7 @@ export default function SignUpModal( props: {loginChange: () => void} ) {
     // console.log('email input updating: ',email);
     // console.log('password updating: ',password);
 
-    async function handleSignUp(e: React.FormEvent<HTMLInputElement>) {
+    async function handleSignUp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.preventDefault();
         try {
             const response = await fetch('/signup', {

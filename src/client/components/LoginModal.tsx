@@ -16,7 +16,7 @@ export default function LoginModal( props: { loginChange: () => void}) {
     // console.log('Login Modal Username: ',user);
     // console.log('Login Modal Pass: ',password);
 
-    const handleLogin = async (e: React.FormEvent<HTMLInputElement>) => {
+    const handleLogin = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         //add login fetch here
         try {
