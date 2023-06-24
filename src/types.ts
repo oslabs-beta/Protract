@@ -10,16 +10,6 @@ export type Item = {
   canEnter?: boolean
 }
 
-// export type Comp = {
-//   value: string,
-//   id: string,
-//   codeStart?: string,
-//   codeEnd?: string,
-//   code?: string,
-//   canEnter?: boolean,
-//   children: Item[]|Comp[]
-// }
-
 export type Project = {
   title: string;
   root: Array<Item>;
