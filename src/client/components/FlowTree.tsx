@@ -34,7 +34,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const renderSvgNode = ({ nodeDatum }: { nodeDatum: TreeNodeDatum }) => (
     <g>
       <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleNodeClick(nodeDatum) } />
-      <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleNodeClick(nodeDatum)}>
+      <text fill="black" strokeWidth="1" x="10" y="13" onClick={() => handleNodeClick(nodeDatum)}>
         {abbrev(nodeDatum.name)}
       </text>
     </g>
@@ -45,7 +45,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
     <div style={{ width: '100%', height: '100%' }}>
       <Tree
         data={elements}
-        translate={{ x: 175, y: 40 }}
+        translate={{ x: 125, y: 40 }}
         nodeSize={{ x: 100, y: 50 }}
         separation={{ siblings: .9, nonSiblings: .9 }}
         collapsible={false}
