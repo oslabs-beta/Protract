@@ -3,13 +3,10 @@ import { PlaygroundContext } from './Playground';
 import { useContext, useEffect, useRef } from 'react';
 import { RawNodeDatum, TreeNodeDatum, Tree } from 'react-d3-tree';
 import { Item } from '../../types';
-import * as d3 from 'd3';
-import { UniqueIdentifier } from '@dnd-kit/core';
 
 interface TreeProps {
   root: Item;
 }
-
 
 const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const { setCurrComp, setChildren } = useContext(PlaygroundContext);
@@ -25,15 +22,6 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
     setChildren(children)
   }
 
-  // Configure double click zoom capability, not currently working
-  const treeContainerRef = useRef(null);
-
-  useEffect(() => {
-    const zoom = d3.zoom().scaleExtent([0.1, 1]);
-
-    d3.select(treeContainerRef.current).call(zoom).on('dblclick.zoom', null);
-  }, []);
-
   const elements = convertDataToElements(root);
 
 //Prevents the node names from overlapping and being too long
@@ -42,11 +30,8 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
     return nodeName;
   }
 
-  interface svgProps {
-    nodeDatum: any;
-  }
 //Changes the SVG associated with the node and where the text shows in relation to node
-  const renderSvgNode = (nodeDatum:any) => (
+  const renderSvgNode = ({ nodeDatum} ) => (
     <g>
       <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleClick(nodeDatum) } />
       <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleClick(nodeDatum)}>
@@ -57,7 +42,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
 
   return (
-    <div ref={treeContainerRef} style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <Tree
         data={elements}
         translate={{ x: 175, y: 40 }}
