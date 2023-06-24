@@ -20,7 +20,7 @@ const zipFiles = (app: Item) => {
   if (app.children.length) {
     app.children.map(child => appCode.push(child.code));
   }
-  console.log('appCode: ', appCode);
+
   appFolder?.file('app.component.ts', generateComponentContents(appCode, app.value))
   appFolder?.file('app.component.spec.ts', generateTestContents('App'));
 
@@ -33,16 +33,12 @@ const zipFiles = (app: Item) => {
 
   traverseAndWrite(app, componentsFolder, components);
 
-  console.log('components array for use with creating app.module.ts', components);
   const importStatements = generateImportStatements(components);
 
   const appModuleContents = generateAppModule(components);
   appFolder?.file('app.module.ts', appModuleContents);
-  // console.log('appModuleContents: ');
-  // console.log(appModuleContents);
-  console.log('appFolder', appFolder);
 
-
+  // export zipped folder
   zip.generateAsync({type:"blob"})
   .then(function(content) {
     // see FileSaver.js
@@ -57,10 +53,10 @@ const zipFiles = (app: Item) => {
 // output: none, but componentsFolder will populate
 function traverseAndWrite(node: Item, componentsFolder: JSZip|null|undefined, components:UniqueIdentifier[]): void {
   const { value, code, canEnter, children } = node;
-  console.log('before if statement: ', value);
+
   // if the current node is a component within app, then create corresponding angular component folder contents
   if (canEnter && value !== 'App' ) {
-    console.log('current node: ', value);
+
     // push component's name (also acts as the component selector string) into the global components array
     components.push(value);
     // create an individual component folder inside of the components folder
