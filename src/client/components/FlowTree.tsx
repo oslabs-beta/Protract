@@ -12,7 +12,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const { setCurrComp, setChildren } = useContext(PlaygroundContext);
 
   // nodeData is basically the Item type, except with additional d3-tree specific properties (name and __rd3t)
-  function handleClick(nodeData: any) {
+  function handleNodeClick(nodeData: any) {
     // destructure from nodeData
     const { id, children, code, value, canEnter } = nodeData;
 
@@ -26,15 +26,15 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
 //Prevents the node names from overlapping and being too long
   const abbrev = (nodeName: string): string => {
-    if(nodeName.length > 10){ return nodeName.slice(0,7) + '...'}
+    if(nodeName && nodeName.length > 10){ return nodeName.slice(0,7) + '...'}
     return nodeName;
   }
 
 //Changes the SVG associated with the node and where the text shows in relation to node
   const renderSvgNode = ({ nodeDatum }: { nodeDatum: TreeNodeDatum }) => (
     <g>
-      <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleClick(nodeDatum) } />
-      <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleClick(nodeDatum)}>
+      <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleNodeClick(nodeDatum) } />
+      <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleNodeClick(nodeDatum)}>
         {abbrev(nodeDatum.name)}
       </text>
     </g>
@@ -52,7 +52,6 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         zoomable={true}
         orientation="vertical"
         pathFunc="diagonal"
-        onNodeClick={(nodeData, e) => handleClick(nodeData.data)}
         rootNodeClassName='nodeRoot'
         branchNodeClassName='nodeBranch'
         leafNodeClassName='nodeLeaf'
@@ -71,17 +70,17 @@ const convertDataToElements = (root: Item) => {
 
     // if current node is not a component, return out
     if (!canEnter) {
-      return {} as RawNodeDatum;
+      return;
     }
 
     // create a new element, in the fashion of d3-tree syntax
-    const element: RawNodeDatum = { ...node, name: value.toString(), children: [] };
+    const element: RawNodeDatum|undefined = { ...node, name: value.toString(), children: [] };
 
     // loop through children arrays if present
     if (children && children.length > 0) {
       children.forEach((child) => {
         // childElement will equal recursive calls to traverse each child, resulting in subsequent element arrays being populated
-        const childElement: RawNodeDatum = traverse(child);
+        const childElement: RawNodeDatum|undefined = traverse(child);
         // if childElement is not null, push to the element's children array
         if (childElement && element.children) {
           element.children.push(childElement);
