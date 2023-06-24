@@ -19,3 +19,9 @@ export type Item = {
 //   canEnter?: boolean,
 //   children: Item[]|Comp[]
 // }
+
+export type Project = {
+  title: string;
+  root: Array<Item>;
+  users: Array<String>;
+}
