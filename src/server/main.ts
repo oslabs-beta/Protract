@@ -3,6 +3,8 @@ require('dotenv').config()
 import express, { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express';
 import ViteExpress from "vite-express";
 
+ViteExpress.config({ mode: "production" })
+
 const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
@@ -37,10 +39,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Vite Testing Route
-
-app.get("/hello", (_, res) => {
-  res.send("Hello Vite + React + TypeScript!");
-});
 
 // Render HTML Pages with Express - Vite already serves static files on dev mode
 
