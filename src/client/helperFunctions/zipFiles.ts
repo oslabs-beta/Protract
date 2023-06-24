@@ -14,16 +14,15 @@ const zipFiles = (app: Item) => {
 
   // create app.component.html, .css, .spec.ts, .ts
 
-  const appFiles = ['app.component.html', 'app.component.css', 'app.component.spec.ts', 'app.component.ts'];
-  // appFolder?.file('app.component.html', '');
-  // appFolder?.file('app.component.css', '');
-  // const appCode:string[] = [];
-  // if (app.children.length) {
-  //   app.children.map(child => appCode.push(child.code));
-  // }
-  // console.log('appCode: ', appCode);
-  // appFolder?.file('app.component.ts', generateComponentContents(appCode, app.value))
-  // appFolder?.file('app.component.spec.ts', generateTestContents('App'));
+  appFolder?.file('app.component.html', '');
+  appFolder?.file('app.component.css', '');
+  const appCode:any = [];
+  if (app.children.length) {
+    app.children.map(child => appCode.push(child.code));
+  }
+  console.log('appCode: ', appCode);
+  appFolder?.file('app.component.ts', generateComponentContents(appCode, app.value))
+  appFolder?.file('app.component.spec.ts', generateTestContents('App'));
 
   // create components folder
   const componentsFolder = appFolder?.folder('components');
@@ -39,8 +38,8 @@ const zipFiles = (app: Item) => {
 
   const appModuleContents = generateAppModule(components);
   appFolder?.file('app.module.ts', appModuleContents);
-  console.log('appModuleContents: ');
-  console.log(appModuleContents);
+  // console.log('appModuleContents: ');
+  // console.log(appModuleContents);
   console.log('appFolder', appFolder);
 
 
@@ -56,24 +55,22 @@ const zipFiles = (app: Item) => {
 // function to iterate through comps[], for each 'canEnter' node, create a folder named (property of) 'value', componentFiles.map()
 // input: comps
 // output: none, but componentsFolder will populate
-function traverseAndWrite(node: Item, rootFolder: JSZip|null|undefined, components:UniqueIdentifier[]): void {
+function traverseAndWrite(node: Item, componentsFolder: JSZip|null|undefined, components:UniqueIdentifier[]): void {
   const { value, code, canEnter, children } = node;
-
+  console.log('before if statement: ', value);
   // if the current node is a component within app, then create corresponding angular component folder contents
-  if (canEnter && value !== 'app' ) {
-
+  if (canEnter && value !== 'App' ) {
+    console.log('current node: ', value);
     // push component's name (also acts as the component selector string) into the global components array
     components.push(value);
     // create an individual component folder inside of the components folder
-    const componentFolder = rootFolder?.folder(`${value}`);
-
-    console.log('current node: ', value);
+    const componentFolder = componentsFolder?.folder(`${value}`);
 
     // populate this folder with angular component files
-    const componentFiles = ['.component.html', '.component.css', '.component.spec.ts'];
+    const staticComponentFiles = ['.component.html', '.component.css'];
     // CURRENT MAP FUNCTION IS ONLY FOR MVP, FIGURE OUT LOGIC LATER
     // go into .ts file, write boilerplate with corresponding 'code' property contents into the file
-    componentFiles.map(fileName => componentFolder?.file(`${value}${fileName}`, ''));
+    staticComponentFiles.map(fileName => componentFolder?.file(`${value}${fileName}`, ''));
 
     // array to hold the current component's corresponding children html tags
     const componentTags:string[] = [];
@@ -82,12 +79,19 @@ function traverseAndWrite(node: Item, rootFolder: JSZip|null|undefined, componen
     if (children) {
       children.map(child => {
         if (child.code) componentTags.push(child.code);
-        traverseAndWrite(child, rootFolder, components);
+        traverseAndWrite(child, componentsFolder, components);
       })
       const componentContents = generateComponentContents(componentTags, value);
+      const testContents = generateTestContents(value);
       componentFolder?.file(`${value}.component.ts`, componentContents);
+      componentFolder?.file(`${value}.component.spec.ts`, testContents);
+    }
+  } else {
+    if (children.length) {
+      children.map(child => traverseAndWrite(child, componentsFolder, components));
     }
   }
+
 };
 
 // helper function to generate import statements
@@ -97,7 +101,7 @@ function generateImportStatements(modules: string[]) {
   let importStatements = `import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n`;
   for (const module of modules) {
     const path = `./components/${module}/${module}.component`;
-    importStatements += `import { ${module} } from ${path};\n`;
+    importStatements += `import { ${module}Component } from '${path}';\n`;
   }
   return importStatements;
 }
@@ -129,7 +133,7 @@ function generateAppModule(modules: string[]) {
 function generateComponentContents(tags: string[], componentName: UniqueIdentifier) {
   let templateCode = '';
   if (tags !== undefined) {
-    templateCode = tags.map(tag => `\n    ${tag}`).join('');
+    templateCode = tags.map(tag => `\n    ${capitalizeFirstLetter(tag)}`).join('');
   }
 
   const componentContents = `
@@ -150,6 +154,11 @@ export class ${componentName}Component {
 
   return componentContents;
 }
+
+function capitalizeFirstLetter(tag: string) {
+  return tag.charAt(0).toUpperCase() + tag.slice(1);
+}
+
 
 // helper function to generate app.component.ts contents
 // input: a componentName string, typed as UniqueIdentifier
