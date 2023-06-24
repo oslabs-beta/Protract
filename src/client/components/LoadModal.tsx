@@ -2,16 +2,17 @@ import React, { useContext, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import { PlaygroundContext } from './Playground';
+import { Project } from '../../types';
 
 export default function LoadModal(props: {
   user: string;
   project: string;
-  projects: object[];
+  projects: Project[];
   handleReset: () => void;
   handleCancel: () => void;
   showModal: (string: string) => void;
   setProject: React.Dispatch<React.SetStateAction<string>>;
-  setProjects: React.Dispatch<React.SetStateAction<never[]>>;
+  setProjects: React.Dispatch<React.SetStateAction<Project[]>>;
 }) {
   const [active, setActive] = useState('');
   const {
@@ -88,7 +89,9 @@ export default function LoadModal(props: {
                 <li
                   key={i}
                   onClick={() => handleActive(project.title)}
-                  className={active === project.title ? 'bg-gray-200 rounded-md' : ''}
+                  className={
+                    active === project.title ? 'rounded-md bg-gray-200' : ''
+                  }
                 >
                   {project.title}
                 </li>

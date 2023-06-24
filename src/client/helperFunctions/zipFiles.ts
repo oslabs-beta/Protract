@@ -9,20 +9,20 @@ const zipFiles = (app: Item) => {
   // change project name to template literal of current project
   const angularProject = zip.folder('angularProject');
   //creates src folder inside of zip folder
-  const srcFolder = angularProject.folder('src');
+  const srcFolder = angularProject?.folder('src');
 
   // go into src folder
   // create app folder 
-  const appFolder = srcFolder.folder('app');
+  const appFolder = srcFolder?.folder('app');
 
   // go into app folder
   // create app.component.html, .css, .spec.ts, .ts, .module.ts ONCE
   const appFiles = ['app.component.html', 'app.component.css', 'app.component.spec.ts', 'app.component.ts', 'app.module.ts'];
-  appFiles.map((ele)=> appFolder.file(ele, 'example text'));
+  appFiles.map((ele)=> appFolder?.file(ele, 'example text'));
   // appFolder.file('test', 'some text');
 
   // create components folder
-  const componentsFolder = appFolder.folder('components');
+  const componentsFolder = appFolder?.folder('components');
 
   // go into components folder
   // iterate through input comps (or app object),
@@ -36,13 +36,13 @@ const zipFiles = (app: Item) => {
 
     if (node.canEnter && node.value !== 'app' ) {
       // create an individual component folder inside of the components folder
-      const componentFolder = componentsFolder.folder(`${node.value}`);
+      const componentFolder = componentsFolder?.folder(`${node.value}`);
       // populate this folder with angular component files
       const componentFiles = ['.component.html', '.component.css', '.component.spec.ts', '.component.ts'];
       // CURRENT MAP FUNCTION IS ONLY FOR MVP, FIGURE OUT LOGIC LATER
       // go into .ts file, write boilerplate with corresponding 'code' property contents into the file
       const text = 'a bunch of really cool code\n'
-      componentFiles.map(fileName => componentFolder.file(`${node.value}${fileName}`, text.repeat(100)));
+      componentFiles.map(fileName => componentFolder?.file(`${node.value}${fileName}`, text.repeat(100)));
     }
 
     if (node.children) {
