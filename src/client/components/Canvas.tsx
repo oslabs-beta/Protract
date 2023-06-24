@@ -7,7 +7,7 @@ import SortableBankEl from './SortableBankEl';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useEffect, useState, useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { Item } from '../../types';
+import { Item, Project } from '../../types';
 import { PlaygroundContext } from './Playground';
 import WarningModal from './WarningModal';
 import SaveModal from './SaveModal';
@@ -31,7 +31,7 @@ export default function Canvas(props: {
 
   const [modal, setModal] = useState('');
   const [project, setProject] = useState('');
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
 
   // handleUpdateApp(comps, currComp, newComp=currComp)
   function handleAppReorder(
@@ -166,12 +166,9 @@ export default function Canvas(props: {
 
   return (
     <div className="flex min-w-fit basis-1/2 flex-col border-0 border-solid  border-blue-600 bg-gray-200">
-      <div className="mr-7 ml-12 mt-5 flex flex-row justify-between space-x-3 text-gray-500">
-        
-          <h1 className="text-xl font-bold">
-          {project}
-          </h1>
-        <div className="flex space-x-3 text-gray-500 justify-self-end">
+      <div className="ml-12 mr-7 mt-5 flex flex-row justify-between space-x-3 text-gray-500">
+        <h1 className="text-xl font-bold">{project}</h1>
+        <div className="flex space-x-3 justify-self-end text-gray-500">
           <button onClick={() => showModal('reset')}>New</button>
           <button onClick={() => checkIfNewProj()}>Save</button>
           <button onClick={() => handleLoad()}>Projects</button>
