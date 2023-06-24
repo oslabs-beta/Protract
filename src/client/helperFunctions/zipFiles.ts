@@ -12,7 +12,7 @@ const zipFiles = (app: Item) => {
   const srcFolder = angularProject?.folder('src');
 
   // go into src folder
-  // create app folder 
+  // create app folder
   const appFolder = srcFolder?.folder('app');
 
   // go into app folder
@@ -37,12 +37,15 @@ const zipFiles = (app: Item) => {
     if (node.canEnter && node.value !== 'app' ) {
       // create an individual component folder inside of the components folder
       const componentFolder = componentsFolder?.folder(`${node.value}`);
+
+      console.log('current node: ', node.value);
+
       // populate this folder with angular component files
-      const componentFiles = ['.component.html', '.component.css', '.component.spec.ts', '.component.ts'];
-      // CURRENT MAP FUNCTION IS ONLY FOR MVP, FIGURE OUT LOGIC LATER
-      // go into .ts file, write boilerplate with corresponding 'code' property contents into the file
-      const text = 'a bunch of really cool code\n'
-      componentFiles.map(fileName => componentFolder?.file(`${node.value}${fileName}`, text.repeat(100)));
+      // const componentFiles = ['.component.html', '.component.css', '.component.spec.ts', '.component.ts'];
+      // // CURRENT MAP FUNCTION IS ONLY FOR MVP, FIGURE OUT LOGIC LATER
+      // // go into .ts file, write boilerplate with corresponding 'code' property contents into the file
+      // const text = 'a bunch of really cool code\n'
+      // componentFiles.map(fileName => componentFolder?.file(`${node.value}${fileName}`, text.repeat(100)));
     }
 
     if (node.children) {
@@ -51,16 +54,16 @@ const zipFiles = (app: Item) => {
       })
     }
 
-    
-  }
+
+  };
 
   traverseAndWrite(app);
 
-  zip.generateAsync({type:"blob"})
-  .then(function(content) {
-    // see FileSaver.js
-    saveAs(content, "angularProject.zip");
-  });
+  // zip.generateAsync({type:"blob"})
+  // .then(function(content) {
+  //   // see FileSaver.js
+  //   saveAs(content, "angularProject.zip");
+  // });
 
 };
 
