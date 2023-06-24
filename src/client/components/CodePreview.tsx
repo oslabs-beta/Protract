@@ -21,15 +21,15 @@ export default function CodePreview(props: { tags: Item[], currComp:Item}) {
     // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
     useEffect(() => {
         // console.log('preview tags:',tags);
-        if(!tags.length){
-            setPreview('// Drop components onto canvas to see code preview')
-        }else{
+        // if(!tags.length){
+        //     setPreview('// Drop components onto canvas to see code preview')
+        // }else{
             const canvasCodeArr = tags.map((ele) => `       ${ele.code}`);
             // console.log(canvasCodeArr);
             const finArr = prefix.concat(canvasCodeArr).concat(suffix);
             // console.log(finArr);
             setPreview(finArr.join(''));
-        }
+        // }
     }, [tags])
 
 
