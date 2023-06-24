@@ -31,7 +31,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
   }
 
 //Changes the SVG associated with the node and where the text shows in relation to node
-  const renderSvgNode = ({ nodeDatum} ) => (
+  const renderSvgNode = ({ nodeDatum }: { nodeDatum: TreeNodeDatum }) => (
     <g>
       <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleClick(nodeDatum) } />
       <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleClick(nodeDatum)}>
