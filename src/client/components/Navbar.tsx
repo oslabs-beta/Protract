@@ -131,7 +131,7 @@ export default function Navbar(props: {
           )}
           {loginState && (
             <li>
-              <p className="float-right mx-1 mr-8 p-2 capitalize underline underline-offset-2 hover:text-gray-300">
+              <p className="float-right mx-1 mr-8 p-2 capitalize underline underline-offset-2">
                 Welcome, {user}!
               </p>
             </li>

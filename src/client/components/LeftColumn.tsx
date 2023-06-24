@@ -11,7 +11,7 @@ export default function LeftColumn() {
     <div className="basis-1/4 flex flex-col border-r border-solid border-gray-200 ">
       <ComponentBank />
       <div>
-      <h2 className="text-center my-1">File Directory</h2>
+      <h2 className="text-center my-1 flex-grow">File Directory</h2>
       <FileDirectory comps={comps[0]} depth={0}/>
       </div>
     </div>
