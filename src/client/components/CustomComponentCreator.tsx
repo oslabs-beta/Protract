@@ -1,6 +1,5 @@
-import { useState, useContext, Children } from 'react';
+import React, { useState, useContext } from 'react';
 import { PlaygroundContext } from './Playground';
-import { Item } from '../../types';
 
 export default function CustomComponentCreator() {
   const [input, setInput] = useState('');
@@ -16,7 +15,7 @@ export default function CustomComponentCreator() {
     e.preventDefault();
     if (input.trim().length) {
       // change id's code to ensure uniqueness
-      const angularVer = input.toLowerCase().replace(' ', '-')
+      const angularVer = input.toLowerCase().replace(' ', '-');
       const newComp = {
         value: input,
         id: `${input}-${children.length}`,
@@ -39,7 +38,7 @@ export default function CustomComponentCreator() {
         onSubmit={(e) => handleSubmit(e)}
       >
         <input
-          className="pl-2 text-l block min-w-full flex-grow rounded-l-md border border-red-700 text-center focus:outline-none"
+          className="text-l block min-w-full flex-grow rounded-l-md border border-red-700 pl-2 text-center focus:outline-none"
           placeholder="Component Name"
           type="text"
           value={input}

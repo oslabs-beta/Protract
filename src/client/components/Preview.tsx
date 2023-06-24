@@ -1,7 +1,7 @@
 import CodePreview from './CodePreview';
 import FlowTree from './FlowTree';
 import { Item } from './../../types';
-import { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { PlaygroundContext } from './Playground';
 
 export default function Preview(props: { tags: Item[]; currComp: Item }) {
