@@ -7,7 +7,13 @@ export default function CodePreview(props: { tags: Item[], currComp:Item}) {
 
     // const [currTheme, setTheme] = useState('vs-dark');
     const [preview, setPreview] = useState('')
-    const compName = (currComp.value).toLowerCase().replace(' ','-');
+
+    let compName;
+    if(typeof currComp.value === 'string'){
+        compName = (currComp.value).toLowerCase().replace(' ','-');
+    }else{
+        compName = (currComp.value);
+    }
 
     const prefix = ['import { Component } from \'@angular/core\';\n','import { CommonModule } from \'@angular/common\';\n','@Component({\n', `  selector: \'${compName}\',\n`, '  standalone: true,\n','  imports: [CommonModule],\n', '  template: `\n'];
     const suffix = [`   \`\n`,`   styleUrls: [\'${compName}.component.css\']\n`,'})\n', 'export class AppComponent {\n','}\n'];
