@@ -1,15 +1,12 @@
 import React from 'react';
 import { PlaygroundContext } from './Playground';
 import { useContext, useEffect, useRef } from 'react';
-import { RawNodeDatum, Tree } from 'react-d3-tree';
+import { RawNodeDatum, TreeNodeDatum, Tree } from 'react-d3-tree';
 import { Item } from '../../types';
-import * as d3 from 'd3';
-import { UniqueIdentifier } from '@dnd-kit/core';
 
 interface TreeProps {
   root: Item;
 }
-
 
 const FlowTree: React.FC<TreeProps> = ({ root }) => {
   const { setCurrComp, setChildren } = useContext(PlaygroundContext);
@@ -25,15 +22,6 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
     setChildren(children)
   }
 
-  // Configure double click zoom capability, not currently working
-  const treeContainerRef = useRef(null);
-
-  useEffect(() => {
-    const zoom = d3.zoom().scaleExtent([0.1, 1]);
-
-    d3.select(treeContainerRef.current).call(zoom).on('dblclick.zoom', null);
-  }, []);
-
   const elements = convertDataToElements(root);
 
 //Prevents the node names from overlapping and being too long
@@ -43,7 +31,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
   }
 
 //Changes the SVG associated with the node and where the text shows in relation to node
-  const renderRectSvgNode = ({ nodeDatum, toggleNode }) => (
+  const renderSvgNode = ({ nodeDatum }: { nodeDatum: TreeNodeDatum }) => (
     <g>
       <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleClick(nodeDatum) } />
       <text fill="black" strokeWidth="1" x="13" y="13" onClick={() => handleClick(nodeDatum)}>
@@ -54,7 +42,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
 
   return (
-    <div ref={treeContainerRef} style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <Tree
         data={elements}
         translate={{ x: 175, y: 40 }}
@@ -69,9 +57,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         branchNodeClassName='nodeBranch'
         leafNodeClassName='nodeLeaf'
         depthFactor={125}
-        zoomable={false}
-        zoom={.9}
-        renderCustomNodeElement={renderRectSvgNode}
+        renderCustomNodeElement={renderSvgNode}
       />
     </div>
   );
@@ -85,7 +71,7 @@ const convertDataToElements = (root: Item) => {
 
     // if current node is not a component, return out
     if (!canEnter) {
-      return null;
+      return {} as RawNodeDatum;
     }
 
     // create a new element, in the fashion of d3-tree syntax
@@ -97,7 +83,7 @@ const convertDataToElements = (root: Item) => {
         // childElement will equal recursive calls to traverse each child, resulting in subsequent element arrays being populated
         const childElement: RawNodeDatum = traverse(child);
         // if childElement is not null, push to the element's children array
-        if (childElement) {
+        if (childElement && element.children) {
           element.children.push(childElement);
         }
       });
