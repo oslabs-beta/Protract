@@ -88,7 +88,7 @@ export default function LoadModal(props: {
                 <li
                   key={i}
                   onClick={() => handleActive(project.title)}
-                  className={active === project.title ? 'bg-blue-500' : ''}
+                  className={active === project.title ? 'bg-gray-200 rounded-md' : ''}
                 >
                   {project.title}
                 </li>

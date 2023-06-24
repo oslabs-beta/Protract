@@ -40,4 +40,14 @@
         background: black;
         opacity:.4;
     }
+    .nodeRoot > circle{
+        fill: #b91c1c;
+    }
+    .nodeBranch > circle{
+        fill: #b91c1c;
+    }
+    .nodeLeaf > circle{
+        fill: #b91c1c;
+        r: 40;
+    }
 }
