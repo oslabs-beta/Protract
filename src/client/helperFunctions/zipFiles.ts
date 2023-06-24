@@ -111,21 +111,23 @@ function generateImportStatements(modules: string[]) {
 // output: formatted string of desired app.module.ts contents
 function generateAppModule(modules: string[]) {
   const importStatements = generateImportStatements(modules);
+  const appComponentImport = `import { AppComponent } from './app.component';\n`; // Add the import statement for AppComponent
   const ngModule = `
 @NgModule({
   declarations: [
-    ${modules.map(module => `${module}Component`).join(',\n    ')}
+    ${modules.map(module => `${module}Component`).join(',\n    ')},
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-`
-  return importStatements + ngModule + '\nexport class AppModule { }';
+`;
+  return importStatements + appComponentImport + ngModule + '\nexport class AppModule { }';
 }
+
 
 // helper function to generate app.component.ts contents
 // input: array of html tags as strings, and a componentName as a string (typed as UniqueIdentifier)
