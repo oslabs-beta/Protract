@@ -185,6 +185,7 @@ export default function Canvas(props: {
             strategy={verticalListSortingStrategy}
           >
             <ul
+              aria-label="elements"
               ref={setNodeRef}
               className="flex-1 basis-1/2 border-t-0 border-solid border-gray-300 text-center"
             >
