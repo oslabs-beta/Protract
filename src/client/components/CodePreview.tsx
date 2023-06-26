@@ -28,7 +28,7 @@ export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
     `   \`\n`,
     `   styleUrls: [\'${compName}.component.css\']\n`,
     '})\n',
-    `export class ${currComp.value}Component {\n','}\n`,
+    `export class ${currComp.value}Component {};`,
   ];
 
   // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
