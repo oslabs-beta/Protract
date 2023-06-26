@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Canvas from '../../../src/client/components/Canvas';
 
@@ -27,8 +28,11 @@ describe('Canvas', () => {
 
   test('renders list based on children of currComp', async () => {
     await waitFor(() => {
-      const liElements = screen.getAllByRole('button');
-      expect(liElements).toHaveLength(4);
+      const ul = screen.getByRole('list');
+      expect(ul).toBeInTheDocument();
+      expect(ul.children.length).toBe(2);
+      expect(ul.children[0]).toHaveTextContent('element1');
+      expect(ul.children[1]).toHaveTextContent('element2');
     });
   });
 });
