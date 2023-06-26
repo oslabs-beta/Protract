@@ -85,7 +85,7 @@ export default function Canvas(props: {
     //
     setComps([
       {
-        value: 'app',
+        value: 'App',
         id: 'app',
         codeStart: '<app>',
         codeEnd: '</app>',
@@ -94,7 +94,7 @@ export default function Canvas(props: {
       },
     ]);
     setCurrComp({
-      value: 'app',
+      value: 'App',
       id: 'app',
       codeStart: '<app>',
       codeEnd: '</app>',
