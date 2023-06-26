@@ -21,8 +21,9 @@ const zipFiles = (app: Item) => {
     app.children.map(child => appCode.push(child.code));
   }
 
+
   appFolder?.file('app.component.ts', generateComponentContents(appCode, app.value))
-  appFolder?.file('app.component.spec.ts', generateTestContents('App'));
+  appFolder?.file('app.component.spec.ts', generateTestContents('app'));
 
   // create components folder
   const componentsFolder = appFolder?.folder('components');
@@ -55,7 +56,7 @@ function traverseAndWrite(node: Item, componentsFolder: JSZip|null|undefined, co
   const { value, code, canEnter, children } = node;
 
   // if the current node is a component within app, then create corresponding angular component folder contents
-  if (canEnter && value !== 'App' ) {
+  if (canEnter && value !== 'app' ) {
 
     // push component's name (also acts as the component selector string) into the global components array
     components.push(value);
@@ -129,9 +130,12 @@ function generateAppModule(modules: string[]) {
 // input: array of html tags as strings, and a componentName as a string (typed as UniqueIdentifier)
 // output: a large string containing the component's contents
 function generateComponentContents(tags: string[], componentName: UniqueIdentifier) {
+  let selector = componentName.toString().toLowerCase();
+  if (componentName === 'app') selector = 'app-root';
+
   let templateCode = '';
   if (tags !== undefined) {
-    templateCode = tags.map(tag => `\n    ${capitalizeFirstLetter(tag)}`).join('');
+    templateCode = tags.map(tag => `\n    ${tag}`).join('');
   }
 
   const componentContents = `
@@ -139,20 +143,19 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: '${componentName}',
-  standalone: true,
-  imports: [CommonModule],
+  selector: '${selector}',
   template: \`${templateCode}
 \`,
   styleUrls: ['${componentName}.component.css']
 })
-export class ${componentName}Component {
+export class ${capitalizeFirstLetter(componentName.toString())}Component {
 }
 `;
 
   return componentContents;
 }
 
+// helper function that returns a string input with its first letter capitalized
 function capitalizeFirstLetter(tag: string) {
   return tag.charAt(0).toUpperCase() + tag.slice(1);
 }
@@ -163,16 +166,16 @@ function capitalizeFirstLetter(tag: string) {
 // output: a large string containing the testing file code
 function generateTestContents(componentName: UniqueIdentifier) {
   const importStatement = `import { TestBed } from '@angular/core/testing';
-import { ${componentName} } from './${componentName}.component';`;
+import { ${componentName}Component } from './${componentName}.component';`;
 
   const testContents = `
 describe('${componentName}', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [${componentName}]
+    declarations: [${componentName}Component]
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(${componentName});
+    const fixture = TestBed.createComponent(${componentName}Component);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
