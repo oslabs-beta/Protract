@@ -80,7 +80,10 @@ export default function LoadModal(props: {
       ref={modalRef}
       onClick={(e) => closeModal(e)}
     >
-      <div className="z-50 flex w-52 flex-col rounded border-0 bg-white py-4 text-center">
+      <div
+        id="loadModal"
+        className="z-50 flex w-52 flex-col rounded border-0 bg-white py-4 text-center"
+      >
         <div className="flex-grow">
           Projects
           <div className="m-7 space-x-8 overflow-y-auto">

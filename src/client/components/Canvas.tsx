@@ -5,7 +5,7 @@ import {
 } from '@dnd-kit/sortable';
 import SortableBankEl from './SortableBankEl';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
-import { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { Item, Project } from '../../types';
 import { PlaygroundContext } from './Playground';
@@ -185,6 +185,7 @@ export default function Canvas(props: {
             strategy={verticalListSortingStrategy}
           >
             <ul
+              aria-label="elements"
               ref={setNodeRef}
               className="flex-1 basis-1/2 border-t-0 border-solid border-gray-300 text-center"
             >

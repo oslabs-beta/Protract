@@ -1,7 +1,5 @@
-import Navbar from './Navbar';
 import Playground from './Playground';
-import Footer from './Footer';
-import TestingComp from './TestingLoginComp';
+import React from 'react';
 
 export default function MainContainer() {
   return (

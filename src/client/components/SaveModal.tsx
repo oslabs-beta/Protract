@@ -56,7 +56,10 @@ export default function SaveModal(props: {
       ref={modalRef}
       onClick={(e) => closeModal(e)}
     >
-      <div className="z-50 w-72 rounded border-0 bg-white pt-4 text-center ">
+      <div
+        id="saveModal"
+        className="z-50 w-72 rounded border-0 bg-white pt-4 text-center "
+      >
         Save this project as?
         <div className="m-4 space-x-8 ">
           <form onSubmit={(e) => handleSave(e)}>

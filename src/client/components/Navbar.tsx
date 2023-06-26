@@ -3,6 +3,7 @@ import logo from '../assets/logo3.png';
 import github from '../assets/github-light.png';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpModal';
+import React from 'react';
 
 export default function Navbar(props: {
   user: string;
@@ -38,8 +39,8 @@ export default function Navbar(props: {
   useEffect(() => {
     const isLoggedIn = async () => {
       try {
-        const response = await fetch('/loggedIn')
-        const data = await response.json()
+        const response = await fetch('/loggedIn');
+        const data = await response.json();
         // console.log('useEffect log HERE:', data)
 
         //NEED to fix this conditional statement because it is only checking if getting the long text about

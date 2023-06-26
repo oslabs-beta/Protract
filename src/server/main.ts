@@ -3,6 +3,7 @@ require('dotenv').config()
 import express, { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express';
 import ViteExpress from "vite-express";
 
+// comment in if prodmode
 // ViteExpress.config({ mode: "production" })
 
 const path = require('path');
