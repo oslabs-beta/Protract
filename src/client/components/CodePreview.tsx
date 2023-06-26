@@ -28,22 +28,21 @@ export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
     `   \`\n`,
     `   styleUrls: [\'${compName}.component.css\']\n`,
     '})\n',
-    'export class AppComponent {\n',
-    '}\n',
+    `export class ${currComp.value}Component {\n','}\n`,
   ];
 
   // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
   useEffect(() => {
     // console.log('preview tags:',tags);
-    if (!tags.length) {
-      setPreview('// Drop components onto canvas to see code preview');
-    } else {
-      const canvasCodeArr = tags.map((ele) => `       ${ele.code}`);
-      // console.log(canvasCodeArr);
-      const finArr = prefix.concat(canvasCodeArr).concat(suffix);
-      // console.log(finArr);
-      setPreview(finArr.join(''));
-    }
+    // if(!tags.length){
+    //     setPreview('// Drop components onto canvas to see code preview')
+    // }else{
+    const canvasCodeArr = tags.map((ele) => `       ${ele.code}`);
+    // console.log(canvasCodeArr);
+    const finArr = prefix.concat(canvasCodeArr).concat(suffix);
+    // console.log(finArr);
+    setPreview(finArr.join(''));
+    // }
   }, [tags]);
 
   const emptyText = '//drag items onto canvas to see code';

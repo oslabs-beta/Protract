@@ -49,7 +49,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
         nodeSize={{ x: 100, y: 50 }}
         separation={{ siblings: .9, nonSiblings: .9 }}
         collapsible={false}
-        zoomable={true}
+        zoomable={false}
         orientation="vertical"
         pathFunc="diagonal"
         rootNodeClassName='nodeRoot'

@@ -41,7 +41,7 @@ export default function Navbar(props: {
       try {
         const response = await fetch('/loggedIn');
         const data = await response.json();
-        console.log('useEffect log HERE:', data);
+        // console.log('useEffect log HERE:', data)
 
         //NEED to fix this conditional statement because it is only checking if getting the long text about
         //no user session being found which is a bunch of letters
