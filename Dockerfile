@@ -2,14 +2,14 @@ FROM node:18
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY . .
+
+RUN npm i -g ts-node
 
 RUN npm i
-
-COPY . .
 
 RUN npm run build
 
 EXPOSE 3000
 
-CMD [ "node" , "src/server/main.ts"]
+CMD [ "ts-node" , "src/server/main.ts"]
