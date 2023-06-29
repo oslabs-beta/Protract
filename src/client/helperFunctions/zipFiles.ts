@@ -125,17 +125,29 @@ function generateAppModule(modules: string[]) {
   return importStatements + appComponentImport + ngModule + '\nexport class AppModule { }';
 }
 
+// helper function to reformat an array of html tags so that the string 'app-' is appended to the beginning of each tag
+// returns array of tags, with 'app-' inserted before each string's first character, and after each string's first occurence of '/'
+function insertAppPrefix(tags:string[]) {
+  const result = [];
+  for (const element of tags) {
+    let modifiedElement = element.replace(/(\/)/g, '$1app-').replace(/([a-zA-Z])/,'app-$1');
+    result.push(modifiedElement);
+  }
+  return result;
+}
 
 // helper function to generate app.component.ts contents
 // input: array of html tags as strings, and a componentName as a string (typed as UniqueIdentifier)
 // output: a large string containing the component's contents
 function generateComponentContents(tags: string[], componentName: UniqueIdentifier) {
   let selector = componentName.toString().toLowerCase();
-  if (componentName === 'app') selector = 'app-root';
+  if (componentName === 'app') selector = 'root';
+
+  const modifiedTags = insertAppPrefix(tags);
 
   let templateCode = '';
-  if (tags !== undefined) {
-    templateCode = tags.map(tag => `\n    ${tag}`).join('');
+  if (modifiedTags !== undefined) {
+    templateCode = modifiedTags.map(tag => `\n    ${tag}`).join('');
   }
 
   const componentContents = `
@@ -143,7 +155,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: '${selector}',
+  selector: 'app-${selector}',
   template: \`${templateCode}
 \`,
   styleUrls: ['${componentName}.component.css']
@@ -159,7 +171,6 @@ export class ${capitalizeFirstLetter(componentName.toString())}Component {
 function capitalizeFirstLetter(tag: string) {
   return tag.charAt(0).toUpperCase() + tag.slice(1);
 }
-
 
 // helper function to generate app.component.ts contents
 // input: a componentName string, typed as UniqueIdentifier
@@ -186,9 +197,4 @@ describe('${componentName}', () => {
 }
 
 
-
-
-
 export default zipFiles;
-
-// update app.module.ts
