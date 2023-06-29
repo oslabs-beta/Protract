@@ -42,7 +42,7 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div id="flowTree" style={{ width: '100%', height: '100%' }}>
       <Tree
         data={elements}
         translate={{ x: 125, y: 40 }}

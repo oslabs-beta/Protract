@@ -175,8 +175,8 @@ export default function Canvas(props: {
           <button onClick={() => handleExport()}>Export</button>
         </div>
       </div>
-      <div className="m-5 mx-10 flex flex-grow flex-col rounded-3xl border-4 border-dashed border-gray-400 bg-white">
-        <h2 className="my-6 text-center text-2xl font-semibold">
+      <div id='canvas' className="m-5 mx-10 flex flex-grow flex-col rounded-3xl border-4 border-dashed border-gray-400 bg-white">
+        <h2 id='currCompTitle' className="my-6 text-center text-2xl font-semibold">
           {currComp.value}
         </h2>
         <DndContext onDragEnd={handleDragEnd}>
