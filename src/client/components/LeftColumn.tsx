@@ -7,7 +7,10 @@ export default function LeftColumn() {
   const { comps } = useContext(PlaygroundContext);
 
   return (
-    <div className="flex basis-1/4 flex-col border-r border-solid border-gray-200 ">
+    <div
+      id="leftCol"
+      className="flex basis-1/4 flex-col border-r border-solid border-gray-200 "
+    >
       <ComponentBank />
       <div>
         <h2 className="my-1 flex-grow text-center">File Directory</h2>
