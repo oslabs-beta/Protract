@@ -1,3 +1,4 @@
+import React from 'react';
 describe('signup functionality', () => {
   it('can sign up a user', () => {
     cy.visit('http://localhost:3000/')

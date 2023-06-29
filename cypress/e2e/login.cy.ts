@@ -1,7 +1,8 @@
+import React from 'react';
 describe('login functionality', () => {
   it('allows a user to login and logout', () => {
     cy.visit('http://localhost:3000/')
-    cy.contains('Login').click();
+    cy.contains('Login').should('be.visible').click();
     cy.get('#loginModal').within(() => {
       cy.get('input[name="username"]').type('hulk');
       cy.get('input[name="password"]').click().type('1234');
