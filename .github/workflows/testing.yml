@@ -9,9 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install
-      - run: npm run dev
-        env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          NODE_ENV: ${{ secrets.NODE_ENV }}
-      - run: npx cypress run
       - run: npm run build
+      - run: npx cypress run --project ./dist
