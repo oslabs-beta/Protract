@@ -9,5 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install
-      - run: npm run build
-      - run: npx cypress run --project ./dist
+      - uses: cypress-io/github-action
+        with:
+          build: npm run build
+          start: npm start
