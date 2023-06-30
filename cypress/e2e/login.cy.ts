@@ -15,9 +15,9 @@ describe('login functionality', () => {
       cy.contains('Protract Blueprint').click();
       cy.contains('Load').click();
     })
-    cy.contains('div').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 500, clientY: 300}).trigger('mouseup')
-    cy.contains('ol').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 500, clientY: 300}).trigger('mouseup')
-    cy.contains('img').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 500, clientY: 300}).trigger('mouseup')
+    cy.contains('div').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 400, clientY: 300}).trigger('mouseup')
+    cy.contains('ol').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 400, clientY: 300}).trigger('mouseup')
+    cy.contains('img').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 400, clientY: 300}).trigger('mouseup')
     cy.get('[placeholder="Component Name"]').click().type('Cypress is so amazing{enter}')
     
     cy.get('[aria-label="elements"]').within(() => {
