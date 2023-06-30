@@ -98,7 +98,7 @@ function generateImportStatements(modules: string[]) {
   let importStatements = `import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n`;
   for (const module of modules) {
     const path = `./components/${module}/${module}.component`;
-    importStatements += `import { ${module}Component } from '${path}';\n`;
+    importStatements += `import { ${capitalizeFirstLetter(module)}Component } from '${path}';\n`;
   }
   return importStatements;
 }
@@ -112,7 +112,7 @@ function generateAppModule(modules: string[]) {
   const ngModule = `
 @NgModule({
   declarations: [
-    ${modules.map(module => `${module}Component`).join(',\n    ')},
+    ${modules.map(module => `${capitalizeFirstLetter(module)}Component`).join(',\n    ')},
     AppComponent
   ],
   imports: [
@@ -176,17 +176,18 @@ function capitalizeFirstLetter(tag: string) {
 // input: a componentName string, typed as UniqueIdentifier
 // output: a large string containing the testing file code
 function generateTestContents(componentName: UniqueIdentifier) {
+  const pascalCompName = capitalizeFirstLetter(componentName.toString());
   const importStatement = `import { TestBed } from '@angular/core/testing';
-import { ${componentName}Component } from './${componentName}.component';`;
+import { ${capitalizeFirstLetter(pascalCompName.toString())}Component } from './${componentName}.component';`;
 
   const testContents = `
-describe('${componentName}', () => {
+describe('${pascalCompName}', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [${componentName}Component]
+    declarations: [${pascalCompName}Component]
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(${componentName}Component);
+    const fixture = TestBed.createComponent(${pascalCompName}Component);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });

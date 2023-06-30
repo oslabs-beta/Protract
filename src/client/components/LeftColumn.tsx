@@ -14,7 +14,9 @@ export default function LeftColumn() {
       <ComponentBank />
       <div>
         <h2 className="my-1 flex-grow text-center">File Directory</h2>
+        <div className="max-h-48 overflow-y-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-black">
         <FileDirectory comps={comps[0]} depth={0} />
+        </div>
       </div>
     </div>
   );
