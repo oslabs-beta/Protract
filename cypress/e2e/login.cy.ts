@@ -15,9 +15,9 @@ describe('login functionality', () => {
       cy.contains('Protract Blueprint').click();
       cy.contains('Load').click();
     })
-    cy.contains('div').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 400, clientY: 300}).trigger('mouseup')
-    cy.contains('ol').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 400, clientY: 300}).trigger('mouseup')
-    cy.contains('img').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 400, clientY: 300}).trigger('mouseup')
+    cy.contains('div').trigger('mousedown', {button: 0}).wait(200).trigger('mousemove', {clientX: 400, clientY: 300}).wait(200).trigger('mouseup')
+    cy.contains('ol').trigger('mousedown', {button: 0}).wait(200).trigger('mousemove', {clientX: 400, clientY: 300}).wait(200).trigger('mouseup')
+    cy.contains('img').trigger('mousedown', {button: 0}).wait(200).trigger('mousemove', {clientX: 400, clientY: 300}).wait(200).trigger('mouseup')
     cy.get('[placeholder="Component Name"]').click().type('Cypress is so amazing{enter}')
     
     cy.get('[aria-label="elements"]').within(() => {
@@ -27,7 +27,6 @@ describe('login functionality', () => {
     })
       cy.contains('Yes').click()
       cy.get('[aria-label="elements"]').within(() => {
-      cy.contains('img').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 500, clientY: 200}).trigger('mouseup')
       cy.contains('div').within(() => {
         cy.contains('X').click()
       })
