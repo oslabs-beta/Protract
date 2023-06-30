@@ -1,3 +1,5 @@
+import React from 'react'
+
 describe('flowtree functionality', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')

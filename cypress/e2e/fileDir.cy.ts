@@ -1,3 +1,5 @@
+import React from 'react';
+
 describe('fileDir func', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')

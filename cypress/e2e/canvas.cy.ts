@@ -1,3 +1,5 @@
+import React from 'react';
+
 describe('canvas functionality', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')
