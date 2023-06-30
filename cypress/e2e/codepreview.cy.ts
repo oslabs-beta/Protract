@@ -22,3 +22,5 @@ describe('Code preview functionality', () => {
         })
     })
 })
+
+export {}
