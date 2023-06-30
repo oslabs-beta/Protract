@@ -1,0 +1,13 @@
+name: testing
+on:
+  push:
+    branches:
+      - cicd
+jobs:
+  e2e-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - run: npx cypress run
+      - run: npm run build
