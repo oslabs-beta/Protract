@@ -48,7 +48,7 @@ export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
   const emptyText = '//drag items onto canvas to see code';
 
   return (
-    <div className="flex-grow border-0 border-solid border-yellow-400">
+    <div id="codePreview" className="flex-grow border-0 border-solid border-yellow-400">
       <Editor
         height="100%"
         defaultLanguage="javascript"
