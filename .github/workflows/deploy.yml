@@ -23,12 +23,11 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Create env file
-        run: |
-          touch .env
-          echo MONGO_URI=${{ secrets.MONGO_URI}} >> .env
-          echo mode=${{ secrets.MODE}} >> .env
-          cat .env
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v2.0.2
+        with:
+          envkey_MONGO_URI: ${{ secrets.MONGO_URI }}
+          envkey_MODE: ${{ secrets.MODE }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
