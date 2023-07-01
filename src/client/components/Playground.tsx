@@ -82,6 +82,7 @@ export default function Playground() {
 
   // comps is an array that holds app, the root object of a project
   const [comps, setComps] = useState<Item[]>([app]);
+  console.log(comps);
 
   // update the root app component anytime a change is made, and changes are desired to persist
   function handleUpdateApp(
@@ -174,7 +175,7 @@ export default function Playground() {
               handleCanvasUpdate={handleCanvasUpdate}
             />
           </DndContext>
-          <Preview tags={currOrder} currComp={currComp}/>
+          <Preview tags={currOrder} currComp={currComp} />
         </PlaygroundContext.Provider>
       </div>
     </>
