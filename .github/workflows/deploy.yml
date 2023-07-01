@@ -23,6 +23,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      - name: Create env file
+        run: |
+          touch .env
+          echo MONGO_URI=${{ secrets.MONGO_URI}} >> .env
+          echo mode=${{ secrets.MODE}} >> .env
+          cat .env
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -39,12 +46,9 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: docker-protract
           IMAGE_TAG: latest
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          MODE: ${{ secrets.MODE }}
+
         run: |
           npm install
-          echo $MONGO_URI
-          echo $MODE
           docker build -t testing111 .
           docker tag testing111 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
