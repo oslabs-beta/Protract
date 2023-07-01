@@ -149,7 +149,6 @@ export default function Canvas(props: {
       });
       if (response) {
         const data = await response.json();
-        console.log(data);
         setProjects(data);
       } else {
         throw new Error('Request failed');

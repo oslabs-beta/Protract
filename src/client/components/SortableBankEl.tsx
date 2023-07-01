@@ -23,7 +23,6 @@ export default function SortableBankEl(props: {
 
   function handleClick() {
     setDeleteModal(true);
-    console.log(deleteModal);
   }
 
   function handleDelete() {

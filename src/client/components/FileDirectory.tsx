@@ -27,7 +27,7 @@ export default function FileDirectory(props: { comps: Item; depth: number }) {
             {children.map(
               (child, index) =>
                 child.canEnter && (
-                  <div key={index} className={''}>
+                  <div key={index}>
                     <div>
                       <FileDirectory comps={child} depth={depth + 1} />
                     </div>
@@ -41,10 +41,7 @@ export default function FileDirectory(props: { comps: Item; depth: number }) {
   };
 
   return (
-    <div
-      id="fileDir"
-      className="max-h-48 overflow-y-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-black"
-    >
+    <div id="fileDir">
       {renderTree(comps)}
     </div>
   );

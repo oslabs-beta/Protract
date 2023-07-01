@@ -22,14 +22,12 @@ export default function Navbar(props: {
       try {
         const response = await fetch('/loggedIn');
         const data = await response.json();
-        console.log('useEffect log HERE:', data);
         setUser(data);
       } catch (err) {
         console.log('error in fetching');
       }
     };
     isLoggedIn();
-    console.log('loginState was previously:', loginState);
     setLoginDisplay('Logout');
     setSignUpDisplay(false);
     setLoginState(true);

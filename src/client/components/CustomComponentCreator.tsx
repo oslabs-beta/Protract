@@ -44,6 +44,7 @@ export default function CustomComponentCreator() {
           type="text"
           value={input}
           onChange={(e) => handleChange(e.target.value)}
+          maxLength={30}
           style={{ textAlign: 'left' }}
         />
         <button
