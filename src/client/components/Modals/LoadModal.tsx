@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useState } from 'react';
-import { PlaygroundContext } from './Playground';
-import { Project } from '../../types';
+import { PlaygroundContext } from '../Playground';
+import { Project } from '../../../types';
 
 export default function LoadModal(props: {
   user: string;

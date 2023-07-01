@@ -1,6 +1,6 @@
-import ComponentBank from './ComponentBank';
-import FileDirectory from './FileDirectory';
-import { PlaygroundContext } from './Playground';
+import ComponentBank from '../ComponentBank';
+import FileDirectory from '../FileDirectory';
+import { PlaygroundContext } from '../Playground';
 import React, { useContext } from 'react';
 
 export default function LeftColumn() {

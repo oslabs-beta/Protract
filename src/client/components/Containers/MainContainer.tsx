@@ -1,4 +1,4 @@
-import Playground from './Playground';
+import Playground from '../Playground';
 import React from 'react';
 
 export default function MainContainer() {
