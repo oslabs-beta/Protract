@@ -1,8 +1,9 @@
 name: deploy
 on:
-  push:
+  pull_request:
     branches:
-      - cicd
+      - main
+      - dev
 jobs:
   e2e-testing:
     runs-on: ubuntu-latest
