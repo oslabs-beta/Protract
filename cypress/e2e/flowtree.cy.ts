@@ -10,9 +10,9 @@ describe('flowtree functionality', () => {
     cy.contains('Component Tree').click()
     // look inside component tree div / container, check for one single node called app
     cy.get('#flowTree').contains('app').should('be.visible')
-})
+  })
 
-  it('adds a custom component that populates in the tree, clicking on the new node populates it in canvas', ()=>{
+  it('adds a custom component that populates in the tree, clicking on the new node populates it in canvas', () => {
     // click on component tree tab
     cy.contains('Component Tree').click()
     // select custom component input field
@@ -26,6 +26,18 @@ describe('flowtree functionality', () => {
     })
     // check if canvas updates to new node
     cy.get('#currCompTitle').contains('Comp1').should('be.visible')
-    cy.contains('Component Tree').click()
+  })
+
+  it('deletes appropriate tree node when corresponding node is deleted on canvas', () => {
+    cy.contains('Component Tree').click();
+    cy.get('#canvas').within(() => {
+      cy.contains('Comp1').within(() => {
+        cy.contains('X').click();
+      })
+    })
+    cy.get('#flowTree').within(() => {
+      cy.contains('Comp1').should('not.be.visible');
+    })
+
   })
 })
