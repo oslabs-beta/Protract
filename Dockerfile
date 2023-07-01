@@ -8,6 +8,8 @@ RUN npm i -g ts-node
 
 RUN npm i
 
+COPY .env .env
+
 RUN npm run build
 
 EXPOSE 3000
