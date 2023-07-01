@@ -12,4 +12,4 @@ RUN npm run build
 
 EXPOSE 3000
 
-RUN npm start
+CMD [ "ts-node", "src/server/main.ts" ]
