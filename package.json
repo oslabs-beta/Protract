@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon src/server/main.ts -w src/server",
-    "start": "NODE_ENV=production ts-node src/server/main.ts",
+    "dev": "mode=development nodemon src/server/main.ts -w src/server",
+    "start": "ts-node src/server/main.ts",
     "build": "tsc --project tsconfig.json && vite build",
     "preview": "vite preview",
     "ts-coverage": "typescript-coverage-report",

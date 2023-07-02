@@ -5,13 +5,13 @@ describe('Code preview functionality', () => {
     })
 
     it('canvas item populates code preview', () => {
-        cy.contains('img').trigger('mousedown', { button: 0 }).trigger('mousemove', { clientX: 500, clientY: 300 }).trigger('mouseup')
+        cy.contains('img').trigger('mousedown', { button: 0 }).wait(200).trigger('mousemove', { clientX: 500, clientY: 300 }).wait(200).trigger('mouseup')
         cy.get('#codePreview').within(() => {
             cy.contains('<img></img>').should('be.visible')
         })
     })
     it('deleting item from canvas should remove from code preview', () => {
-        cy.contains('form').trigger('mousedown', { button: 0 }).trigger('mousemove', { clientX: 500, clientY: 300 }).trigger('mouseup')
+        cy.contains('form').trigger('mousedown', { button: 0 }).wait(200).trigger('mousemove', { clientX: 500, clientY: 300 }).wait(200).trigger('mouseup')
         cy.get('#codePreview').within(() => {
             cy.contains('<form></form>').should('be.visible')
         })
