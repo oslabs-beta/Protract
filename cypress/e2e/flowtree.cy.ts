@@ -30,14 +30,15 @@ describe('flowtree functionality', () => {
 
   it('deletes appropriate tree node when corresponding node is deleted on canvas', () => {
     cy.contains('Component Tree').click();
+    cy.get('[placeholder="Component Name"]').click().type('Comp1{enter}')
+
     cy.get('#canvas').within(() => {
       cy.contains('Comp1').within(() => {
         cy.contains('X').click();
       })
     })
-    cy.get('#flowTree').within(() => {
-      cy.contains('Comp1').should('not.be.visible');
-    })
+    cy.get('#deleteModal').contains('Yes').click();
+    cy.get('#flowTree').should('not.contain', 'Comp1');
 
   })
 })
