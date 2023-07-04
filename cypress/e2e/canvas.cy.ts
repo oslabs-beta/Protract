@@ -6,7 +6,7 @@ describe('canvas functionality', () => {
   })
 
   it('can have items dragged in and deleted', () => {
-    cy.contains('div').trigger('mousedown', {button: 0}).trigger('mousemove', {clientX: 500, clientY: 300}).trigger('mouseup')
+    cy.contains('div').trigger('mousedown', {button: 0}).wait(200).trigger('mousemove', {clientX: 500, clientY: 300}).wait(200).trigger('mouseup')
     cy.get('[aria-label="elements"]').within(() => {
       cy.contains('div').within(() => {
         cy.contains('X').click()

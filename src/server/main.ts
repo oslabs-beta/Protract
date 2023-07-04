@@ -4,8 +4,10 @@ import express, { Request, Response, NextFunction, RequestHandler, ErrorRequestH
 import ViteExpress from "vite-express";
 
 // comment in if prodmode
-if (process.env.NODE_ENV === 'production')
-ViteExpress.config({ mode: "production" })
+if (process.env.mode === 'production')
+  ViteExpress.config({ mode: "production" })
+
+console.log('current mode: ', process.env.mode);
 
 const path = require('path');
 const app = express();
