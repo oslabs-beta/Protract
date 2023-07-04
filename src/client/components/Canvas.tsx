@@ -9,9 +9,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { Item, Project } from '../../types';
 import { PlaygroundContext } from './Playground';
-import WarningModal from './modals/WarningModal';
-import SaveModal from './modals/SaveModal';
-import LoadModal from './modals/LoadModal';
+import WarningModal from './Modals/WarningModal';
+import SaveModal from './Modals/SaveModal';
+import LoadModal from './Modals/LoadModal';
 import zipFiles from '../helperFunctions/zipFiles';
 
 export default function Canvas(props: {

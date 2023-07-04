@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import logo from '../assets/logo3.png';
 import github from '../assets/github-light.png';
-import LoginModal from './modals/LoginModal';
-import SignUpModal from './modals/SignUpModal';
+import LoginModal from './Modals/LoginModal';
+import SignUpModal from './Modals/SignUpModal';
 import React from 'react';
 
 export default function Navbar(props: {
