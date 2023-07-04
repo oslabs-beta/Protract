@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState, useMemo } from 'react';
-import LeftColumn from './Containers/LeftColumn';
+import LeftColumn from './containers/LeftColumn';
 import Canvas from './Canvas';
-import Preview from './Containers/Preview';
+import Preview from './containers/Preview';
 import {
   DndContext,
   DragEndEvent,
