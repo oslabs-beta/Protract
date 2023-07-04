@@ -61,9 +61,9 @@
 
 Protract is an accessible developer tool built from the ground up to assist with the blueprinting of Angular applications, simplifying the process of creating a hierarchy of components and allowing developers to quickly create the structure of their app so they can start coding faster.
 
-[Here](https://jpino831.medium.com/ease-into-your-next-react-app-with-fflow-f60c5a899817) is a medium article describing the philosophy behind Protract.
+[Here](https://medium.com/) is a medium article describing the philosophy behind Protract.
 
-Visit our website at https://Protract.dev
+Visit our website at: https://Protract.dev
 
 <img src="./src/client/assets/gifs/Protract-demo.gif">
 
