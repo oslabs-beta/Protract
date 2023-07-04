@@ -65,114 +65,85 @@ Protract is an accessible developer tool built from the ground up to assist with
 
 Visit our website at https://Protract.dev
 
-<img src="">
+<img src="./src/client/assets/gifs/Protract-demo.gif">
 
 ### Features
+
 - Drag and drop functionality to create and organize components
 - Custom components declared by the user
+<img src="./src/client/assets/gifs/Create-demo.gif">
 - Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
+<img src="./src/client/assets/gifs/Tree-demo.gif">
 - Change current component canvas by clicking on the component in file directory or component tree
 - Create, save, load, and delete projects
+<img src="./src/client/assets/gifs/Projects-demo.gif">
 - Export projects to use in a newly created Angular project
+<img src="./src/client/assets/gifs/Export-demo.gif">
 - In-browser functionality
 
 ## Getting Started
+
 ### Running Online
+
 You can start using Protract by visiting the website at [protract-link].
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
 ### Running Locally
-If you would like to run with Docker, 
+
+If you would like to run with Docker,
+
 ```
- docker pull protractors/protract-prod:latest 
+ docker pull protractors/protract-prod:latest
 ```
 
 ```
-docker run -p <your-preferred-port>:3000 protractors/protract-prod 
+docker run -p <your-preferred-port>:3000 protractors/protract-prod
 ```
+
 If you would like to use the app by forking and cloning:
 
 Fork this repository to your own GitHub account.
-Clone the forked repository to your machine 
+Clone the forked repository to your machine
+
 ```
 git clone https://github.com/<your-github-username>/protract.git
 ```
 
-Create a .env in the root directory that contains 2 variables, 
+Create a .env in the root directory that contains 2 variables,
+
 ```
 MONGO_URI=<your-mongo-uri>
-mode=production 
+mode=production
 ```
 
-Navigate to the root project directory and install dependencies. 
+Navigate to the root project directory and install dependencies.
+
 ```
 cd protract
 npm install
 ```
-If you would like to run in development mode, ``` npm run dev ``` and visit localhost:3000.
 
-If you would like to run in production mode, ```npm run build ``` and then ```npm start``` and visit localhost:3000.
+If you would like to run in development mode, `npm run dev` and visit localhost:3000.
+
+If you would like to run in production mode, `npm run build ` and then `npm start` and visit localhost:3000.
 
 ## Run Exported Project
-In your terminal, 
+
+In your terminal,
+
 ```
 npm install -g @angular/cli
-``` 
+```
+
 To install the Angular CLI if it has not already been installed.
 
 ```
 ng new <your-project>
-``` 
+```
+
 To start your new project.
 
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Contributors
 
