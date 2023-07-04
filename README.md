@@ -46,8 +46,8 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#online-mode">Running Online</a></li>
-        <li><a href="#offline-mode">Running Offline</a></li>
+        <li><a href="#running-online">Running Online</a></li>
+        <li><a href="#running-locally">Running Locally</a></li>
       </ul>
     </li>
     <li><a href="#run-exported-project">Run Exported Project</a></li>
@@ -63,7 +63,7 @@ Protract is an accessible developer tool built from the ground up to assist with
 
 [Here](https://jpino831.medium.com/ease-into-your-next-react-app-with-fflow-f60c5a899817) is a medium article describing the philosophy behind Protract.
 
-Visit our website here 👉 https://Protract.dev
+Visit our website at https://Protract.dev
 
 <img src="">
 
@@ -77,11 +77,43 @@ Visit our website here 👉 https://Protract.dev
 - In-browser functionality
 
 ## Getting Started
-[Running Online](#online-mode):
+### Running Online
 You can start using Protract by visiting the website at [protract-link].
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
-Run Exported Project:
+### Running Locally
+If you would like to run with Docker, 
+```
+ docker pull protractors/protract-prod:latest 
+```
+
+```
+docker run -p <your-preferred-port>:3000 protractors/protract-prod 
+```
+If you would like to use the app by forking and cloning:
+
+Fork this repository to your own GitHub account.
+Clone the forked repository to your machine 
+```
+git clone https://github.com/<your-github-username>/protract.git
+```
+
+Create a .env in the root directory that contains 2 variables, 
+```
+MONGO_URI=<your-mongo-uri>
+mode=production 
+```
+
+Navigate to the root project directory and install dependencies. 
+```
+cd protract
+npm install
+```
+If you would like to run in development mode, ``` npm run dev ``` and visit localhost:3000.
+
+If you would like to run in production mode, ```npm run build ``` and then ```npm start``` and visit localhost:3000.
+
+## Run Exported Project
 In your terminal, 
 ```
 npm install -g @angular/cli
@@ -94,34 +126,6 @@ ng new <your-project>
 To start your new project.
 
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
-
-Running Locally:
-If you would like to run with Docker, 
-```
- docker pull protractors/protract-prod:latest 
-```
-
-```
-docker run -p <your-preferred-port>:3000 protractors/protract-prod 
-```
-If you would like to use the app by forking and cloning, follow these steps:
-Fork this repository to your own GitHub account.
-Clone the forked repository to your machine 
-```
-git clone https://github.com/<your-github-username>/protract.git
-```
-
-Create a .env that contains 2 variables, 
-```
-MONGO_URI=<your-mongo-uri>
-mode=production 
-```
-
-Navigate to the root project directory and install dependencies. ```cd protract \n npm install```
-If you would like to run in development mode, ``` npm run dev ``` and visit localhost:3000
-If you would like to run in production mode, ```npm run build ``` and then ```npm start``` and visit localhost:3000.
-
-
 
 
 
@@ -173,6 +177,4 @@ If you would like to run in production mode, ```npm run build ``` and then ```np
 ## Contributors
 
 <a href="https://github.com/oslabs-beta/Protract/contributors">
-
-
-Project Links: [Github](https://github.com/oslabs-beta/fflow) | [Linkedin](https://www.linkedin.com/company/fflowdev) | [Media](https://jpino831.medium.com/ease-into-your-next-react-app-with-fflow-f60c5a899817)
+</a>
