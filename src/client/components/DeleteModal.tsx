@@ -27,7 +27,7 @@ export default function DeleteModal(props: {
         className="z-50 h-28 w-48 rounded border-0 bg-white pt-4 text-center "
       >
         Delete {value}?
-        <div className="m-7 space-x-8 ">
+        <div id="deleteModal" className="m-7 space-x-8 ">
           <button
             className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 text-white"
             onClick={() => handleDelete()}
