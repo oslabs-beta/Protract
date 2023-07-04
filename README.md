@@ -65,16 +65,20 @@ Protract is an accessible developer tool built from the ground up to assist with
 
 Visit our website at https://Protract.dev
 
-<img src="">
+<img src="./src/client/assets/gifs/Protract-demo.gif">
 
 ### Features
 
 - Drag and drop functionality to create and organize components
 - Custom components declared by the user
+<img src="./src/client/assets/gifs/Create-demo.gif">
 - Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
+<img src="./src/client/assets/gifs/Tree-demo.gif">
 - Change current component canvas by clicking on the component in file directory or component tree
 - Create, save, load, and delete projects
+<img src="./src/client/assets/gifs/Projects-demo.gif">
 - Export projects to use in a newly created Angular project
+<img src="./src/client/assets/gifs/Export-demo.gif">
 - In-browser functionality
 
 ## Getting Started
