@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { PlaygroundContext } from './Playground';
+import { PlaygroundContext } from '../Playground';
 
 export default function SaveModal(props: {
   setProject: React.Dispatch<React.SetStateAction<string>>;
