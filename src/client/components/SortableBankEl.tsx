@@ -2,7 +2,7 @@ import { UniqueIdentifier } from '@dnd-kit/core';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useState } from 'react';
-import DeleteModal from './Modals/DeleteModal';
+import DeleteModal from './modals/DeleteModal';
 import React, { useContext } from 'react';
 import { PlaygroundContext } from './Playground';
 
