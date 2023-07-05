@@ -5,7 +5,6 @@ import { Item } from './../../types';
 export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
   const { tags, currComp } = props;
 
-  // const [currTheme, setTheme] = useState('vs-dark');
   const [preview, setPreview] = useState('');
 
   let compName;
@@ -31,18 +30,11 @@ export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
     `export class ${currComp.value}Component {};`,
   ];
 
-  // [{code: '<>'}, {code: '<>'}, {code: '<>'}]
+  
   useEffect(() => {
-    // console.log('preview tags:',tags);
-    // if(!tags.length){
-    //     setPreview('// Drop components onto canvas to see code preview')
-    // }else{
     const canvasCodeArr = tags.map((ele) => `       ${ele.code}`);
-    // console.log(canvasCodeArr);
     const finArr = prefix.concat(canvasCodeArr).concat(suffix);
-    // console.log(finArr);
     setPreview(finArr.join(''));
-    // }
   }, [tags]);
 
   const emptyText = '//drag items onto canvas to see code';
@@ -54,12 +46,10 @@ export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
         defaultLanguage="javascript"
         defaultValue={emptyText}
         value={preview}
-        // path={file.name}
         options={{
           readOnly: true,
           lineNumbers: 'on',
           minimap: { enabled: false },
-          // theme: `${currTheme}`,
           wordWrap: 'off',
           scrollbar: { vertical: 'hidden' },
           scrollBeyondLastLine: false,

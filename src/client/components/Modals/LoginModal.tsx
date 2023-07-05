@@ -12,14 +12,11 @@ export default function LoginModal(props: { loginChange: () => void }) {
     setPassword(e.currentTarget.value);
   };
 
-  // console.log('Login Modal Username: ',user);
-  // console.log('Login Modal Pass: ',password);
 
   const handleLogin = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    //add login fetch here
     try {
       const response = await fetch('/login', {
         method: 'POST',
@@ -84,14 +81,14 @@ export default function LoginModal(props: { loginChange: () => void }) {
         </fieldset>
         <div className="my-2 flex flex-grow justify-between border-0 border-blue-600">
           <button
-            className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 py-0 text-white"
+            className="w-1/4 min-w-fit rounded border-0 border-red-600 bg-red-600 px-2 py-0 text-white"
             type="button"
             onClick={(e) => handleLogin(e)}
           >
             Login
           </button>
           <button
-            className="w-1/4 min-w-fit rounded border-2 border-white bg-white p-2 text-red-800"
+            className="w-1/4 min-w-fit rounded border-2 border-white bg-white p-2 text-red-600"
             type="button"
             onClick={() => handleCancel()}
           >

@@ -39,7 +39,7 @@ export default function CustomComponentCreator() {
         onSubmit={(e) => handleSubmit(e)}
       >
         <input
-          className="text-l block min-w-full flex-grow rounded-l-md border border-red-700 pl-2 text-center focus:outline-none"
+          className="text-l block min-w-full flex-grow rounded-l-md border border-red-600 pl-2 text-center focus:outline-none"
           placeholder="Component Name"
           type="text"
           value={input}
@@ -49,7 +49,7 @@ export default function CustomComponentCreator() {
         />
         <button
           type="submit"
-          className="rounded-r-md bg-red-700 px-3 py-1 text-white hover:bg-red-600"
+          className="rounded-r-md bg-red-600 px-3 py-1 text-white hover:bg-red-500"
         >
           Add
         </button>

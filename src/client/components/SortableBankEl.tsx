@@ -50,7 +50,7 @@ export default function SortableBankEl(props: {
       >
         {value}
         <button
-          className="float-right mr-3 rounded-sm bg-white px-1 text-red-700"
+          className="float-right mr-3 rounded-sm bg-white px-1 text-red-600"
           onMouseDown={() => handleClick()}
         >
           X
