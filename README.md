@@ -80,7 +80,7 @@ Custom components declared by the user
 </p>
 <br>
 
-### ❗Live update
+### ❗Live Updates
 Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Tree-demo.gif">
@@ -176,7 +176,7 @@ To start your new project.
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
 
 ## <h1>Contributions</h1>
-We welcome contributions from the community. If you are interested in contributing to this project, please refer to our [Contributing Guidelines](https://github.com/oslabs-beta/Protract/blob/readme/contributing.md) for more information.
+We welcome contributions from the community. If you are interested in contributing to this project, please refer to our <a href="./contributing.md">Contributing Guidelines</a> for more information.
 
 
 ## <h1>Contributors</h1>
