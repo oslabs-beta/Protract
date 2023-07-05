@@ -46,7 +46,7 @@ export default function SortableBankEl(props: {
         style={style}
         {...attributes}
         {...listeners}
-        className="mx-10 my-5 rounded border border-black bg-white p-2 shadow-md"
+        className="mx-10 my-5 rounded border border-black bg-white p-2 pl-6 shadow-md hover:border-amber-500"
       >
         {value}
         <button
