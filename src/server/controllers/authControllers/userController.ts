@@ -27,7 +27,7 @@ const userController: UserController = {
             return next({
             log: 'userController',
             status: 400,
-            message: `Error in returning isLoggedIn function Controller, ${err}`,
+            message: `Login unsucessful`,
             });
         }
     },
@@ -39,8 +39,6 @@ const userController: UserController = {
         let {username, password, email} = req.body;
         username = username.toLowerCase()
 
-        console.log('usercontroller req body',req.body)
-
         if(!username || !password || !email){
             return next({
                 log: 'userController createUser error',
@@ -51,13 +49,12 @@ const userController: UserController = {
         try{
             const userDoc = await models.User.create({username, password, email})
             res.locals.user = userDoc
-            console.log('UserController: User has been successfully created')
             return next()
         } catch (err) {
             return next({
               log: 'userController',
               status: 400,
-              message: `Error in returning createUser function Controller, ${err}`,
+              message: `User cannot be created at this time. Please try again.`,
             });
           }
     },
@@ -77,28 +74,24 @@ const userController: UserController = {
 
         try{
             const userExist = await models.User.findOne({username})
-            
+
             if(userExist){
                 const hashedPW = userExist.password
-                console.log(hashedPW)
-                console.log('username is spelled correctly and is in database')
 
                 bcrypt.compare(password, hashedPW, (err: any, valid: any) => {
                     if (err) {
                     return next(err);
                     }
-                
+
                     if (valid) {
                     res.locals.user = userExist
-                    console.log('Password is correct');
                     return next();
-                    } 
+                    }
                     else {
-                    console.log('Password is incorrect');
                     return next({
                         log: 'userController',
                         status: 400,
-                        message: `Error in returning verifyUser function Controller, invalid password ${err}`,
+                        message: `Invalid username or password. Please try again.`,
                       })
                     }
                 });
@@ -106,14 +99,14 @@ const userController: UserController = {
                 return next({
                     log: 'userController',
                     status: 400,
-                    message: `Error in returning verifyUser function Controller, invalid username`,
+                    message: `Invalid username or password. Please try again.`,
                   })
             }
         }   catch (err) {
             return next({
               log: 'userController',
               status: 400,
-              message: `Error in returning verifyUser function Controller, ${err}`,
+              message: `Invalid username or password. Please try again.`,
             });
         };
     },
@@ -126,13 +119,12 @@ const userController: UserController = {
             const {SSID} = req.cookies
             // Search and Delete MongoDB Session Database for cookieId that matches the user's current web SSID cookie
             const cookieExist = await Session.findOneAndDelete({cookieId: SSID})
-            console.log('SSID Session in MongoDB has been deleted')
             return next()
         } catch (err) {
             return next({
               log: 'userController',
               status: 400,
-              message: `Error in returning logOutUser function Controller, ${err}`,
+              message: `Unable to logout. Please try again.`,
             });
         };
     }

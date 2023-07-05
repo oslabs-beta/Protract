@@ -13,7 +13,6 @@ interface ProjController {
 const projController: ProjController = {
     saveProj: async (req, res, next) => {
       const {title, root, users} = req.body;
-      // console.log(title, root, users);
       const arrObj = [users]
         try {
           const projDoc = await Project.create({title, root, users: arrObj})
@@ -23,22 +22,24 @@ const projController: ProjController = {
           return next({
             log: 'saveProject Controller',
             status: 400,
-            message: `Error in returning saveProject Controller, ${err}`,
+            message: `Unable to save project, please try again.`,
           });
         }
       },
 
       updateProj: async (req, res, next) => {
         const {username, project, root} = req.body;
-        console.log('this is the username and proj', username, project)
         try {
           const userInfo = {title: project, users: username};
           const projDoc = await Project.findOneAndUpdate(userInfo, { $set: {root}}, {new: true});
-          console.log(projDoc);
           res.locals.newProj = 'Project has been updated';
           return next()
         } catch (err) {
-          console.log(err)
+          return next({
+            log: 'updateProj Controller',
+            status: 400,
+            message: `Unable to update project, please try again.`,
+          });
         }
       },
 
@@ -46,14 +47,13 @@ const projController: ProjController = {
         const {id} = req.params;
         try {
           const projects = await Project.find({users: id});
-          console.log(projects)
           res.locals.projects = projects
           return next();
         } catch (err) {
           return next({
             log: 'loadProj Controller',
             status: 400,
-            message: `Error in returning loadProjController, ${err}`,
+            message: `Unable to load project, please try again`,
           });
         }
       },
@@ -63,14 +63,13 @@ const projController: ProjController = {
         try {
           const userInfo = {title, users: username}
           const deleted = await Project.findOneAndDelete(userInfo)
-          console.log(deleted)
           res.locals.deleted = deleted
           return next()
         } catch (err) {
           return next({
             log: 'deleteProj Project Controller',
             status: 400,
-            message: `Error in returning deleteProj Controller, ${err}`,
+            message: `Unable to delete project, please try again`,
           });
         }
       }

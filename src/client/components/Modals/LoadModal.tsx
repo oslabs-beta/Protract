@@ -69,7 +69,7 @@ export default function LoadModal(props: {
           handleReset();
         }
       } catch (err) {
-        console.log(err);
+        console.log('Failed to delete');
       }
     }
   }

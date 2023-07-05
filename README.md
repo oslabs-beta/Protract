@@ -122,7 +122,7 @@ To save and load projects you will need to make an account and login. Once your 
 If you would like to run with Docker,
 
 ```
- docker pull protractors/protract-prod:latest
+docker pull protractors/protract-prod:latest
 ```
 
 ```
@@ -154,7 +154,7 @@ npm install
 
 If you would like to run in development mode, `npm run dev` and visit localhost:3000.
 
-If you would like to run in production mode, `npm run build ` and then `npm start` and visit localhost:3000.
+If you would like to run in production mode, `npm run build` and then `npm start` and visit localhost:3000.
 
 ## <h1>Run Exported Project</h1>
 
@@ -191,4 +191,3 @@ We welcome contributions from the community. If you are interested in contributi
 
 ## <h1>License</h1>
 <p>Protract is licensed under the terms of the <a href="./LICENSE">MIT license</a>.</p>
-
