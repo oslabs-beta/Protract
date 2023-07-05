@@ -63,8 +63,9 @@ Protract is an accessible developer tool built from the ground up to assist with
 [Here](https://medium.com/) is a medium article describing the philosophy behind Protract.
 
 Visit our website at: https://Protract.dev
-
+<p align="center">
 <img src="./src/client/assets/gifs/Protract-demo.gif">
+</p>
 
 ## <h1>Features</h1>
 
@@ -96,7 +97,7 @@ Create, save, load, and delete projects.
 <br>
 
 ### ❗Access Anywhere
-In-browser functionality.
+Fully online in-browser functionality.
 <br>
 <br>
 
