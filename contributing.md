@@ -1,3 +1,5 @@
+<h1>Contributing to Protract</h1>
+
 The Protract Team would like to thank you for your interest in helping to maintain and improve Protract!
 <br>
 

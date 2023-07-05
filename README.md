@@ -9,13 +9,15 @@
   <p align="center">
     <strong>Supercharge your Angular development process</strong>
     <br />
-    <a href="https://github.com/oslabs-beta/fflow"><strong>Build Your Angular App »</strong></a>
+    <a href="https://protract.dev"><strong>Build Your Angular App »</strong></a>
     <br />
     <a href="https://github.com/oslabs-beta/Protract/issues">Report Bug</a>
     ·
     <a href="https://github.com/oslabs-beta/Protract/issues">Request Feature</a>
   </p>
 </div>
+
+<div align="center">
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -33,6 +35,7 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+</div>
 
 <details open>
   <summary>Table of Contents</summary>
@@ -117,7 +120,6 @@ You can start using Protract by visiting the website at [protract-link].
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
 ### <h2>Running Locally<h2>
-
 If you would like to run with Docker,
 
 ```
@@ -174,7 +176,7 @@ To start your new project.
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
 
 ## <h1>Contributions</h1>
-We welcome contributions from the community. If you are interested in contributing to this project, please refer to our [Contributing Readme](https://github.com/oslabs-beta/Protract) for more information.
+We welcome contributions from the community. If you are interested in contributing to this project, please refer to our [Contributing Guidelines](https://github.com/oslabs-beta/Protract/blob/readme/contributing.md) for more information.
 
 
 ## <h1>Contributors</h1>
@@ -189,5 +191,5 @@ We welcome contributions from the community. If you are interested in contributi
 |      Douglas Yao      |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/douglas-yao)      |          [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/douglas-yao/)          |
 
 ## <h1>License</h1>
-This project is licensed under the terms of the MIT License
+<p>Protract is licensed under the terms of the <a href="./LICENSE">MIT license</a>.</p>
 
