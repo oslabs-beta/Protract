@@ -23,17 +23,24 @@ export default function Canvas(props: {
   const { user, currComp, setChildren, handleCanvasUpdate } = props;
   const { setComps, comps, setCurrComp } = useContext(PlaygroundContext);
 
+  // used for dndkit, notifies this component as a droppable area
   const { setNodeRef } = useDroppable({
     id: 'canvas',
   });
 
+  // list is the display of the canvas, originally set to currComp.children
   const [list, setList] = useState<Item[]>(currComp.children);
 
+  // different modals show up depending on which buttons were clicked
   const [modal, setModal] = useState('');
+
+  // project title set if user decides to save a project
   const [project, setProject] = useState('');
+
+  // array of projects available to user when they choose to load projects on an account
   const [projects, setProjects] = useState<Project[]>([]);
 
-  // handleUpdateApp(comps, currComp, newComp=currComp)
+  // updates order of children for the current component in the object that contains all components
   function handleAppReorder(
     comps: Item[],
     currComp: Item,
@@ -49,16 +56,19 @@ export default function Canvas(props: {
     });
   }
 
+  // switches list when new currComp selected
   useEffect(() => {
     setList(currComp.children);
   }, [currComp]);
 
+  // whenever list updates, tell parent what the order is now, and also call handleAppReorder
   useEffect(() => {
     handleCanvasUpdate(list);
     const updateApp = handleAppReorder(comps, currComp, list);
     setComps(updateApp);
   }, [list]);
 
+  // function to reorder list items in the canvas
   function handleDragEnd(e: DragEndEvent) {
     const { active, over } = e;
     if (over === null) {
@@ -81,8 +91,8 @@ export default function Canvas(props: {
     setModal('');
   }
 
+  // returns state of app back to default when user first visits site
   function handleReset() {
-    //
     setComps([
       {
         value: 'app',
@@ -107,7 +117,6 @@ export default function Canvas(props: {
   }
 
   async function saveProj(project: string) {
-    // send a patch req to the backend, edit the collection where the name === project
     try {
       await fetch('/proj', {
         method: 'PATCH',
@@ -125,6 +134,7 @@ export default function Canvas(props: {
     }
   }
 
+  // asks for a project name if the project doesnt have one yet, otherwise patches the project
   function checkIfNewProj() {
     if (project === '') {
       showModal('save');
@@ -137,9 +147,8 @@ export default function Canvas(props: {
     setModal(string);
   }
 
+  // loads the projects associated with the user
   async function handleLoad() {
-    //send a request to backend including the user's name, expecting an array of objects, key is project name, value is the [{app}] assoc w the name
-    //setProjects(data)
     try {
       const response = await fetch(`/proj/${user}`, {
         method: 'GET',
@@ -154,7 +163,7 @@ export default function Canvas(props: {
         throw new Error('Request failed');
       }
     } catch (error) {
-      console.error(error);
+      console.error('Failed to load projects');
     }
     setModal('load');
   }
@@ -174,8 +183,14 @@ export default function Canvas(props: {
           <button onClick={() => handleExport()}>Export</button>
         </div>
       </div>
-      <div id='canvas' className="m-5 mx-10 flex flex-grow flex-col rounded-3xl border-4 border-dashed border-gray-400 bg-white">
-        <h2 id='currCompTitle' className="my-6 text-center text-2xl font-semibold">
+      <div
+        id="canvas"
+        className="m-5 mx-10 flex flex-grow flex-col rounded-3xl border-4 border-dashed border-gray-400 bg-white"
+      >
+        <h2
+          id="currCompTitle"
+          className="my-6 text-center text-2xl font-semibold"
+        >
           {currComp.value}
         </h2>
         <DndContext onDragEnd={handleDragEnd}>

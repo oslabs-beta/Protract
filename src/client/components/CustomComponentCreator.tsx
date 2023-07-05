@@ -11,11 +11,10 @@ export default function CustomComponentCreator() {
     setInput(e);
   }
 
+  // create a newComp based off input. update children of currComp and handleUpdateApp to update the overall stateful object to include the newComp
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
-      // change id's code to ensure uniqueness
-      // const angularVer = input.charAt(0).toUpperCase() + input.toLowerCase().slice(1).replace(' ', '-');
       const angularVer = input.toLowerCase().replace(' ', '-');
       const newComp = {
         value: input,

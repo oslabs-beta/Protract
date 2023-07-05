@@ -4,8 +4,8 @@ export default {
     './index.html',
     './src/client/*.{js,ts,jsx,tsx}',
     './src/client/components/*.{js,ts,jsx,tsx}',
-    './src/client/components/containers/*.{js,ts,jsx,tsx}',
-    './src/client/components/modals/*.{js,ts,jsx,tsx}',
+    './src/client/components/Containers/*.{js,ts,jsx,tsx}',
+    './src/client/components/Modals/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},
