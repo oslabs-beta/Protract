@@ -64,19 +64,19 @@ export default function SaveModal(props: {
         <div className="m-4 space-x-8 ">
           <form onSubmit={(e) => handleSave(e)}>
             <input
-              className="text-l mb-3 flex-grow rounded-md border border-red-700 text-center focus:outline-none"
+              className="text-l mb-3 flex-grow rounded-md border border-red-500 text-center focus:outline-none"
               onChange={(e) => handleChange(e.target.value)}
               value={input}
             ></input>
             <div className="space-x-3">
               <button
-                className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 text-white"
+                className="w-1/4 min-w-fit rounded border-0 border-red-600 bg-red-600 px-2 text-white"
                 type="submit"
               >
                 Save
               </button>
               <button
-                className="w-1/4 min-w-fit rounded border-2 border-white bg-white text-red-800"
+                className="w-1/4 min-w-fit rounded border-2 border-white bg-white text-red-600"
                 onClick={() => handleCancel()}
               >
                 Cancel

@@ -63,54 +63,53 @@ Protract is an accessible developer tool built from the ground up to assist with
 [Here](https://medium.com/) is a medium article describing the philosophy behind Protract.
 
 Visit our website at: https://Protract.dev
-
+<p align="center">
 <img src="./src/client/assets/gifs/Protract-demo.gif">
+</p>
 
 ## <h1>Features</h1>
 
-### ❗Drag and Drop
-Drag and drop functionality to create and organize components
-<br>
-<br>
 
-### ❗Custom Components
-Custom components declared by the user
+### ❗Component Manipulation
+Drag and drop functionality to create, reorder, and delete HTML tags. Create custom components declared by the user that can be nested.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Create-demo.gif">
 </p>
 <br>
 
-### ❗Live update
-Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
+### ❗Live Updates
+Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Tree-demo.gif">
 </p>
 <br>
 
 ### ❗Context Switch
-Change current component canvas by clicking on the component in file directory or component tree
+Change current component canvas by clicking on the component in file directory or component tree.
 <br>
 <br>
 
 ### ❗Cloud Storage
-Create, save, load, and delete projects
+Create, save, load, and delete projects.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Projects-demo.gif">
 </p>
 <br>
 
+### ❗Access Anywhere
+Fully online in-browser functionality.
+<br>
+<br>
+
 ### ❗Easy Export
-Export projects to use in a newly created Angular project
+Export projects to use in a newly created Angular project.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Export-demo.gif">
 </p>
 <br>
 <br>
 
-### ❗Access Anywhere
-In-browser functionality
-<br>
-<br>
+
 
 ## <h1>Getting Started</h1>
 
@@ -119,7 +118,7 @@ In-browser functionality
 You can start using Protract by visiting the website at [protract-link].
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
-### <h2>Running Locally<h2>
+### <h2>Running Locally</h2>
 If you would like to run with Docker,
 
 ```
@@ -176,7 +175,7 @@ To start your new project.
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
 
 ## <h1>Contributions</h1>
-We welcome contributions from the community. If you are interested in contributing to this project, please refer to our [Contributing Guidelines](https://github.com/oslabs-beta/Protract/blob/readme/contributing.md) for more information.
+We welcome contributions from the community. If you are interested in contributing to this project, please refer to our <a href="./contributing.md">Contributing Guidelines</a> for more information.
 
 
 ## <h1>Contributors</h1>

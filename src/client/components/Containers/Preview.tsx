@@ -23,7 +23,6 @@ export default function Preview(props: { tags: Item[]; currComp: Item }) {
 
   const handleTreeClick = () => {
     if (tab !== 'tree') {
-      // console.log('switch to tree display!');
       setTab('tree');
       setDisplay(<FlowTree root={comps[0]} />);
     }

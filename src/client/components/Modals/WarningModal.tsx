@@ -26,13 +26,13 @@ export default function WarningModal(props: {
         Start a new project?
         <div className="m-7 space-x-8 ">
           <button
-            className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 text-white"
+            className="w-1/4 min-w-fit rounded border-0 border-red-600 bg-red-600 px-2 text-white"
             onClick={() => handleReset()}
           >
             Yes
           </button>
           <button
-            className="w-1/4 min-w-fit rounded border-2 border-white bg-white text-red-800"
+            className="w-1/4 min-w-fit rounded border-2 border-white bg-white text-red-600"
             onClick={() => handleCancel()}
           >
             No

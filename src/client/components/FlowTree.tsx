@@ -29,13 +29,14 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 //Prevents the node names from overlapping and being too long
   const abbrev = (nodeName: string): string => {
     if(nodeName && nodeName.length > 10){ return nodeName.slice(0,7) + '...'}
+    if(nodeName === 'App'){ return nodeName.toLowerCase()}
     return nodeName;
   }
 
 //Changes the SVG associated with the node and where the text shows in relation to node
   const renderSvgNode = ({ nodeDatum }: { nodeDatum: TreeNodeDatum }) => (
     <g>
-      <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#b91c1c" onClick={() => handleNodeClick(nodeDatum) } />
+      <rect width="16" height="16" x="-8" rx="20" ry="20" fill="#dc2626" onClick={() => handleNodeClick(nodeDatum) } />
       <text fill="black" strokeWidth="1" x="10" y="13" onClick={() => handleNodeClick(nodeDatum)}>
         {abbrev(nodeDatum.name)}
       </text>

@@ -23,13 +23,12 @@
         padding-top: 10px;
         padding-bottom: 10px;
         border-bottom-width: 1px;
-        color: #b91c1c;
-        border-color: #b91c1c;
+        color: #dc2626;
+        border-color: #dc2626;
     }
 
     .modal {
         background-color: lighten(slategrey, 50%);
-        /* width:20%; */
         max-width:fit-content;
         min-width:fit-content;
         color: black;
@@ -41,13 +40,13 @@
         opacity:.4;
     }
     .nodeRoot > circle{
-        fill: #b91c1c;
+        fill: #dc2626;
     }
     .nodeBranch > circle{
-        fill: #b91c1c;
+        fill: #dc2626;
     }
     .nodeLeaf > circle{
-        fill: #b91c1c;
+        fill: #dc2626;
         r: 40;
     }
 }

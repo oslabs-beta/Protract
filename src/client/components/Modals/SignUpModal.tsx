@@ -18,9 +18,6 @@ export default function SignUpModal(props: { loginChange: () => void }) {
     setPassword(e.currentTarget.value);
   }
 
-  // console.log('user input updating: ',user);
-  // console.log('email input updating: ',email);
-  // console.log('password updating: ',password);
 
   async function handleSignUp(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -70,7 +67,7 @@ export default function SignUpModal(props: { loginChange: () => void }) {
         action="/signup"
         method="post"
       >
-        <fieldset className="my-1 rounded-sm border border-gray-400 bg-white hover:border-gray-600 focus:border-red-600">
+        <fieldset className="my-1 rounded-sm border border-gray-400 bg-white hover:border-gray-600 focus:border-red-500">
           <legend className="ml-2 bg-transparent px-1 text-xs">Username</legend>
           <input
             type="text"
@@ -111,7 +108,7 @@ export default function SignUpModal(props: { loginChange: () => void }) {
         </fieldset>
         <div className="my-2 flex flex-grow justify-between border-0 border-blue-600">
           <button
-            className="w-1/4 min-w-fit rounded border-0 border-red-800 bg-red-800 px-2 py-0 text-white"
+            className="w-1/4 min-w-fit rounded border-0 border-red-600 bg-red-600 px-2 py-0 text-white"
             type="button"
             onClick={(e) => {
               handleSignUp(e);
@@ -120,7 +117,7 @@ export default function SignUpModal(props: { loginChange: () => void }) {
             Sign Up
           </button>
           <button
-            className="w-1/4 min-w-fit rounded border-2 border-white bg-white p-2 text-red-800"
+            className="w-1/4 min-w-fit rounded border-2 border-white bg-white p-2 text-red-600"
             type="button"
             onClick={() => handleCancel()}
           >
