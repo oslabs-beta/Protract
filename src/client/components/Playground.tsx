@@ -52,9 +52,6 @@ export default function Playground() {
   // used for drag overlay
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
 
-  // chronological order of items made in an instance
-  // const [items, setItems] = useState<Item[]>([]);
-
   // updated order received from canvas when items are moved
   const [currOrder, setCurrOrder] = useState<Item[]>([]);
 
@@ -82,7 +79,6 @@ export default function Playground() {
 
   // comps is an array that holds app, the root object of a project
   const [comps, setComps] = useState<Item[]>([app]);
-  console.log(comps);
 
   // update the root app component anytime a change is made, and changes are desired to persist
   function handleUpdateApp(
@@ -99,10 +95,6 @@ export default function Playground() {
       return comp;
     });
   }
-
-  // everytime currComp updates and it isnt app,
-  // do setComps, find the comp in comps[0].children. change it to currComp.
-  // if you cant find the comp, go into
 
   // function to update order of items in instance
   function handleCanvasUpdate(arr: Item[]) {

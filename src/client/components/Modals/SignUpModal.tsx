@@ -40,7 +40,6 @@ export default function SignUpModal(props: { loginChange: () => void }) {
         setPassword('');
         setEmail('');
         setUser('');
-        console.log(data);
         props.loginChange();
         (document.querySelector('#signUpModal') as HTMLDialogElement).close();
       } else {
@@ -48,7 +47,7 @@ export default function SignUpModal(props: { loginChange: () => void }) {
         throw new Error(data);
       }
     } catch (err) {
-      console.log(err);
+      console.log('Failed to sign up');
     }
   }
 

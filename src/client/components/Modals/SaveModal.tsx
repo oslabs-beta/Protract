@@ -27,9 +27,6 @@ export default function SaveModal(props: {
   async function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim().length) {
-      console.log(user);
-      console.log(comps);
-      console.log(input);
       try {
         const data = await fetch('/proj', {
           method: 'POST',
@@ -43,7 +40,7 @@ export default function SaveModal(props: {
           }),
         });
       } catch (err) {
-        console.log(err);
+        console.log('Failed to save');
       }
       setProject(input);
       showModal('');

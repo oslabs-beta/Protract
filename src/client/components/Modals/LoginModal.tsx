@@ -39,7 +39,7 @@ export default function LoginModal(props: { loginChange: () => void }) {
         throw new Error(`${data}`);
       }
     } catch (err) {
-      console.log(err);
+      console.error('Failed to login');
     }
   };
 

@@ -10,13 +10,12 @@ const sessionController: SessionController = {
         const { id } = res.locals.user
         try{
             const sessionDoc = await Session.create({cookieId: id});
-            console.log(sessionDoc)
             return next()
         } catch (err) {
             return next({
               log: 'startSession Controller',
               status: 400,
-              message: `Error in returning startSession Controller, ${err}`,
+              message: `Session error, please try again.`,
             });
           }
     }

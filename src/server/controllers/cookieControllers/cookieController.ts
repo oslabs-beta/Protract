@@ -15,13 +15,12 @@ setSSIDCookie: async (req, res, next) => {
     const { id } = res.locals.user
     try{
         res.cookie('SSID', id, options);
-        console.log('SSID cookie successfully created')
         return next();
     } catch(err) {
         return next({
             log: 'cookieController',
             status: 400,
-            message: `Error in returning setSSIDCookie Controller, ${err}`,
+            message: `Cookie error, please try again.`,
         });
     }
   }

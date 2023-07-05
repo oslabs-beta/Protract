@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import logo from '../assets/logo3.png';
-import github from '../assets/github-light.png';
 import LoginModal from './Modals/LoginModal';
 import SignUpModal from './Modals/SignUpModal';
 import React from 'react';
@@ -24,7 +23,7 @@ export default function Navbar(props: {
         const data = await response.json();
         setUser(data);
       } catch (err) {
-        console.log('error in fetching');
+        console.log('login error');
       }
     };
     isLoggedIn();
@@ -46,7 +45,7 @@ export default function Navbar(props: {
           setLoginState(true);
         }
       } catch (err) {
-        console.log('error in fetching');
+        console.log('login error');
       }
     };
     isLoggedIn();
@@ -56,10 +55,8 @@ export default function Navbar(props: {
     if (loginState === false) {
       (document.querySelector('#loginModal') as HTMLDialogElement).showModal();
     } else {
-      console.log('logout button hit!');
       const logoutFunc = async () => {
         try {
-          console.log('logout button hit!2');
           const response = await fetch('/logout', {
             method: 'PATCH',
             headers: {
@@ -69,12 +66,11 @@ export default function Navbar(props: {
 
           if (response) {
             const data = await response.json();
-            console.log('LOGOUT data info: ', data);
           } else {
             throw new Error('Logout user has failed');
           }
         } catch (error) {
-          console.error(error);
+          console.error('Error logging out');
         }
       };
       logoutFunc();
