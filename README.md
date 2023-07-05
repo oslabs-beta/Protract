@@ -119,7 +119,7 @@ In-browser functionality
 You can start using Protract by visiting the website at [protract-link].
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
-### <h2>Running Locally<h2>
+### <h2>Running Locally</h2>
 If you would like to run with Docker,
 
 ```
