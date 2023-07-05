@@ -9,13 +9,15 @@
   <p align="center">
     <strong>Supercharge your Angular development process</strong>
     <br />
-    <a href="https://github.com/oslabs-beta/fflow"><strong>Build Your Angular App »</strong></a>
+    <a href="https://protract.dev"><strong>Build Your Angular App »</strong></a>
     <br />
     <a href="https://github.com/oslabs-beta/Protract/issues">Report Bug</a>
     ·
     <a href="https://github.com/oslabs-beta/Protract/issues">Request Feature</a>
   </p>
 </div>
+
+<div align="center">
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -33,16 +35,13 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+</div>
 
 <details open>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about">About Protract</a>
-      <ul>
+    <li><a href="#about">About Protract</a></li>
        <li><a href="#features">Features</a></li>
-      </ul>
-    </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -57,39 +56,70 @@
   </ol>
 </details>
 
-## About Protract
+## <h1>About Protract</h1>
 
 Protract is an accessible developer tool built from the ground up to assist with the blueprinting of Angular applications, simplifying the process of creating a hierarchy of components and allowing developers to quickly create the structure of their app so they can start coding faster.
 
-[Here](https://jpino831.medium.com/ease-into-your-next-react-app-with-fflow-f60c5a899817) is a medium article describing the philosophy behind Protract.
+[Here](https://medium.com/) is a medium article describing the philosophy behind Protract.
 
-Visit our website at https://Protract.dev
+Visit our website at: https://Protract.dev
 
 <img src="./src/client/assets/gifs/Protract-demo.gif">
 
-### Features
+## <h1>Features</h1>
 
-- Drag and drop functionality to create and organize components
-- Custom components declared by the user
-<img src="./src/client/assets/gifs/Create-demo.gif">
-- Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
-<img src="./src/client/assets/gifs/Tree-demo.gif">
-- Change current component canvas by clicking on the component in file directory or component tree
-- Create, save, load, and delete projects
-<img src="./src/client/assets/gifs/Projects-demo.gif">
-- Export projects to use in a newly created Angular project
-<img src="./src/client/assets/gifs/Export-demo.gif">
-- In-browser functionality
+### ❗Drag and Drop
+Drag and drop functionality to create and organize components
+<br>
+<br>
 
-## Getting Started
+### ❗Custom Components
+Custom components declared by the user
+<p align="center">
+<img width="600" src="./src/client/assets/gifs/Create-demo.gif">
+</p>
+<br>
 
-### Running Online
+### ❗Live update
+Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
+<p align="center">
+<img width="600" src="./src/client/assets/gifs/Tree-demo.gif">
+</p>
+<br>
+
+### ❗Context Switch
+Change current component canvas by clicking on the component in file directory or component tree
+<br>
+<br>
+
+### ❗Cloud Storage
+Create, save, load, and delete projects
+<p align="center">
+<img width="600" src="./src/client/assets/gifs/Projects-demo.gif">
+</p>
+<br>
+
+### ❗Easy Export
+Export projects to use in a newly created Angular project
+<p align="center">
+<img width="600" src="./src/client/assets/gifs/Export-demo.gif">
+</p>
+<br>
+<br>
+
+### ❗Access Anywhere
+In-browser functionality
+<br>
+<br>
+
+## <h1>Getting Started</h1>
+
+### <h2>Running Online</h2>
 
 You can start using Protract by visiting the website at [protract-link].
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
-### Running Locally
-
+### <h2>Running Locally<h2>
 If you would like to run with Docker,
 
 ```
@@ -127,7 +157,7 @@ If you would like to run in development mode, `npm run dev` and visit localhost:
 
 If you would like to run in production mode, `npm run build ` and then `npm start` and visit localhost:3000.
 
-## Run Exported Project
+## <h1>Run Exported Project</h1>
 
 In your terminal,
 
@@ -145,7 +175,21 @@ To start your new project.
 
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
 
-## Contributors
+## <h1>Contributions</h1>
+We welcome contributions from the community. If you are interested in contributing to this project, please refer to our [Contributing Guidelines](https://github.com/oslabs-beta/Protract/blob/readme/contributing.md) for more information.
 
-<a href="https://github.com/oslabs-beta/Protract/contributors">
-</a>
+
+## <h1>Contributors</h1>
+
+
+|     Developed By      |                                                                                                                                                         |                                                                                                                                                             |
+| :-------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    Don Do    |   [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Donlebon)    |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)         |
+|       Vander Harris       |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vdharris/)       |                             [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vanderharris/)                              |
+|  Peter Tran  |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tranpeter95)      |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/peter-tran-6574b81b9/)          |
+|     Steven Vaughn    |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Svaughn4418)     |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)         |
+|      Douglas Yao      |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/douglas-yao)      |          [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/douglas-yao/)          |
+
+## <h1>License</h1>
+<p>Protract is licensed under the terms of the <a href="./LICENSE">MIT license</a>.</p>
+
