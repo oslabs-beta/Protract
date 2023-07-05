@@ -29,7 +29,8 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 //Prevents the node names from overlapping and being too long
   const abbrev = (nodeName: string): string => {
     if(nodeName && nodeName.length > 10){ return nodeName.slice(0,7) + '...'}
-    return nodeName.toLowerCase();
+    if(nodeName === 'App'){ return nodeName.toLowerCase()}
+    return nodeName;
   }
 
 //Changes the SVG associated with the node and where the text shows in relation to node
