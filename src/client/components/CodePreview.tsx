@@ -21,8 +21,6 @@ export default function CodePreview(props: { tags: Item[]; currComp: Item }) {
     "import { CommonModule } from '@angular/common';\n",
     '@Component({\n',
     `  selector: \'${compName}\',\n`,
-    '  standalone: true,\n',
-    '  imports: [CommonModule],\n',
     '  template: `\n',
   ];
 
