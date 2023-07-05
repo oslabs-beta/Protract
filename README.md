@@ -73,14 +73,14 @@ Drag and drop functionality to create and organize components
 ### ❗Custom Components
 Custom components declared by the user
 <p align="center">
-<img src="./src/client/assets/gifs/Create-demo.gif">
+<img width="600" src="./src/client/assets/gifs/Create-demo.gif">
 </p>
 <br>
 
 ### ❗Live update
 Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
 <p align="center">
-<img src="./src/client/assets/gifs/Tree-demo.gif">
+<img width="600" src="./src/client/assets/gifs/Tree-demo.gif">
 </p>
 <br>
 
@@ -92,14 +92,14 @@ Change current component canvas by clicking on the component in file directory o
 ### ❗Cloud Storage
 Create, save, load, and delete projects
 <p align="center">
-<img src="./src/client/assets/gifs/Projects-demo.gif">
+<img width="600" src="./src/client/assets/gifs/Projects-demo.gif">
 </p>
 <br>
 
 ### ❗Easy Export
 Export projects to use in a newly created Angular project
 <p align="center">
-<img src="./src/client/assets/gifs/Export-demo.gif">
+<img width="600" src="./src/client/assets/gifs/Export-demo.gif">
 </p>
 <br>
 <br>
@@ -174,7 +174,7 @@ To start your new project.
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
 
 ## <h1>Contributions</h1>
-We welcome contributions from the community. If you are interested in contributing to this project, please refer to our Contributing Guidelines for more information.
+We welcome contributions from the community. If you are interested in contributing to this project, please refer to our [Contributing Readme](https://github.com/oslabs-beta/Protract) for more information.
 
 
 ## <h1>Contributors</h1>
@@ -182,11 +182,11 @@ We welcome contributions from the community. If you are interested in contributi
 
 |     Developed By      |                                                                                                                                                         |                                                                                                                                                             |
 | :-------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|    Don Do    |   [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alanrichardson7)    |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arichardson7/)         |
-|       Vander Harris       |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/apark0720)       |                             [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)]()                              |
-|  Peter Tran  |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/astaiglesia)      |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/astaiglesia/)          |
-|     Steven Vaughn    |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anjaniemccoy)     |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anjaniemccoy/)         |
-|      Douglas Yao      |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/annieshinn)      |          [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/annieshinn/)          |
+|    Don Do    |   [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Donlebon)    |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)         |
+|       Vander Harris       |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vdharris/)       |                             [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vanderharris/)                              |
+|  Peter Tran  |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tranpeter95)      |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/peter-tran-6574b81b9/)          |
+|     Steven Vaughn    |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Svaughn4418)     |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)         |
+|      Douglas Yao      |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/douglas-yao)      |          [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/douglas-yao/)          |
 
 ## <h1>License</h1>
 This project is licensed under the terms of the MIT License
