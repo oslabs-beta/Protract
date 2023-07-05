@@ -16,8 +16,8 @@ export default function Navbar(props: {
   const [signUpDisplay, setSignUpDisplay] = useState(true);
 
   function loginChange() {
-    //think about case where user is logged in but signs up for another account of logs into another account dont want it to flip every time
-    // setLoginState((prevloginState) => !prevloginState);
+    //Case for if user is logged in but signs up for another account or logs directly into another account
+    //setLoginState((prevloginState) => !prevloginState);
     const isLoggedIn = async () => {
       try {
         const response = await fetch('/loggedIn');
