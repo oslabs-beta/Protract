@@ -68,49 +68,47 @@ Visit our website at: https://Protract.dev
 
 ## <h1>Features</h1>
 
-### ❗Drag and Drop
-Drag and drop functionality to create and organize components
-<br>
-<br>
 
-### ❗Custom Components
-Custom components declared by the user
+### ❗Component Manipulation
+Drag and drop functionality to create, reorder, and delete HTML tags. Create custom components declared by the user that can be nested.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Create-demo.gif">
 </p>
 <br>
 
 ### ❗Live Updates
-Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components
+Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Tree-demo.gif">
 </p>
 <br>
 
 ### ❗Context Switch
-Change current component canvas by clicking on the component in file directory or component tree
+Change current component canvas by clicking on the component in file directory or component tree.
 <br>
 <br>
 
 ### ❗Cloud Storage
-Create, save, load, and delete projects
+Create, save, load, and delete projects.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Projects-demo.gif">
 </p>
 <br>
 
+### ❗Access Anywhere
+In-browser functionality.
+<br>
+<br>
+
 ### ❗Easy Export
-Export projects to use in a newly created Angular project
+Export projects to use in a newly created Angular project.
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Export-demo.gif">
 </p>
 <br>
 <br>
 
-### ❗Access Anywhere
-In-browser functionality
-<br>
-<br>
+
 
 ## <h1>Getting Started</h1>
 
