@@ -31,8 +31,8 @@ export const PlaygroundContext = createContext<{
 }>({
   comps: [],
   currComp: {
-    value: 'App',
-    id: 'App',
+    value: 'app',
+    id: 'app',
     codeStart: '<app>',
     codeEnd: '</app>',
     canEnter: true,
@@ -58,8 +58,8 @@ export default function Playground() {
   const [children, setChildren] = useState<Item[]>([]);
 
   const app: Item = {
-    value: 'App',
-    id: 'App',
+    value: 'app',
+    id: 'app',
     codeStart: '<app>',
     codeEnd: '</app>',
     canEnter: true,

@@ -7,13 +7,13 @@ import { capitalizeFirstLetter } from "./capitalizeFirstLetter";
 // output: a large string containing the component's contents
 export function generateComponentContents(tags: string[], componentName: UniqueIdentifier) {
   let selector = componentName.toString().toLowerCase();
-  if (componentName === 'app') selector = 'root';
+  if (componentName === 'app') selector = 'app-root';
 
-  const modifiedTags = insertAppPrefix(tags);
+  // const modifiedTags = insertAppPrefix(tags);
 
   let templateCode = '';
-  if (modifiedTags !== undefined) {
-    templateCode = modifiedTags.map(tag => `\n    ${tag}`).join('');
+  if (tags !== undefined) {
+    templateCode = tags.map(tag => `\n    ${tag}`).join('');
   }
 
   const componentContents = `
@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-${selector}',
+  selector: '${selector}',
   template: \`${templateCode}
 \`,
   styleUrls: ['${componentName}.component.css']
