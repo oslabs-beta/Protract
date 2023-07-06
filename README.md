@@ -9,7 +9,7 @@
   <p align="center">
     <strong>Supercharge your Angular development process</strong>
     <br />
-    <a href="https://protract.dev"><strong>Build Your Angular App »</strong></a>
+    <a href="https://2d7mjmqepb.us-west-2.awsapprunner.com/"><strong>Build Your Angular App »</strong></a>
     <br />
     <a href="https://github.com/oslabs-beta/Protract/issues">Report Bug</a>
     ·
@@ -35,6 +35,7 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+
 </div>
 
 <details open>
@@ -62,63 +63,72 @@ Protract is an accessible developer tool built from the ground up to assist with
 
 [Here](https://medium.com/) is a medium article describing the philosophy behind Protract.
 
-Visit our website at: https://Protract.dev
+Visit our website <a href="https://d1tse3eei87het.cloudfront.net/">here</a>!
+
 <p align="center">
 <img src="./src/client/assets/gifs/Protract-demo.gif">
 </p>
 
 ## <h1>Features</h1>
 
+### Component Manipulation
 
-### ❗Component Manipulation
 Drag and drop functionality to create, reorder, and delete HTML tags. Create custom components declared by the user that can be nested.
+
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Create-demo.gif">
 </p>
 <br>
 
-### ❗Live Updates
+### Live Updates
+
 Real-time visualization of code for each custom component, file structure of directory, and hierarchy of components.
+
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Tree-demo.gif">
 </p>
 <br>
 
-### ❗Context Switch
+### Context Switch
+
 Change current component canvas by clicking on the component in file directory or component tree.
 <br>
 <br>
 
-### ❗Cloud Storage
+### Cloud Storage
+
 Create, save, load, and delete projects.
+
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Projects-demo.gif">
 </p>
 <br>
 
-### ❗Access Anywhere
+### Access Anywhere
+
 Fully online in-browser functionality.
 <br>
 <br>
 
-### ❗Easy Export
+### Easy Export
+
 Export projects to use in a newly created Angular project.
+
 <p align="center">
 <img width="600" src="./src/client/assets/gifs/Export-demo.gif">
 </p>
 <br>
 <br>
 
-
-
 ## <h1>Getting Started</h1>
 
 ### <h2>Running Online</h2>
 
-You can start using Protract by visiting the website at [protract-link].
+You can start using Protract by visiting the website <a href="https://2d7mjmqepb.us-west-2.awsapprunner.com/">here</a>.
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
 ### <h2>Running Locally</h2>
+
 If you would like to run with Docker,
 
 ```
@@ -175,19 +185,19 @@ To start your new project.
 In your file explorer, extract the zip file and replace the directory’s app folder with the one contained in the zip file.
 
 ## <h1>Contributions</h1>
-We welcome contributions from the community. If you are interested in contributing to this project, please refer to our <a href="./contributing.md">Contributing Guidelines</a> for more information.
 
+We welcome contributions from the community. If you are interested in contributing to this project, please refer to our <a href="./contributing.md">Contributing Guidelines</a> for more information.
 
 ## <h1>Contributors</h1>
 
-
-|     Developed By      |                                                                                                                                                         |                                                                                                                                                             |
-| :-------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|    Don Do    |   [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Donlebon)    |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)         |
-|       Vander Harris       |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vdharris/)       |                             [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vanderharris/)                              |
-|  Peter Tran  |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tranpeter95)      |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/peter-tran-6574b81b9/)          |
-|     Steven Vaughn    |     [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Svaughn4418)     |         [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)         |
-|      Douglas Yao      |      [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/douglas-yao)      |          [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/douglas-yao/)          |
+| Developed By  |                                                                                                                                                |                                                                                                                                                     |
+| :-----------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    Don Do     |  [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Donlebon)   |           [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)            |
+| Vander Harris |  [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vdharris/)  |     [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vanderharris/)     |
+|  Peter Tran   | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tranpeter95) | [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/peter-tran-6574b81b9/) |
+| Steven Vaughn | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Svaughn4418) |           [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)            |
+|  Douglas Yao  | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/douglas-yao) |     [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/douglas-yao/)      |
 
 ## <h1>License</h1>
+
 <p>Protract is licensed under the terms of the <a href="./LICENSE">MIT license</a>.</p>
