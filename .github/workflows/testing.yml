@@ -1,0 +1,19 @@
+name: testing
+on:
+  pull_request:
+    branches:
+      - dev
+jobs:
+  e2e-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: 'http://localhost:3000'
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MODE: ${{ secrets.MODE }}

@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    font-family: sans-serif;
+}
+
+@layer components {
+    .previewBtn {
+        flex-basis: 50%;
+        border-style: solid;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom-width: 1px;
+        color: gray;
+        border-color: gray;
+    }
+
+    .previewBtnSelected {
+        flex-basis: 50%;
+        border-style: solid;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom-width: 1px;
+        color: #dc2626;
+        border-color: #dc2626;
+    }
+
+    .modal {
+        background-color: lighten(slategrey, 50%);
+        max-width:fit-content;
+        min-width:fit-content;
+        color: black;
+        border-radius: 12px;
+        opacity: 1;
+    }
+    .modal::backdrop{
+        background: black;
+        opacity:.4;
+    }
+    .nodeRoot > circle{
+        fill: #dc2626;
+    }
+    .nodeBranch > circle{
+        fill: #dc2626;
+    }
+    .nodeLeaf > circle{
+        fill: #dc2626;
+        r: 40;
+    }
+}
