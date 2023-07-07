@@ -31,9 +31,6 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
     )};
 
     updateCanvas(comps, value);
-
-    // setCurrComp(comp)
-    // setChildren(comp.children)
   }
 
   // convert root object to a d3 compliant data structure
