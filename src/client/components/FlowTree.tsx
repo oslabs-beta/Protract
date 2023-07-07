@@ -10,17 +10,33 @@ interface TreeProps {
 }
 
 const FlowTree: React.FC<TreeProps> = ({ root }) => {
-  const { setCurrComp, setChildren } = useContext(PlaygroundContext);
+
+  const { setCurrComp, setChildren, comps, currComp } = useContext(PlaygroundContext);
 
   // nodeData is basically the Item type, except with additional d3-tree specific properties (name and __rd3t)
   function handleNodeClick(nodeData: any) {
+    console.log('clicked node data: ', nodeData)
+    console.log('curr comp: ', currComp);
+    console.log('comps', comps);
     // destructure from nodeData
-    const { id, children, code, value, canEnter } = nodeData;
+    const { value } = nodeData;
 
-    // construct the Item object we're used to
-    const comp = { id, children, code, value, canEnter }
-    setCurrComp(comp)
-    setChildren(children)
+    function updateCanvas(children: Item[], value: string) {
+      children.map((comp) => {
+        if (comp.value === value) {
+          setCurrComp(comp);
+          setChildren(comp.children)
+          return;
+        } else {
+          updateCanvas(comp.children, value);
+        }
+        }
+    )};
+
+    updateCanvas(comps, value);
+
+    // setCurrComp(comp)
+    // setChildren(comp.children)
   }
 
   // convert root object to a d3 compliant data structure
