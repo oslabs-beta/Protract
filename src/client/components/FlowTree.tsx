@@ -15,9 +15,6 @@ const FlowTree: React.FC<TreeProps> = ({ root }) => {
 
   // nodeData is basically the Item type, except with additional d3-tree specific properties (name and __rd3t)
   function handleNodeClick(nodeData: any) {
-    console.log('clicked node data: ', nodeData)
-    console.log('curr comp: ', currComp);
-    console.log('comps', comps);
     // destructure from nodeData
     const { value } = nodeData;
 
