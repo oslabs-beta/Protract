@@ -9,7 +9,7 @@
   <p align="center">
     <strong>Supercharge your Angular development process</strong>
     <br />
-    <a href="https://2d7mjmqepb.us-west-2.awsapprunner.com/"><strong>Build Your Angular App »</strong></a>
+    <a href="https://app.protract.dev/"><strong>Build Your Angular App »</strong></a>
     <br />
     <a href="https://github.com/oslabs-beta/Protract/issues">Report Bug</a>
     ·
@@ -63,7 +63,7 @@ Protract is an accessible developer tool built from the ground up to assist with
 
 [Here](https://medium.com/@protract-app/protract-a-visual-guide-for-angular-fd80cbcc32ba) is a medium article describing the philosophy behind Protract.
 
-Visit our website <a href="https://d1tse3eei87het.cloudfront.net/">here</a>!
+Visit our website <a href="https://www.protract.dev/">Protract.dev</a>!
 
 <p align="center">
 <img src="./src/client/assets/gifs/Protract-demo.gif">
@@ -124,7 +124,7 @@ Export projects to use in a newly created Angular project.
 
 ### <h2>Running Online</h2>
 
-You can start using Protract by visiting the website <a href="https://2d7mjmqepb.us-west-2.awsapprunner.com/">here</a>.
+You can start using Protract by visiting the website <a href="https://app.protract.dev/">here</a>.
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
 ### <h2>Running Locally</h2>
