@@ -124,7 +124,7 @@ Export projects to use in a newly created Angular project.
 
 ### <h2>Running Online</h2>
 
-You can start using Protract by visiting the website <a href="https://app.protract.dev/">here</a>.
+You can start using Protract by visiting the website <a href="http://ec2-50-112-143-149.us-west-2.compute.amazonaws.com/">here</a>.
 To save and load projects you will need to make an account and login. Once your blueprint is completed you can hit the export button on the canvas.
 
 ### <h2>Running Locally</h2>
